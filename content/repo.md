@@ -1,5 +1,5 @@
-Repo | One code repo, many deploys
-==================================
+## I. Repo
+### One code repo, many deploys
 
 A twelve-factor app is always tracked in a version control system, with the tracked code history known as a *code reposistory*, often shortened to *code repo* or just *repo*.
 

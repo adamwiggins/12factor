@@ -4,7 +4,7 @@ The Twelve Factors
 ## [I. Repo](/repo)
 ### One code repo, many deploys
 
-## II. Dependencies
+## [II. Dependencies](/dependencies)
 ### Explicit dependency declaration and isolation
 
 ## III. Config

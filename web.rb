@@ -14,5 +14,11 @@ helpers do
   def render_markdown(file)
     markdown = File.read("content/#{file}.md")
     Maruku.new(markdown).to_html
+  rescue Errno::ENOENT
+    halt 404
   end
+end
+
+not_found do
+  "Page not found"
 end
