@@ -110,6 +110,14 @@ code {
   padding: 1pt 3pt;
 }
 
+table {
+  padding-left: 32pt;
+}
+td, th {
+  padding-right: 12pt;
+  padding-bottom: 4pt;
+}
+
 footer {
   color: #444;
   font-size: 12pt;
