@@ -1,7 +1,7 @@
 The Twelve Factors
 ==================
 
-## I. Repo
+## [I. Repo](/repo)
 ### One code repo, many deploys
 
 ## II. Dependencies

@@ -1,26 +1,20 @@
-<header>
-  <h1>The Twelve-Factor App</h1>
-</header>
+<section id="abstract">
+  <article>
+    <%= render_markdown('abstract') %>
+  </article>
+</section>
 
-<div id="main" role="main">
-  <section id="abstract">
-    <article>
-      <%= render_markdown('abstract') %>
-    </article>
-  </section>
+<section id="who">
+  <article>
+    <%= render_markdown('who') %>
+  </article>
+</section>
 
-  <section id="who">
-    <article>
-      <%= render_markdown('who') %>
-    </article>
-  </section>
-
-  <section id="toc">
-    <article>
-      <%= render_markdown('toc') %>
-    <article>
-  </section>
-</div>
+<section id="toc">
+  <article>
+    <%= render_markdown('toc') %>
+  <article>
+</section>
 
 <footer>
   <div>Copyright &copy; <%= Time.now.year %> Adam Wiggins</div>
