@@ -1,2 +1,42 @@
 body {
+  margin: 0;
+  padding: 0;
+  font-family: Georgia, sans-serif;
+}
+
+h1, h2, h3 {
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  margin: 0;
+  padding: 24pt;
+  border: 1px solid black;
+  color: #fff;
+  background: #000;
+  font-size: 200%;
+  text-align: center;
+  box-shadow: 0px 2px 6px #888;
+}
+
+section {
+  padding-left: 64pt;
+  padding-top: 16pt;
+}
+section h1 {
+  font-size: 150%;
+}
+
+article {
+  width: 60em;
+}
+
+section#toc {
+  background: #ccc;
+  margin-top: 32pt;
+}
+section#toc h1 {
+}
+section#toc h2 {
 }
