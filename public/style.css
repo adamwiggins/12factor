@@ -75,6 +75,10 @@ section#toc h3 {
   font-weight: normal;
 }
 
+section#factor {
+  margin-top: 24pt;
+  margin-bottom: 128pt;
+}
 section#factor h2 {
   font-size: 32pt;
   margin-bottom: 12pt;
@@ -84,6 +88,26 @@ section#factor h3 {
   font-weight: normal;
   color: #999;
   margin-bottom: 16pt;
+}
+
+#next, #prev {
+  margin-top: 32pt;
+}
+#next {
+  float: right;
+}
+#prev {
+  float: left;
+}
+#next a, #prev a {
+  font-size: 22pt;
+  text-decoration: none;
+}
+
+code {
+  border: 1px solid #999;
+  background: #eee;
+  padding: 1pt 3pt;
 }
 
 footer {

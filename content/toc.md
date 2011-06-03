@@ -7,7 +7,7 @@ The Twelve Factors
 ## [II. Dependencies](/dependencies)
 ### Explicit dependency declaration and isolation
 
-## III. Config
+## [III. Config]
 ### Store config in the environment
 
 ## IV. Backing Services
