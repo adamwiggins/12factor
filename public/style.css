@@ -90,7 +90,7 @@ footer {
   color: #444;
   font-size: 12pt;
   background: #000;
-  height: 48pt;
-  padding-top: 64pt;
-  padding-left: 64pt;
+  padding-top: 48pt;
+  padding-bottom: 16pt;
+  text-align: center;
 }
