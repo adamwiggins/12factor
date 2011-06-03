@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Georgia, sans-serif;
+  line-height: 1.5em;
 }
 
 h1, h2, h3 {
@@ -11,13 +12,14 @@ h1, h2, h3 {
 
 header {
   margin: 0;
-  padding: 24pt;
+  padding: 26pt;
   border: 1px solid black;
   color: #fff;
   background: #000;
-  font-size: 200%;
+  font-size: 22pt;
   text-align: center;
-  box-shadow: 0px 2px 6px #888;
+  box-shadow: 0px 2px 12px #888;
+  margin-bottom: 12pt;
 }
 
 section {
@@ -25,7 +27,8 @@ section {
   padding-top: 16pt;
 }
 section h1 {
-  font-size: 150%;
+  font-size: 18pt;
+  border-bottom: 2px solid #aaa;
 }
 
 article {
@@ -34,9 +37,28 @@ article {
 
 section#toc {
   background: #ccc;
-  margin-top: 32pt;
+  margin-top: 24pt;
+  padding-top: 32pt;
+  padding-bottom: 32pt;
 }
 section#toc h1 {
+  font-size: 32pt;
+  border: 0;
+  margin-bottom: 24pt;
 }
 section#toc h2 {
+  margin-top: 12pt;
+}
+section#toc h3 {
+  font-weight: normal;
+}
+
+footer {
+  color: #444;
+  font-size: 12pt;
+  background: #000;
+  box-shadow: 0px -2px 12px #888;
+  height: 48pt;
+  padding-top: 64pt;
+  padding-left: 64pt;
 }
