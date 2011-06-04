@@ -1,8 +1,8 @@
 The Twelve Factors
 ==================
 
-## [I. Repo](/repo)
-### One code repo, many deploys
+## [I. Codebase](/codebase)
+### One codebase tracked in revision control, many deploys
 
 ## [II. Dependencies](/dependencies)
 ### Explicit dependency declaration and isolation

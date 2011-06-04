@@ -40,12 +40,12 @@ article {
   text-align: justify;
   width: 60em;
 }
-article p a {
+article p a, article li a {
   text-decoration: none;
   border-bottom: 1px dashed #444;
   color: #000;
 }
-article p a:hover {
+article p a:hover, article li a:hover {
   color: #337;
 }
 
@@ -102,6 +102,7 @@ section#factor h3 {
 #next a, #prev a {
   font-size: 22pt;
   text-decoration: none;
+  color: #555;
 }
 
 code {
@@ -125,4 +126,9 @@ footer {
   padding-top: 48pt;
   padding-bottom: 16pt;
   text-align: center;
+}
+
+article img {
+  float: right;
+  margin-left: 32pt;
 }
