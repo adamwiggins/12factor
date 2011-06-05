@@ -1,4 +1,4 @@
-## X. Logs
+## XI. Logs
 ### Logs are event streams
 
 *Logs* provide visibility into the behavior of a running app.  While they are sometimes written to a file on disk, this is only an output format - not the essence of what logs really are.

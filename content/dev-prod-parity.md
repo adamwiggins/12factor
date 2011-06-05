@@ -1,4 +1,4 @@
-## IX. Dev/prod parity
+## X. Dev/prod parity
 ### Parity between development and production
 
 Historically, there is a substantial gap between development (a developer making live edits to a local [deploy](/codebase) of the app) and production (a running deploy of the app accessed by end users).  This is a gap in time: a developer may work on code that doesn't go to production for days, weeks, or even months.  It's a gap in personnel: developers write code, ops engineers deploy it.  And it's a gap in environments: a developer may be using Nginx, SQLite, and OS X, while the production deploy uses Apache, MySQL, and Linux.
