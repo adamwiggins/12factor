@@ -14,7 +14,7 @@ The Twelve Factors
 ### Treat backing services as attached resources
 
 ## [V. Build, release, run](/build-release-run)
-### Separate build and run stages
+### Strict separation of build stage and run stage
 
 ## [VI. Processes](/processes)
 ### Stateless, disposable processes handle application logic
