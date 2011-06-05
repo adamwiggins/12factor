@@ -89,7 +89,8 @@ section#factor h3 {
 }
 
 nav {
-  margin-top: 32pt;
+  margin-top: 16pt;
+  margin-bottom: 48pt;
 }
 nav #next {
   float: right;
@@ -100,7 +101,7 @@ nav #prev {
 nav #next a, nav #prev a {
   font-size: 22pt;
   text-decoration: none;
-  color: #555;
+  color: #000;
 }
 
 code {
