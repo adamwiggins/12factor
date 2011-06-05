@@ -29,7 +29,7 @@ The Twelve Factors
 ### Fast startup and graceful shutdown maximize robustness
 
 ## [X. Dev/prod parity](/dev-prod-parity)
-### Parity between development and production
+### Keep development and production and similar as possible
 
 ## [XI. Logs](/logs)
 ### Logs are event streams
