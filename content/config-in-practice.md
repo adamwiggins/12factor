@@ -18,7 +18,7 @@ This violates twelve-factor because it stores config in the codebase.
       end
     end
 
-This violates twelve-factor because it uses a conditional on the RACK_ENV value which stores an deploy name like `staging` or `production`.  This stores config in the codebase (the hardcoded hostnames), and uses a non-granular, non-orthogonal deploy name to choose the canonical host.  Both of these things make it impossible to add new deploys without changing the code.  (As a thought experiment, imagine what it would take to open-source an app that had the above block of code in it.)
+This violates twelve-factor because it uses a conditional on the `RACK_ENV` value which stores an deploy name like `staging` or `production`.  This stores config in the codebase (the hardcoded hostnames), and uses a non-granular, non-orthogonal deploy name to choose the canonical host.  Both of these things make it impossible to add new deploys without changing the code.  (As a thought experiment, imagine what it would take to open-source an app that had the above block of code in it.)
 
 ## Doing it right: Hostname from an env var
 
