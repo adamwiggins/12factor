@@ -8,6 +8,7 @@ end
 TOC = %w(codebase dependencies config backing-services build-release-run processes port-binding concurrency dev-prod-parity logs admin-processes)
 
 get '/:factor' do |factor|
+  halt 404 unless TOC.include?(factor)
   @factor = factor
   erb :factor
 end
@@ -17,7 +18,7 @@ helpers do
     markdown = File.read("content/#{file}.md")
     Maruku.new(markdown).to_html
   rescue Errno::ENOENT
-    halt 404
+    puts "No content for #{file}, skipping"
   end
 
   def render_prev(factor)

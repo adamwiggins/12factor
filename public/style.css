@@ -21,7 +21,6 @@ header {
   font-size: 22pt;
   text-align: center;
   box-shadow: 0px 2px 12px #888;
-  margin-bottom: 12pt;
 }
 header a {
   text-decoration: none;
@@ -36,7 +35,7 @@ section h1 {
   font-size: 22pt;
 }
 
-article {
+article, nav {
   text-align: justify;
   width: 60em;
 }
@@ -49,35 +48,34 @@ article p a:hover, article li a:hover {
   color: #337;
 }
 
-section#toc {
+section.concrete {
   background: #ccc;
   margin-top: 24pt;
   padding-top: 32pt;
   padding-bottom: 32pt;
 }
-section#toc h1 {
+section.concrete h1 {
   font-size: 32pt;
   margin-bottom: 30pt;
   text-decoration: underline;
 }
-section#toc h2 {
+section.concrete h2 {
   margin-top: 12pt;
 }
-section#toc h2 a {
+section.concrete h2 a {
   text-decoration: none;
   color: #000;
 }
-section#toc h2 a:hover {
+section.concrete h2 a:hover {
   color: #337;
 }
-section#toc h3 {
+section.concrete h3 {
   color: #555;
   font-weight: normal;
 }
 
 section#factor {
   margin-top: 24pt;
-  margin-bottom: 128pt;
 }
 section#factor h2 {
   font-size: 32pt;
@@ -90,16 +88,16 @@ section#factor h3 {
   margin-bottom: 16pt;
 }
 
-#next, #prev {
+nav {
   margin-top: 32pt;
 }
-#next {
+nav #next {
   float: right;
 }
-#prev {
+nav #prev {
   float: left;
 }
-#next a, #prev a {
+nav #next a, nav #prev a {
   font-size: 22pt;
   text-decoration: none;
   color: #555;

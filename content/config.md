@@ -18,4 +18,3 @@ One method of managing config is batching it up into named groups (often called 
 In a twelve-factor app, env vars are each orthogonal values, not grouped together as "environments," but independently controllable for each deploy.  This is a model that scales up smoothly as the app naturally grows more deploys over its lifetime.
 
 A common pattern with env vars is to fall back on sensible defaults when not set.  For example, an app may use the `CANONICAL_HOST` env var for redirects, but the app will not attempt a redirect the the value is not set (which is usually desirable for development deploys).  Or assuming a local memcached if the MEMCACHED_URL is not set.  In this way, no env vars means the app is running as a vanilla development deploy.
-
