@@ -13,6 +13,7 @@ h1, h2, h3 {
 
 header {
   margin: 0;
+  margin-bottom: 8pt;
   padding-top: 12pt;
   padding-bottom: 26pt;
   border: 1px solid black;
@@ -35,6 +36,9 @@ section h1 {
   font-size: 22pt;
 }
 
+article {
+  padding-top: 8pt;
+}
 article, nav {
   text-align: justify;
   width: 60em;
@@ -74,9 +78,6 @@ section.concrete h3 {
   font-weight: normal;
 }
 
-section#factor {
-  margin-top: 24pt;
-}
 section#factor h2 {
   font-size: 32pt;
   margin-bottom: 12pt;
