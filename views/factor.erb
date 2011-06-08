@@ -4,17 +4,7 @@
   </article>
 </section>
 
-<section class="concrete" id="in-practice">
-  <article id="in-practice">
-    <%
-      in_practice = render_markdown(@factor + '-in-practice')
-      if in_practice
-    %>
-      <h1>In Practice</h1>
-      <%= in_practice %>
-    <% end %>
-  </article>
-
+<section class="concrete">
   <nav>
     <div id="prev"><%= render_prev(@factor) %></div>
     <div id="next"><%= render_next(@factor) %></div>
