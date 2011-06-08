@@ -5,7 +5,7 @@ The process of turning a [codebase](/codebase) into a running app passes through
 
 * The *build stage* is a transform which converts a code repo into an executable bundle known as a *build*.  Using a version of the code at a commit specified by the deployment process, the build stage fetches and vendors [dependencies](/dependencies) and compiles binaries and assets.
 * The *release stage* takes the build produced by the build stage and combines it with the deploy's current [config](/config).  The resulting *release* contains both the build and the config and is ready for immediate execution in the execution environment
-* The *run stage* (also sometimes referenced as "at runtime") runs app against the current release.  This typically happens by fetching and expanding the build, setting up the environment with the [config](/config), and then launching one or more of the app [processes](/processes).
+* The *run stage* (also sometimes referenced as "at runtime") runs the app, by launching the app [processes](/processes) against the current release.
 
 In a traditional server-based hosting environment, it's easy to muddle together these stages.  For example, a developer might create the fresh checkout and install dependencies (a build), but then tweak the code in-place on the disk of the production deploy (violation of stage separation).
 
@@ -17,9 +17,9 @@ Builds must be initiated by a developer, as an essential part of the process of 
 
 ![Code becomes a build, which is combined with config to create a release.](/images/release.png)
 
-A *release* is a combination of a build (an executable bundle generated in the [build stage](#)) and a [config](#), a set of environment variables to determine runtime behavior.
+A *release* is a combination of a build (the executable bundle generated in the build stage) and a [config](/config), a set of environment variables to determine runtime behavior.
 
-New builds always trigger new releases (since the build has been updated).  Config changes also trigger a new release (since the config has been updated).  A release requires restarting all running [processes](#) in order to bring all processes onto the new release.
+New builds always trigger new releases (since the build has been updated).  Config changes also trigger a new release (since the config has been updated).  A release requires restarting all running processes in order to bring all processes onto the new release.
 
 Deployment tools typically offer release management tools, most notably the ability to roll back to a previous release.  For example, the [Capistrano](https://github.com/capistrano/capistrano/wiki) deployment tool stores releases in a subdirectory named `releases`, where the current release is a symlink to the current release directory; and offers a `rollback` command.
 
