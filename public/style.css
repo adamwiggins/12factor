@@ -3,7 +3,7 @@ body {
   padding: 0;
   font-family: Georgia, sans-serif;
   line-height: 1.5em;
-  font-size: 13pt;
+  font-size: 12pt;
 }
 
 h1, h2, h3 {
@@ -19,7 +19,7 @@ header {
   border: 1px solid black;
   color: #fff;
   background: #000;
-  font-size: 22pt;
+  font-size: 19pt;
   text-align: center;
   box-shadow: 0px 2px 12px #888;
 }
@@ -31,15 +31,17 @@ header a {
 section {
   padding-left: 64pt;
   padding-top: 16pt;
+  text-align: center;
 }
 section h1 {
-  font-size: 22pt;
+  font-size: 19pt;
 }
 
 article {
   padding-top: 8pt;
 }
 article, nav {
+  margin: 0 auto;
   text-align: justify;
   width: 60em;
 }
@@ -60,7 +62,7 @@ section.concrete {
   border-top: 8pt solid #aaa;
 }
 section.concrete h1 {
-  font-size: 32pt;
+  font-size: 28pt;
   margin-bottom: 30pt;
   text-decoration: underline;
 }
@@ -80,11 +82,11 @@ section.concrete h3 {
 }
 
 section#factor h2 {
-  font-size: 32pt;
+  font-size: 28pt;
   margin-bottom: 12pt;
 }
 section#factor h3 {
-  font-size: 20pt;
+  font-size: 17pt;
   font-weight: normal;
   color: #999;
   margin-bottom: 16pt;
@@ -101,7 +103,7 @@ nav #prev {
   float: left;
 }
 nav #next a, nav #prev a {
-  font-size: 22pt;
+  font-size: 19pt;
   text-decoration: none;
   color: #000;
 }
@@ -122,7 +124,7 @@ td, th {
 
 footer {
   color: #444;
-  font-size: 12pt;
+  font-size: 10pt;
   background: #000;
   padding-top: 48pt;
   padding-bottom: 16pt;
