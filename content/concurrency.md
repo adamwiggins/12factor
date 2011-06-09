@@ -1,5 +1,5 @@
 ## VIII. Concurrency
-### Scale up via the process model
+### Scale out via the process model
 
 Any computer program, once run, is represented by one or more processes.  Web apps have taken a variety of process-execution forms.  For example, PHP processes run as child processes of Apache, started on demand as needed by request volume.  Java processes take the opposite approach, with the JVM providing one massive uberprocess that reserves a large block of system resources (CPU and memory) on startup, with concurrency managed internally via threads.  In both cases, the running process(es) are only minimally visible to the developers of the app.
 
@@ -7,6 +7,8 @@ Any computer program, once run, is represented by one or more processes.  Web ap
 
 **In the twelve-factor app, processes are a first class citizen.**  Processes in the twelve-factor app take strong cues from [the unix process model for running service daemons](http://adam.heroku.com/past/2011/5/9/applying_the_unix_process_model_to_web_apps/).  Using this model, the developer can architect their app to handle diverse workloads by assigning each type of work to a *process type*.  For example, HTTP requests may be handled by a web process, and long-running background tasks handled by a worker process.
 
-The process model truly shines when it comes time to scale up.  The [share-nothing, horizontally partitionable nature of twelve-factor app processes](/processes) means that adding more concurrency is a simple and reliable operation.  The array of process types and number of processes of each type is known as the *process formation*:
+This does not exclude individual processes from handling their own internal multiplexing, via threads inside the runtime VM, or the async/evented model found in tools such as EventMachine, Twited, and Node.js.  But an individual VM can only grow so large, so the application must also be able to span multiple processes running on multiple physical machines.
+
+The process model truly shines when it comes time to scale out.  The [share-nothing, horizontally partitionable nature of twelve-factor app processes](/processes) means that adding more concurrency is a simple and reliable operation.  The array of process types and number of processes of each type is known as the *process formation*:
 
 Twelve-factor app proceses [should never daemonize](http://dustin.github.com/2010/02/28/running-processes.html) or write PID files.  They count on the operating system's process manager ([Upstart](http://upstart.ubuntu.com/), [launchd](http://en.wikipedia.org/wiki/Launchd), or a distributed process manager on a cloud platform) to manage the [output stream](/logs), restarts after crashes, and restarts requested by the user (such as when [deploying new code, or changing config](/build-release-run)).

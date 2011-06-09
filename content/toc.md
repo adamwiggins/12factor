@@ -23,7 +23,7 @@ The Twelve Factors
 ### Services exported via port binding
 
 ## [VIII. Concurrency](/concurrency)
-### Scale up via the process model
+### Scale out via the process model
 
 ## [IX. Disposability](/disposability)
 ### Fast startup and graceful shutdown maximize robustness

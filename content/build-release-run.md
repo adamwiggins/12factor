@@ -5,7 +5,7 @@ The process of turning a [codebase](/codebase) into a running app passes through
 
 * The *build stage* is a transform which converts a code repo into an executable bundle known as a *build*.  Using a version of the code at a commit specified by the deployment process, the build stage fetches and vendors [dependencies](/dependencies) and compiles binaries and assets.
 * The *release stage* takes the build produced by the build stage and combines it with the deploy's current [config](/config).  The resulting *release* contains both the build and the config and is ready for immediate execution in the execution environment
-* The *run stage* (also sometimes referenced as "at runtime") runs the app, by launching the app [processes](/processes) against the current release.
+* The *run stage* (also sometimes referenced as "at runtime") runs the app, by launching some set of the app's [processes](/processes) against a selected release.
 
 In a traditional server-based hosting environment, it's easy to muddle together these stages.  For example, a developer might create the fresh checkout and install dependencies (a build), but then tweak the code in-place on the disk of the production deploy (violation of stage separation).
 
