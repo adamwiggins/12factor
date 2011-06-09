@@ -55,8 +55,9 @@ article p a:hover, article li a:hover {
 section.concrete {
   background: #ccc;
   margin-top: 24pt;
-  padding-top: 32pt;
+  padding-top: 24pt;
   padding-bottom: 32pt;
+  border-top: 8pt solid #aaa;
 }
 section.concrete h1 {
   font-size: 32pt;
