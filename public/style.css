@@ -29,9 +29,9 @@ header a {
 }
 
 section {
-  padding-left: 64pt;
   padding-top: 16pt;
   text-align: center;
+  min-width: 70em;
 }
 section h1 {
   font-size: 19pt;
