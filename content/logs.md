@@ -9,4 +9,8 @@ A twelve-factor app never concerns itself with routing or storage of its output 
 
 In staging or production deploys, each process' stream will be captured by the execution environment, collated together with all other streams from the app, and routed to one or more final destinations for viewing and long-term archival.  These archival destinations are not visible to or configurable by the app, and instead are completely managed by the execution environment.
 
-The event stream for an app can be routed to a file, or watched via realtime tail in a terminal.  Most significantly, the stream can be sent to into an log indexing and analysis system such as [Splunk](http://www.splunk.com/), or a general-purpose data warehousing system such as [Hadoop/Hive](http://hive.apache.org/).  These systems allow for great power and flexibility with introspecting the app's behavior over time: from finding specific events in the past, to large-scale graphing of trends (such as requests per minute), to active alerting according to user-defined heuristics (such as an alert when the quantity of errors per minute exceeds a certain threshold).
+The event stream for an app can be routed to a file, or watched via realtime tail in a terminal.  Most significantly, the stream can be sent to into an log indexing and analysis system such as [Splunk](http://www.splunk.com/), or a general-purpose data warehousing system such as [Hadoop/Hive](http://hive.apache.org/).  These systems allow for great power and flexibility for introspecting an app's behavior over time, including:
+
+* Finding specific events in the past.
+* Large-scale graphing of trends (such as requests per minute).
+* Active alerting according to user-defined heuristics (such as an alert when the quantity of errors per minute exceeds a certain threshold).
