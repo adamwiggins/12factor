@@ -1,7 +1,7 @@
 ## III. Config
 ### Store config in the environment
 
-An app's *config* is everything that can vary between [deploys](/codebase) (staging, production, developer environments, etc).  This includes:
+An app's *config* is everything that is likely to vary between [deploys](/codebase) (staging, production, developer environments, etc).  This includes:
 
 * Resource handles to the database, Memcached, and other [backing services](#)
 * Credentials to external services such as Amazon S3 or Twitter

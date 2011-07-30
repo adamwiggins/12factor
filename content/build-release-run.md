@@ -1,7 +1,7 @@
 ## V. Build, release, run
 ### Strict separation of build stage and run stage
 
-The process of turning a [codebase](/codebase) into a running app passes through three stages:
+A [codebase](/codebase) is transformed into a (non-development) deploy through three stages:
 
 * The *build stage* is a transform which converts a code repo into an executable bundle known as a *build*.  Using a version of the code at a commit specified by the deployment process, the build stage fetches and vendors [dependencies](/dependencies) and compiles binaries and assets.
 * The *release stage* takes the build produced by the build stage and combines it with the deploy's current [config](/config).  The resulting *release* contains both the build and the config and is ready for immediate execution in the execution environment
