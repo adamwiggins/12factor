@@ -1,5 +1,5 @@
 ## X. Dev/prod parity
-### Keep development and production and similar as possible
+### Keep development and production as similar as possible
 
 Historically, there is a substantial gap between development (a developer making live edits to a local [deploy](/codebase) of the app) and production (a running deploy of the app accessed by end users).  Gaps manifest in three areas:
 

@@ -4,8 +4,8 @@
 A [codebase](/codebase) is transformed into a (non-development) deploy through three stages:
 
 * The *build stage* is a transform which converts a code repo into an executable bundle known as a *build*.  Using a version of the code at a commit specified by the deployment process, the build stage fetches and vendors [dependencies](/dependencies) and compiles binaries and assets.
-* The *release stage* takes the build produced by the build stage and combines it with the deploy's current [config](/config).  The resulting *release* contains both the build and the config and is ready for immediate execution in the execution environment
-* The *run stage* (also sometimes referenced as "at runtime") runs the app, by launching some set of the app's [processes](/processes) against a selected release.
+* The *release stage* takes the build produced by the build stage and combines it with the deploy's current [config](/config).  The resulting *release* contains both the build and the config and is ready for immediate execution in the execution environment.
+* The *run stage* (also sometimes referenced as "at runtime") runs the app in the execution environment, by launching some set of the app's [processes](/processes) against a selected release.
 
 **The twelve-factor app uses strict separation between the build, release, and run stages.**  It is impossible to make changes to the code at runtime, since there is no way to propagate those changes back to the build stage.  Config is accessible at runtime but not at build time, since config can change without triggering a build.
 
