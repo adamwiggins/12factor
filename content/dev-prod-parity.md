@@ -1,7 +1,7 @@
 ## X. Dev/prod parity
-### Keep development and production as similar as possible
+### Keep development, staging, and production as similar as possible
 
-Historically, there is a substantial gap between development (a developer making live edits to a local [deploy](/codebase) of the app) and production (a running deploy of the app accessed by end users).  Gaps manifest in three areas:
+Historically, there is a substantial gap between development (a developer making live edits to a local [deploy](/codebase) of the app), staging (a near-clone of the production deploy for doing dry runs of new releases), and production (a running deploy of the app accessed by end users).  Gaps manifest in three areas:
 
 * **The time gap:** A developer may work on code that takes days, weeks, or even months to go into production.
 * **The personnel gap**: Developers write code, ops engineers deploy it.
