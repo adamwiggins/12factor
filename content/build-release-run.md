@@ -11,7 +11,7 @@ A [codebase](/codebase) is transformed into a (non-development) deploy through t
 
 ![Code becomes a build, which is combined with config to create a release.](/images/release.png)
 
-A *release* is a combination of a build (the executable bundle generated in the build stage) and a [config](/config), a set of environment variables to determine runtime behavior.
+A *release* is a combination of a build (the executable bundle generated in the build stage) and a [config](/config) (the set of environment variables which determine runtime behavior).
 
 New builds always trigger new releases (since the build has been updated).  Config changes also trigger a new release (since the config has been updated).  A release requires restarting all running processes in order to bring all processes onto the new release.
 
