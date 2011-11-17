@@ -1,17 +1,17 @@
 ## X. Dev/prod parity
 ### Keep development, staging, and production as similar as possible
 
-Historically, there is a substantial gap between development (a developer making live edits to a local [deploy](/codebase) of the app), staging (a near-clone of the production deploy for doing dry runs of new releases), and production (a running deploy of the app accessed by end users).  Gaps manifest in three areas:
+Historically, there have been substantial gaps between development (a developer making live edits to a local [deploy](/codebase) of the app) and production (a running deploy of the app accessed by end users).  These gaps manifest in three areas:
 
 * **The time gap:** A developer may work on code that takes days, weeks, or even months to go into production.
 * **The personnel gap**: Developers write code, ops engineers deploy it.
 * **The tools gap**: Developers may be using a stack like Nginx, SQLite, and OS X, while the production deploy uses Apache, MySQL, and Linux.
 
-**The twelve-factor app is designed for [continuous deployment](http://www.avc.com/a_vc/2011/02/continuous-deployment.html)** by minimizing all three:
+**The twelve-factor app is designed for [continuous deployment](http://www.avc.com/a_vc/2011/02/continuous-deployment.html) by keeping the gap between development and production small.**  Looking at the three gaps described above:
 
-* The time gap is small: a developer may write code and have it deployed hours or even just minutes later.
-* The personnel gap is small: developers who wrote code are closely involved in deploying it and watching its behavior in production.
-* Thus, it follows that the tools gap between development and production environments should also be made small.
+* Make the time gap small: a developer may write code and have it deployed hours or even just minutes later.
+* Make the personnel gap small: developers who wrote code are closely involved in deploying it and watching its behavior in production.
+* Make the tools gap small: keep development and production as similar as possible.
 
 Summarizing the above into a table:
 

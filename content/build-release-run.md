@@ -1,5 +1,5 @@
 ## V. Build, release, run
-### Strict separation of build stage and run stage
+### Strictly separate build and run stages
 
 A [codebase](/codebase) is transformed into a (non-development) deploy through three stages:
 
