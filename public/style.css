@@ -130,6 +130,7 @@ footer {
   padding-bottom: 16pt;
   text-align: right;
   padding-right: 64pt;
+  min-height: 56pt;
 }
 
 article img {
