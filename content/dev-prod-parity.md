@@ -11,7 +11,7 @@ Historically, there is a substantial gap between development (a developer making
 
 * The time gap is small: a developer may write code and have it deployed hours or even just minutes later.
 * The personnel gap is small: developers who wrote code are closely involved in deploying it and watching its behavior in production.
-* Thus, the tools gap between development and production environments should also be made small.
+* Thus, it follows that the tools gap between development and production environments should also be made small.
 
 Summarizing the above into a table:
 
@@ -38,7 +38,7 @@ Summarizing the above into a table:
   </tr>
 </table>
 
-[Backing services](/backing-services), such as the app's database, queueing system, or cache, is one area where dev/prod parity is important.  Many languages offer libraries which simplify access to the backing service, including adapters to different types of services.  Some examples are in the table below.
+[Backing services](/backing-services), such as the app's database, queueing system, or cache, is one area where dev/prod parity is important.  Many languages offer libraries which simplify access to the backing service, including *adapters* to different types of services.  Some examples are in the table below.
 
 <table>
   <tr>
