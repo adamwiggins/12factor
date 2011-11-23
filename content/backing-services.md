@@ -11,5 +11,5 @@ Each distinct backing service is a *resource*.  For example, a MySQL database is
 
 <img src="/images/attached-resources.png" class="full" alt="A production deploy attached to four backing services." />
 
-Resources can be attached and detached to deploys at will.  For example, if the app's database is misbeaving due to a hardware issue, the app's administrator might spin up a new database server restored from a recent backup.  The current production database could be detached, and the new database attached -- all without any code changes.
+Resources can be attached and detached to deploys at will.  For example, if the app's database is misbehaving due to a hardware issue, the app's administrator might spin up a new database server restored from a recent backup.  The current production database could be detached, and the new database attached -- all without any code changes.
 
