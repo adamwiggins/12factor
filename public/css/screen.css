@@ -83,7 +83,7 @@ section.concrete h2 a {
   color: #000;
 }
 section.concrete h2 a:hover {
-  text-decoration:underline;
+  border-bottom: 2px dashed #444;
   color: #337;
 }
 section.concrete h3 {
