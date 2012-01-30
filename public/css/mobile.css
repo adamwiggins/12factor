@@ -9,18 +9,15 @@
   }
 
   article h1, article h2, article h3, article p, article table {
+    padding-left: 15px;
+    padding-right: 15px;
     text-align: left;
-    padding-left: 1em;
-    padding-right: 1em;
-  }
-  
-  article h2 {
-    padding-left: 0.75em;
   }
   
   article ul, article ol {
-    padding-left: 2em;
-    padding-right: 1em;
+    padding-left: 35px;
+    padding-right: 10px;
+    text-align: left;
   }
   
   article table {
