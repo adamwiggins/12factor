@@ -25,7 +25,7 @@ Created by Adam Wiggins
 Contributions from: James Lindenbaum, Mark McGranaghan, Chris Stolt, Ryan
 Daigle, Mark Imbriaco, Keith Rarick, Will Leinweber, Jesper Jørgensen, James
 Ward, Adam Seligman, Phil Hagelberg, Jon Mountjoy, Matthew Turland, Daniel
-Jomphe, Mattt Thompson
+Jomphe, Mattt Thompson, Anand Narasimhan
 
 Released under the MIT License: http://www.opensource.org/licenses/mit-license.php
 
