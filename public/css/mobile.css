@@ -1,0 +1,52 @@
+@media screen and (max-width: 480px) {
+  header {
+    font-size: 0.75em;
+  }
+  
+  section, article, nav, footer {
+    min-width: 320px;
+    max-width: 480px;
+  }
+
+  article h1, article h2, article h3, article p, article table {
+    text-align: left;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+  
+  article h2 {
+    padding-left: 0.75em;
+  }
+  
+  article ul, article ol {
+    padding-left: 2em;
+    padding-right: 1em;
+  }
+  
+  article table {
+    font-size: 0.5em;
+  }
+  
+  article table td {
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+  }
+  
+  article img {
+    max-width: 100%;
+    margin-bottom: 1em;
+  }
+  
+  #prev {
+    margin-left: 1em;
+  }
+  
+  #next {
+    margin-right: 1em;
+  }
+  
+  footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

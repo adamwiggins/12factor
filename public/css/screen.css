@@ -11,6 +11,10 @@ h1, h2, h3 {
   margin: 0;
 }
 
+h1, h2 {
+  line-height: 1.25em;
+}
+
 header {
   margin: 0;
   margin-bottom: 8pt;
@@ -23,6 +27,11 @@ header {
   text-align: center;
   box-shadow: 0px 2px 12px #888;
 }
+
+header h1 {
+  margin-top:0.25em;
+}
+
 header a {
   text-decoration: none;
   color: #fff;
@@ -43,7 +52,7 @@ article {
 article, nav {
   margin: 0 auto;
   text-align: justify;
-  width: 55em;
+  max-width: 55em;
 }
 article p a, article li a {
   text-decoration: none;
@@ -63,8 +72,8 @@ section.concrete {
 }
 section.concrete h1 {
   font-size: 28pt;
-  margin-bottom: 30pt;
-  text-decoration: underline;
+  margin-bottom: 32pt;
+  text-align: center;
 }
 section.concrete h2 {
   margin-top: 12pt;
@@ -128,9 +137,13 @@ footer {
   background: #000;
   padding-top: 24pt;
   padding-bottom: 16pt;
-  text-align: right;
+  text-align: center;
   padding-right: 64pt;
   min-height: 56pt;
+}
+
+footer span {
+  display: block;
 }
 
 article img {
