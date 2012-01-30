@@ -28,13 +28,13 @@ header {
   box-shadow: 0px 2px 12px #888;
 }
 
-header h1 {
-  margin-top:0.25em;
-}
-
-header a {
+header h1 a {
+  background: url(/images/symbol.png) top center no-repeat;
+  color: #FFFFFF;
+  display: block;
+  margin-top: 0.25em;
+  padding-top: 100px;
   text-decoration: none;
-  color: #fff;
 }
 
 section {
@@ -144,6 +144,10 @@ footer {
 
 footer span {
   display: block;
+}
+
+footer a {
+  color: #444;
 }
 
 article img {
