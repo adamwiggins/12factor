@@ -1,12 +1,11 @@
-Introduction
+简介
 ============
+当前的软件领域，*网络应用(web apps)*或*软件运营（SaaS）*是通常的交付标准。twelve-factor为构建如下的SaaS应用提供了方法论：
 
-In the modern era, software is commonly delivered as a service: called *web apps*, or *software-as-a-service*.  The twelve-factor app is a methodology for building software-as-a-service apps that:
+* 使用**标准化**流程自动配置，从而使新的开发者花费最少的学习成本加入这个项目；
+* 和操作系统之间尽可能的**划清界限**，在各个系统中提供**最大的可移植性**；
+* 适合**部署**在现代的**云计算平台**，从而在服务器和系统管理方面节省资源；
+* 最小化研发和产品发布的**矛盾**，最大化**持续交付**所带来的灵活性；
+* 并可以在工具、架构和开发流程不发生明显变化的前提下实现扩展；
 
-* Use **declarative** formats for setup automation, to minimize time and cost for new developers joining the project;
-* Have a **clean contract** with the underlying operating system, offering **maximum portability** between execution environments;
-* Are suitable for **deployment** on modern **cloud platforms**, obviating the need for servers and systems administration;
-* **Minimize divergence** between development and production, enabling **continuous deployment** for maximum agility;
-* And can **scale up** without significant changes to tooling, architecture, or development practices.
-
-The twelve-factor methodology can be applied to apps written in any programming language, and which use any combination of backing services (database, queue, memory cache, etc).
+这套理论可以在使用任意语言，以及任意后端服务（database, queue, memory cache,等等），来开发应用时发挥作用。
