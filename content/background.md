@@ -1,9 +1,10 @@
-Background
+背景
 ==========
 
-The contributors to this document have been directly involved in the development and deployment of hundreds of apps, and indirectly witnessed the development, operation, and scaling of hundreds of thousands of apps via our work on the [Heroku](http://www.heroku.com/) platform.
+本文的参与者参与过数以百计的应用程序的开发和部署，并通过[Heroku](http://www.heroku.com/)平台间接见证了数十万应用程序的开发，运作以及扩展的过程。
 
-This document synthesizes all of our experience and observations on a wide variety of software-as-a-service apps in the wild.  It is a triangulation on ideal practices app development, paying particular attention to the dynamics of the organic growth of an app over time, the dynamics of collaboration between developers working on the app's codebase, and [avoiding the cost of software erosion](http://blog.heroku.com/archives/2011/6/28/the_new_heroku_4_erosion_resistance_explicit_contracts/).
+本文综合了我们关于SaaS应用几乎所有的经验和智慧，是开发此类应用的理想实践标准，并特别关注于应用程序如何保持良性成长，开发者之间如何进行有效的代码协作，以及如何[避免软件污染]（http://blog.heroku.com/archives/2011/6/28/the_new_heroku_4_erosion_resistance_explicit_contracts/）。
 
-Our motivation is to raise awareness of some systemic problems we've seen in modern application development, to provide a shared vocabulary for discussing those problems, and to offer a set of broad conceptual solutions to those problems with accompanying terminology.  The format is inspired by Martin Fowler's books *[Patterns of Enterprise Application Architecture](http://books.google.com/books/about/Patterns_of_enterprise_application_archi.html?id=FyWZt5DdvFkC)* and *[Refactoring](http://books.google.com/books/about/Refactoring.html?id=1MsETFPD3I0C)*.
+我们的初衷是分享在现代应用程序开发过程中发现的一些系统性问题，并加深对这些问题的认识，提供讨论这些问题时所需的共享词汇，同时使用相关术语提供一套针对这些问题的广义解决方案。
 
+格式的灵感来自于Martin Fowler的书籍： *[Patterns of Enterprise Application Architecture](http://books.google.com/books/about/Patterns_of_enterprise_application_archi.html?id=FyWZt5DdvFkC)* ，*[Refactoring](http://books.google.com/books/about/Refactoring.html?id=1MsETFPD3I0C)*。
