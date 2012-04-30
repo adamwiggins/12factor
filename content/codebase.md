@@ -1,18 +1,18 @@
 ## I. Codebase
-### One codebase tracked in revision control, many deploys
+### 一份使用版本控制的codebase，多份部署
 
-A twelve-factor app is always tracked in a version control system, such as [Git](http://git-scm.com/), [Mercurial](http://mercurial.selenic.com/), or [Subversion](http://subversion.apache.org/).  A copy of the revision tracking database is known as a *code repository*, often shortened to *code repo* or just *repo*.
+使用twelve-factor概念的应用总是引入类似[Git](http://git-scm.com/), [Mercurial](http://mercurial.selenic.com/), 或 [Subversion](http://subversion.apache.org/)的版本控制系统。一份用来跟踪代码所有修订版本的数据库被称作*code repository* ，通常简化为*code repo*或者只保留*repo* 。
 
-A *codebase* is any single repo (in a centralized revision control system like Subversion), or any set of repos who share a root commit (in a decentralized revision control system like Git).
+*codebase*是指单独的repo(在类似Subversion的集中式版本控制器中)，或一组拥有共同祖先的repo（在类似Git的分布式版本控制系统中）。
 
-![One codebase maps to many deploys](/images/codebase-deploys.png)
+![一份codebase对应多份部署](/images/codebase-deploys.png)
 
-There is always a one-to-one correlation between the codebase and the app:
+codebase和应用之间总是保持一一对应的关系：
 
-* If there are multiple codebases, it's not an app -- it's a distributed system.  Each component in a distributed system is an app, and each can individually comply with twelve-factor.
-* Multiple apps sharing the same code is a violation of twelve-factor.  The solution here is to factor shared code into libraries which can be included through the [dependency manager](/dependencies).
+* 一旦有多个codebase，就不能称为一个应用 —— 准确的说，它应该是一个分布式系统。 分布式系统中的每一个组件是一个应用，并且每一个应用都应该独立遵守twelve-factor。
+* 多个应用共享一份代码是违背twelve-factor的。解决方案是将共享的代码分解到不同的目录，然后使用[依赖管理](/dependencies)策略去加载它们。
 
-There is only one codebase per app, but there will be many deploys of the app.  A *deploy* is a running instance of the app.  This is typically a production site, and one or more staging sites.  Additionally, every developer has a copy of the app running in their local development environment, each of which also qualifies as a deploy.
+尽管每个应用对应一个codebase，但可以同时存在多份部署。每份*部署*相当于运行了一个应用的实例。通常都会有一个生产环境，一个或多个预发布环境。此外，每个开发人员都会在自己本地环境运行一份应用，这些都相当于一份部署。
 
-The codebase is the same across all deploys, although different versions may be active in each deploy.  For example, a developer has some commits not yet deployed to staging; staging has some commits not yet deployed to production.  But they all share the same codebase, thus making them identifiable as different deploys of the same app.
+所有部署的codebase相同，但每份部署可以使用其不同的版本。比如，开发人员可能有一些提交还没有同步至预发布环境；预发布环境也有一些提交没有同步至生产环境。但它们都共享一份codebase，我们就认为它们只是相同应用的不同部署而已。
 
