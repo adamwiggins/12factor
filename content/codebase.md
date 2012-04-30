@@ -1,9 +1,9 @@
 ## I. Codebase
 ### 一份使用版本控制的codebase，多份部署
 
-使用twelve-factor概念的应用总是引入类似[Git](http://git-scm.com/), [Mercurial](http://mercurial.selenic.com/), 或 [Subversion](http://subversion.apache.org/)的版本控制系统。一份用来跟踪代码所有修订版本的数据库被称作*code repository* ，通常简化为*code repo*或者只保留*repo* 。
+使用twelve-factor概念的应用总是引入类似[Git](http://git-scm.com/), [Mercurial](http://mercurial.selenic.com/), 或 [Subversion](http://subversion.apache.org/)的版本控制系统。一份用来跟踪代码所有修订版本的数据库被称作*code repository* ，通常简化为*code repo* 或者只保留 *repo* 。
 
-*codebase*是指单独的repo(在类似Subversion的集中式版本控制器中)，或一组拥有共同祖先的repo（在类似Git的分布式版本控制系统中）。
+*codebase* 是指单独的repo(在类似Subversion的集中式版本控制器中)，或一组拥有共同祖先的repo（在类似Git的分布式版本控制系统中）。
 
 ![一份codebase对应多份部署](/images/codebase-deploys.png)
 
