@@ -1,18 +1,18 @@
 ## I. Codebase
-### һ��ʹ�ð汾���Ƶ�codebase����ݲ���
+### 一份使用版本控制的codebase，多份部署
 
-ʹ��twelve-factor�����Ӧ��������������[Git](http://git-scm.com/), [Mercurial](http://mercurial.selenic.com/), �� [Subversion](http://subversion.apache.org/)�İ汾����ϵͳ��һ���������ٴ��������޶��汾�����ݿⱻ����*code repository* ��ͨ����Ϊ*code repo* ����ֻ���� *repo* ��
+使用twelve-factor概念的应用总是引入类似[Git](http://git-scm.com/), [Mercurial](http://mercurial.selenic.com/), 或 [Subversion](http://subversion.apache.org/)的版本控制系统。一份用来跟踪代码所有修订版本的数据库被称作*code repository* ，通常简化为*code repo* 或者只保留 *repo* 。
 
-*codebase* ��ָ������repo(������Subversion�ļ���ʽ�汾��������)����һ��ӵ�й�ͬ���ȵ�repo��������Git�ķֲ�ʽ�汾����ϵͳ�У���
+*codebase* 是指单独的repo(在类似Subversion的集中式版本控制器中)，或一组拥有共同祖先的repo（在类似Git的分布式版本控制系统中）。
 
-![һ��codebase��Ӧ��ݲ���](/images/codebase-deploys.png)
+![一份codebase对应多份部署](/images/codebase-deploys.png)
 
-codebase��Ӧ��֮�����Ǳ���һһ��Ӧ�Ĺ�ϵ��
+codebase和应用之间总是保持一一对应的关系：
 
-* һ���ж��codebase���Ͳ��ܳ�Ϊһ��Ӧ�� ���� ׼ȷ��˵����Ӧ����һ���ֲ�ʽϵͳ�� �ֲ�ʽϵͳ�е�ÿһ�������һ��Ӧ�ã�����ÿһ��Ӧ�ö�Ӧ�ö�������twelve-factor��
-* ���Ӧ�ù���һ�ݴ�����Υ��twelve-factor�ġ���������ǽ������Ĵ���ֽ⵽��ͬ��Ŀ¼��Ȼ��ʹ��[��������](/dependencies)����ȥ�������ǡ�
+* 一旦有多个codebase，就不能称为一个应用 —— 准确的说，它应该是一个分布式系统。 分布式系统中的每一个组件是一个应用，并且每一个应用都应该独立遵守twelve-factor。
+* 多个应用共享一份代码是违背twelve-factor的。解决方案是将共享的代码分解到不同的目录，然后使用[依赖管理](/dependencies)策略去加载它们。
 
-����ÿ��Ӧ�ö�Ӧһ��codebase��������ͬʱ���ڶ�ݲ���ÿ��*����*�൱��������һ��Ӧ�õ�ʵ����ͨ��������һ������������һ������Ԥ�������������⣬ÿ��������Ա�������Լ����ػ�������һ��Ӧ�ã���Щ���൱��һ�ݲ���
+尽管每个应用对应一个codebase，但可以同时存在多份部署。每份*部署*相当于运行了一个应用的实例。通常都会有一个生产环境，一个或多个预发布环境。此外，每个开发人员都会在自己本地环境运行一份应用，这些都相当于一份部署。
 
-���в����codebase��ͬ����ÿ�ݲ������ʹ���䲻ͬ�İ汾�����磬������Ա������һЩ�ύ��û��ͬ����Ԥ����������Ԥ��������Ҳ��һЩ�ύû��ͬ�������������������Ƕ�����һ��codebase�����Ǿ���Ϊ����ֻ����ͬӦ�õĲ�ͬ������ѡ�
+所有部署的codebase相同，但每份部署可以使用其不同的版本。比如，开发人员可能有一些提交还没有同步至预发布环境；预发布环境也有一些提交没有同步至生产环境。但它们都共享一份codebase，我们就认为它们只是相同应用的不同部署而已。
 
