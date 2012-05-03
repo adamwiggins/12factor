@@ -1,7 +1,7 @@
 ## III. 配置
 ### 在环境中存储配置(*Config*)
 
-通常，应用的*配置*在不同 [部署](/codebase) (预发布、生产环境、开发环境等等)间会有很大差异。这其中包括：
+通常，应用的 *配置* 在不同 [部署](/codebase) (预发布、生产环境、开发环境等等)间会有很大差异。这其中包括：
 
 * 数据库，Memcached，以及其他 [后端服务](/backing-services) 的配置
 * Amazon S3或是Twitter等第三方服务的证书
@@ -11,7 +11,7 @@
 
 衡量一个应用是否正确的将配置排除在代码之外的一个有效方法是，该应用的代码库是否可以随时开源而不做任何修改。
 
-需要特别注意的是，这里定义的"配置"并 **不** 包括应用的内部配置，比如Rails的 `config/routes.rb`，又或是 [Spring](http://www.springsource.org/) 的 how [code modules are connected](http://static.springsource.org/spring/docs/2.5.x/reference/beans.html) 。这类配置在不同部署间不存在差异，所以存在代码中是最好的选择。
+需要特别注意的是，这里定义的"配置"并 **不** 包括应用的内部配置，比如Rails的 `config/routes.rb`，又或是 [Spring](http://www.springsource.org/) 的 [how code modules are connected](http://static.springsource.org/spring/docs/2.5.x/reference/beans.html) 。这类配置在不同部署间不存在差异，所以存在代码中是最好的选择。
 
 另外一个解决配置的方式是使用配置文件，但不把它们签入版本控制系统，就像Rails的 `config/database.yml` 。这相对将常量直接签入代码库已经是长足进步，但仍然有缺点：总是会不小心将配置文件签入了代码库；配置文件的一个趋势是它们分散在不同的目录，并有着不同的格式，这让找出一个地方来统一管理所有配置变的不太现实。更糟的是，这些格式通常是语言或框架特定的。
 
