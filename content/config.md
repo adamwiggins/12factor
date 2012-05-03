@@ -1,23 +1,23 @@
-## III. Config
-### Store config in the environment
+## III. 配置
+### 在环境中存储配置(*Config*)
 
-An app's *config* is everything that is likely to vary between [deploys](/codebase) (staging, production, developer environments, etc).  This includes:
+通常，应用的*配置*在不同 [部署](/codebase) (预发布、生产环境、开发环境等等)间会有很大差异。这其中包括：
 
-* Resource handles to the database, Memcached, and other [backing services](/backing-services)
-* Credentials to external services such as Amazon S3 or Twitter
-* Per-deploy values such as the canonical hostname for the deploy
+* 数据库，Memcached，以及其他 [后端服务](/backing-services) 的配置
+* Amazon S3或是Twitter等第三方服务的证书
+* 每种部署独特的域名等各个部署间不同的内容
 
-Apps sometimes store config as constants in the code.  This is a violation of twelve-factor, which requires **strict separation of config from code**.  Config varies substantially across deploys, code does not.
+有些应用将配置在代码中写为常量。这与twelve-factor所要求的 **代码和配置严格分离** 显然大相径庭。配置文件在各部署间存在大幅差异，代码却完全一致。
 
-A litmus test for whether an app has all config correctly factored out of the code is whether the codebase could be made open source at any moment, without compromising any credentials.
+衡量一个应用是否正确的将配置排除在代码之外的一个有效方法是，该应用的代码库是否可以随时开源而不做任何修改。
 
-Note that this definition of "config" does **not** include internal application config, such as `config/routes.rb` in Rails, or how [code modules are connected](http://static.springsource.org/spring/docs/2.5.x/reference/beans.html) in [Spring](http://www.springsource.org/).  This type of config does not vary between deploys, and so is best done in the code.
+需要特别注意的是，这里定义的"配置"并 **不** 包括应用的内部配置，比如Rails的 `config/routes.rb`，又或是 [Spring](http://www.springsource.org/) 的 how [code modules are connected](http://static.springsource.org/spring/docs/2.5.x/reference/beans.html) 。这类配置在不同部署间不存在差异，所以存在代码中是最好的选择。
 
-Another approach to config is the use of config files which are not checked into revision control, such as `config/database.yml` in Rails.  This is a huge improvement over using constants which are checked into the code repo, but still has weaknesses: it's easy to mistakenly check in a config file to the repo; there is a tendency for config files to be scattered about in different places and different formats, making it hard to see and manage all the config in one place.  Further, these formats tend to be language- or framework-specific.
+另外一个解决配置的方式是使用配置文件，但不把它们签入版本控制系统，就像Rails的 `config/database.yml` 。这相对将常量直接签入代码库已经是长足进步，但仍然有缺点：总是会不小心将配置文件签入了代码库；配置文件的一个趋势是它们分散在不同的目录，并有着不同的格式，这让找出一个地方来统一管理所有配置变的不太现实。更糟的是，这些格式通常是语言或框架特定的。
 
-**The twelve-factor app stores config in *environment variables*** (often shortened to *env vars* or *env*).  Env vars are easy to change between deploys without changing any code; unlike config files, there is little chance of them being checked into the code repo accidentally; and unlike custom config files, or other config mechanisms such as Java System Properties, they are a language- and OS-agnostic standard.
+**Twelve-factor推崇将应用的配置存储于 *环境变量*** (通常称之为 *env vars* 或 *env*) 。Env vars可以非常方便的在不同部署间做修改，却不动一行代码；与配置文件不同，不小心把它们签入代码库的概率微乎其微；与一些传统的解决配置问题的机制（比如Java System properties）相比，它们与语言和系统无关。
 
-Another aspect of config management is grouping.  Sometimes apps batch config into named groups (often called "environments") named after specific deploys, such as the `development`, `test`, and `production` environments in Rails.  This method does not scale cleanly: as more deploys of the app are created, new environment names are necessary, such as `staging` or `qa`.  As the project grows further, developers may add their own special environments like `joes-staging`, resulting in a combinatorial explosion of config which makes managing deploys of the app very brittle.
+配置管理的另一个方面是分组。有时应用会将配置按照特定部署进行分组（或叫做“环境”），例如Rails中的 `development`,`test`, 和 `production` 环境。这种方法无法轻易扩展：更多部署意味着更多新的环境，例如 `staging` 或 `qa` 。 随着项目的不断深入，开发人员可能还会添加他们自己的环境，比如 `joes-staging` ，这将导致各种配置组合的爆炸，从而给管理部署增加了很多不确定因素。
 
-In a twelve-factor app, env vars are granular controls, each fully orthogonal to other env vars.  They are never grouped together as "environments," but instead are independently managed for each deploy.  This is a model that scales up smoothly as the app naturally expands into more deploys over its lifetime.
+Twelve-factor应用中，env vars的粒度足够小，相互之间也是相对独立的。它们永远不会合体组成一个所谓的“环境”，而是独立管理每个部署。这是应用的生命周期中扩展出更多部署时较为平滑的模型。
 
