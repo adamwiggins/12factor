@@ -1,19 +1,19 @@
-## V. Build, release, run
-### Strictly separate build and run stages
+## V. 构建，发布，运行
+### 严格分离构建和运行
 
-A [codebase](/codebase) is transformed into a (non-development) deploy through three stages:
+[代码库](/codebase) 转化为一份部署(非开发环境)需要以下三个步骤：
 
-* The *build stage* is a transform which converts a code repo into an executable bundle known as a *build*.  Using a version of the code at a commit specified by the deployment process, the build stage fetches and vendors [dependencies](/dependencies) and compiles binaries and assets.
-* The *release stage* takes the build produced by the build stage and combines it with the deploy's current [config](/config).  The resulting *release* contains both the build and the config and is ready for immediate execution in the execution environment.
-* The *run stage* (also known as "runtime") runs the app in the execution environment, by launching some set of the app's [processes](/processes) against a selected release.
+* *构建步骤* 是指将代码仓库转化为可执行包的 *构建* 过程。构建使用了部署过程中某次指定的代码版本，包含了获取、 [包含](/dependencies) 、编译文件以及资源文件。
+* *发布步骤* 将构建的结果和当前部署所需 [配置](/config) 结合。  *发布* 的结果应当包含构建的结果、配置以及具备随时在执行环境运行的能力。
+* *运行步骤* （或者说“运行状态”）是指针对选定的发布版本，在执行环境中启动一系列应用程序的进程。
 
-![Code becomes a build, which is combined with config to create a release.](/images/release.png)
+![代码被构建，然后和配置结合成为发布版本](/images/release.png)
 
-**The twelve-factor app uses strict separation between the build, release, and run stages.**  For example, it is impossible to make changes to the code at runtime, since there is no way to propagate those changes back to the build stage.
+**Twelve-facfor应用严格区分构建，发布，运行这三个步骤。** 举例来说，直接修改处于运行状态的代码是非常不可取的做法，因为这些修改很难再同步回构建步骤。
 
-Deployment tools typically offer release management tools, most notably the ability to roll back to a previous release.  For example, the [Capistrano](https://github.com/capistrano/capistrano/wiki) deployment tool stores releases in a subdirectory named `releases`, where the current release is a symlink to the current release directory.  Its `rollback` command makes it easy to quickly roll back to a previous release.
+部署工具通常都提供了发布管理工具，最引人注目的功能是退回至较旧的发布版本。比如， [Capistrano](https://github.com/capistrano/capistrano/wiki)  将所有发布版本都存储在一个叫 `releases` 的子目录。当前的发布版本只需映射至对应的目录即可。该工具的 `rollback` 命令可以轻易实现回退版本的功能。
 
-Every release should always have a unique release ID, such as a timestamp of the release (such as `2011-04-06-20:32:17`) or an incrementing number (such as `v100`).  Releases are an append-only ledger and a release cannot be mutated once it is created.  Any change must create a new release.
+每一个发布版本必须对应一个唯一的发布ID，例如可以使用发布时的时间戳(`2011-04-06-20:32:17`)，亦或是一个增长的数字(`v100`) 。发布的版本就像一本只能追加的账本，并且一旦发布就不可修改。任何的变动应该产生一个先的发布。
 
-Builds are initiated by the app's developers whenever new code is deployed.  Runtime execution, by contrast, can happen automatically in cases such as a server reboot, or a crashed process being restarted by the process manager.  Therefore, the run stage should be kept to as few moving parts as possible, since problems that prevent an app from running can cause it to break in the middle of the night when no developers are on hand.  The build stage can be more complex, since errors are always in the foreground for a developer who is driving the deploy.
+当代码发生变化时，应用程序的开发者随时都可以选择构建操作。 与之对应的是，运行则应该当服务器重启，或是进程管理者重启了一个崩溃的进程时才会被触发。因此，运行步骤应该尽可能保持少一些步骤，这样假设半夜发生系统故障而开发人员又捉襟见肘也不会花费太多时间。构建过程倒是可以相对复杂一些，因为负责部署的开发人员就可以及时看到报错信息。
 
