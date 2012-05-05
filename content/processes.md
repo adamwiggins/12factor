@@ -7,18 +7,9 @@
 
 **Twelve-factor应用的进程必须无状态且 [无共享](http://en.wikipedia.org/wiki/Shared_nothing_architecture) 。** 任何需要持久化的数据都要存储在 [后端服务](/backing-services) 内，比如数据库。
 
-## VI. Processes
-### Execute the app as one or more stateless processes
+内存或硬盘的空间对于进程而言，应该是一个简单的，单项的缓存。例如用来下载一个很大的文件，对其操作并将结果写入数据库。Twelve-factor应用根本不用考虑这些缓存的内容是不是可以保留给之后的请求来使用，这是因为应用启动了多种类型的进程，将来的请求多半会由其他进程来服务。即使只有一个进程，你也别指望这些缓存的内容可以在机器重启（比如部署新的代码，修改配置文件，或是更换运行环境）后还可以保留。
 
-The app is executed in the execution environment as one or more *processes*.
+源文件打包工具([Jammit](http://documentcloud.github.com/jammit/), [django-assetpackager](http://code.google.com/p/django-assetpackager/)) 使用文件系统来缓存编译过的源文件。Twelve-factor应用更倾向于在 [构建步骤](/build-release-run) 做此动作——正如 [Rails asset pipline](http://ryanbigg.com/guides/asset_pipeline.html) ，而不是在运行阶段。
 
-In the simplest case, the code is a stand-alone script, the execution environment is a developer's local laptop with an installed language runtime, and the process is launched via the command line (for example, `python my_script.py`).  On the other end of the spectrum, a production deploy of a sophisticated app may use many [process types, instantiated into zero or more running processes](/concurrency).
-
-**Twelve-factor processes are stateless and [share-nothing](http://en.wikipedia.org/wiki/Shared_nothing_architecture).**  Any data that needs to persist must be stored in a stateful [backing service](/backing-services), typically a database.
-
-The memory space or filesystem of the process can be used as a brief, single-transaction cache.  For example, downloading a large file, operating on it, and storing the results of the operation in the database.  The twelve-factor app never assumes that anything cached in memory or on disk will be available on a future request or job -- with many processes of each type running, chances are high that a future request will be served by a different process.  Even when running only one process, a restart (triggered by code deploy, config change, or the execution environment relocating the process to a different physical location) will usually wipe out all local (e.g., memory and filesystem) state.
-
-Asset packagers (such as [Jammit](http://documentcloud.github.com/jammit/) or [django-assetpackager](http://code.google.com/p/django-assetpackager/)) use the filesystem as a cache for compiled assets.  A twelve-factor app prefers to do this compiling during the [build stage](/build-release-run), such as the [Rails asset pipeline](http://ryanbigg.com/guides/asset_pipeline.html), rather than at runtime.
-
-Some web systems rely on ["sticky sessions"](http://en.wikipedia.org/wiki/Load_balancing_%28computing%29#Persistence) -- that is, caching user session data in memory of the app's process and expecting future requests from the same visitor to be routed to the same process.  Sticky sessions are a violation of twelve-factor and should never be used or relied upon.  Session state data is a good candidate for a datastore that offers time-expiration, such as [Memcached](http://memcached.org/) or [Redis](http://redis.io/).
+一些互联网系统依赖于 [“粘性session”] (http://en.wikipedia.org/wiki/Load_balancing_%28computing%29#Persistence) ， 这是指将用户session中的数据缓存至某进程的内存中，并希望将来的同一用户被指向同一个进程。粘性Session是twelve-factor极力反对的。Session中可以用来记录诸如 [Memcached](http://memcached.org/) 或 [Redis](http://redis.io/) 过期时间的数据。
 
