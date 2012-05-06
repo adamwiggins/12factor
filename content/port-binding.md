@@ -1,23 +1,14 @@
 ## VII. 端口绑定
 ### 通过端口绑定(*Port binding*)来提供服务
 
+互联网应用有时会运行于服务器的容器之中。例如PHP经常作为 [Apache HTTPD](http://httpd.apache.org/) 的一个模块来运行，正如Java运行于 [Tomcat](http://tomcat.apache.org/) 。
 
-Web应用有时会运行于web服务器。例如PHP经常作为 [Apache HTTPD](http://httpd.apache.org/) 的一个模块来运行，正如Java运行于 [Tomcat](http://tomcat.apache.org/) 。
+**12-factor应用完全自我加载** 而不依赖于任何网络服务器就可以创建一个面向网络的服务。互联网应用 **通过端口绑定来提供服务** ，并监听发送至该端口的请求。
 
+本地环境中，开发人员通过访问类似 `http://localhost:5000/` 来访问服务。在线上环境中，请求统一发送至公共域名而后路由至绑定了端口的网络进程。
 
+通常的实现思路是，将网络服务器类库通过 [依赖声明](/dependencies) 载入应用。例如，Python的[Tornado](http://www.tornadoweb.org/), Ruby的[Thin](http://code.macournoyer.com/thin/) , Java以及其他基于JVM语言的 [Jetty](http://jetty.codehaus.org/jetty/) 。完全由 *用户端* ，确切的说应该是应用的代码，发起请求。和运行环境约定好绑定的端口即可处理这些请求。
 
+HTTP并不是唯一一个可以由端口绑定提供的服务。其实几乎所有服务器软件都可以通过进程绑定端口来等待请求。例如，使用 [XMPP](http://xmpp.org/) 的 [ejabberd](http://www.ejabberd.im/)  ， 以及使用 [Redis协议](http://redis.io/topics/protocol) 的 [Redis](http://redis.io/) 。
 
-## VII. Port binding
-### Export services via port binding
-
-Web apps are sometimes executed inside a webserver container.  For example, PHP apps might run as a module inside [Apache HTTPD](http://httpd.apache.org/), or Java apps might run inside [Tomcat](http://tomcat.apache.org/).
-
-**The twelve-factor app is completely self-contained** and does not rely on runtime injection of a webserver into the execution environment to create a web-facing service.  The web app **exports HTTP as a service by binding to a port**, and listening to requests coming in on that port.
-
-In a local development environment, the developer visits a service URL like `http://localhost:5000/` to access the service exported by their app.  In deployment, a routing layer handles routing requests from a public-facing hostname to the port-bound web processes.
-
-This is typically implemented by using [dependency declaration](/dependencies) to add a webserver library to the app, such as [Tornado](http://www.tornadoweb.org/) for Python, [Thin](http://code.macournoyer.com/thin/) for Ruby, or [Jetty](http://jetty.codehaus.org/jetty/) for Java and other JVM-based languages.  This happens entirely in *user space*, that is, within the app's code.  The contract with the execution environment is binding to a port to serve requests.
-
-HTTP is not the only service that can be exported by port binding.  Nearly any kind of server software can be run via a process binding to a port and awaiting incoming requests.  Examples include [ejabberd](http://www.ejabberd.im/) (speaking [XMPP](http://xmpp.org/)), and [Redis](http://redis.io/) (speaking the [Redis protocol](http://redis.io/topics/protocol)).
-
-Note also that the port-binding approach means that one app can become the [backing service](/backing-services) for another app, by providing the URL to the backing app as a resource handle in the [config](/config) for the consuming app.
+还要指出的是，端口绑定这种方式也意味着一个应用可以成为另外一个应用的 [后端服务](/backing-services) ，调用方将服务方提供的相应URL当作资源存入 [配置](/config) 以备将来调用。
