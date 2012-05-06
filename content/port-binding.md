@@ -1,3 +1,12 @@
+## VII. 端口绑定
+### 通过端口绑定(*Port binding*)来提供服务
+
+
+Web应用有时会运行于web服务器。例如PHP经常作为 [Apache HTTPD](http://httpd.apache.org/) 的一个模块来运行，正如Java运行于 [Tomcat](http://tomcat.apache.org/) 。
+
+
+
+
 ## VII. Port binding
 ### Export services via port binding
 
