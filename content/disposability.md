@@ -1,14 +1,13 @@
-## IX. Disposability
-### Maximize robustness with fast startup and graceful shutdown
+## IX. 易处理
+### 快速启动和优雅终止可最大化健壮性
 
-**The twelve-factor app's [processes](/processes) are *disposable*, meaning they can be started or stopped a moment's notice.**  This facilitates fast elastic scaling, rapid deployment of [code](/codebase) or [config](/config) changes, and robustness of production deploys.
+**12-factor应用的 [进程](/processes) 是 *可支配* 的，意思是说它们可以瞬间开启或停止。** 这有利于快速、弹性的伸缩应用，迅速部署变化的 [代码](/codebase) 或 [配置](/config) ，稳健的部署应用。
 
-Processes should strive to **minimize startup time**.  Ideally, a process takes a few seconds from the time the launch command is executed until the process is up and ready to receive requests or jobs.  Small startup time provides more agility for the [release](/build-release-run) process and scaling up; and it aids robustness, because the process manager can more easily move processes to new physical machines when warranted.
+进程应当追求 **最小启动时间** 。 理想状态下，进程从敲下命令到真正启动并等待请求的时间应该只需很短的时间。更少的启动时间提供了更敏捷的 [发布](/build-release-run) 以及扩展过程，此外还增加了健壮性，因为进程管理器可以在授权情形下容易的将进程搬到新的物理机器上。
 
-Processes **shut down gracefully when they receive a [SIGTERM](http://en.wikipedia.org/wiki/SIGTERM)** signal from the process manager.  For a web process, graceful shutdown is achieved by ceasing to listen on the service port (thereby refusing any new requests), allowing any current requests to finish, and then exiting.  Implicit in this model is that HTTP requests are short (no more than a few seconds), or in the case of long polling, the client should seamlessly attempt to reconnect when the connection is lost.
+进程 **一旦接收 [终止信号(`SIGTERM`)](http://en.wikipedia.org/wiki/SIGTERM) 就会优雅的终止** 。就网络进程而言，优雅终止是指停止监听服务的端口，即拒绝所有新的请求，并继续执行当前已接收的请求，然后退出。此类型的进程所隐含的要求是HTTP请求大多都很短(不会超过几秒钟)，而在长时间轮询中，客户端在丢失连接后应该马上尝试重连。
 
-For a worker process, graceful shutdown is achieved by returning the current job to the work queue.  For example, on [RabbitMQ](http://www.rabbitmq.com/) the worker can send a [`NACK`](http://www.rabbitmq.com/amqp-0-9-1-quickref.html#basic.nack); on [Beanstalkd](http://kr.github.com/beanstalkd/), the job is returned to the queue automatically whenever a worker disconnects.  Lock-based systems such as [Delayed Job](https://github.com/collectiveidea/delayed_job#readme) need to be sure to release their lock on the job record.  Implicit in this model is that all jobs are [reentrant](http://en.wikipedia.org/wiki/Reentrant_%28subroutine%29), which typically is achieved by wrapping the results in a transaction, or making the operation [idempotent](http://en.wikipedia.org/wiki/Idempotence).
+对于worker进程来说，优雅终止是指将当前任务退回队列。例如，[RabbitMQ](http://www.rabbitmq.com/) 中，worker可以发送一个 [`NACK`](http://www.rabbitmq.com/amqp-0-9-1-quickref.html#basic.nack) 信号。 [Beanstalkd](http://kr.github.com/beanstalkd/) 中，任务终止并退回队列会在worker断开时自动触发。有锁机制的系统诸如 [Delayed Job](https://github.com/collectiveidea/delayed_job#readme) 则需要确定释放了系统资源。此类型的进程所隐含的要求是，任务都应该 [可重复执行](http://en.wikipedia.org/wiki/Reentrant_%28subroutine%29) ， 这主要由将结果包装进事务或是使重复操作 [冥等](http://en.wikipedia.org/wiki/Idempotence) 来实现。
 
-Processes should also be **robust against sudden death**, in the case of a failure in the underlying hardware.  While this is a much less common occurrence than a graceful shutdown with `SIGTERM`, it can still happen.  A recommended approach is use of a robust queueing backend, such as Beanstalkd, that returns jobs to the queue when clients disconnect or time out.  Either way, a twelve-factor app is architected to handle unexpected, non-graceful terminations.  [Crash-only design](http://lwn.net/Articles/191059/) takes this concept to its [logical conclusion](http://couchdb.apache.org/docs/overview.html).
-
+进程还应当 **在面对突然死亡时保持健壮** ，例如底层硬件故障。虽然这种情况比起优雅终止来说少之又少，但终究有可能发生。一种推荐的方式是使用一个健壮的后端队列，例如 [Beanstalkd](http://kr.github.com/beanstalkd/) ，它可以在客户端断开或超时后自动退回任务。无论如何，12-factor应用都应该可以设计能够应对意外的、不优雅的终结。 [Crash-only design](http://lwn.net/Articles/191059/) 将这种概念转化为 [合乎逻辑的理论](http://couchdb.apache.org/docs/overview.html)。
 
