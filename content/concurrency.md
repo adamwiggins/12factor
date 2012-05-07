@@ -1,14 +1,14 @@
-## VIII. Concurrency
-### Scale out via the process model
+## VIII. 并发
+### 通过进程模型进行扩展
 
-Any computer program, once run, is represented by one or more processes.  Web apps have taken a variety of process-execution forms.  For example, PHP processes run as child processes of Apache, started on demand as needed by request volume.  Java processes take the opposite approach, with the JVM providing one massive uberprocess that reserves a large block of system resources (CPU and memory) on startup, with concurrency managed internally via threads.  In both cases, the running process(es) are only minimally visible to the developers of the app.
+任何计算机程序，一旦启动，就会生成一个或多个进程。互联网应用采用多种进程运行方式。例如，PHP进程作为Apache的子进程存在，随请求按需启动。Java进程则采取了相反的方式，在程序启动之初JVM就提供了一个超级进程储备了大量的系统资源(CPU和内存)，并通过多线程实现内部的并发管理。上述2个例子中，进程是开发人员可以操作的最小单位。
 
-![Scale is expressed as running processes, workload diversity is expressed as process types.](/images/process-types.png)
+![扩展表现为运行中的进程，工作多样性表现为进程类型。](/images/process-types.png)
 
-**In the twelve-factor app, processes are a first class citizen.**  Processes in the twelve-factor app take strong cues from [the unix process model for running service daemons](http://adam.heroku.com/past/2011/5/9/applying_the_unix_process_model_to_web_apps/).  Using this model, the developer can architect their app to handle diverse workloads by assigning each type of work to a *process type*.  For example, HTTP requests may be handled by a web process, and long-running background tasks handled by a worker process.
+**在12-factor应用中，进程是一等公民。** 12-factor应用的进程主要借鉴于 [unix守护进程模型](http://adam.heroku.com/past/2011/5/9/applying_the_unix_process_model_to_web_apps/) 。开发人员可以运用这个模型去设计应用架构，将不同的工作分配给不同的 *进程类型* 。例如，HTTP请求可以交给web进程来处理，而常驻的后台工作则交由worker进程负责。
 
-This does not exclude individual processes from handling their own internal multiplexing, via threads inside the runtime VM, or the async/evented model found in tools such as [EventMachine](http://rubyeventmachine.com/), [Twisted](http://twistedmatrix.com/trac/), or [Node.js](http://nodejs.org/).  But an individual VM can only grow so large (vertical scale), so the application must also be able to span multiple processes running on multiple physical machines.
+这并不包括个别较为特殊的进程，例如通过虚拟机的线程处理并发的内部运算，或是使用诸如 [EventMachine](http://rubyeventmachine.com/), [Twisted](http://twistedmatrix.com/trac/),  [Node.js](http://nodejs.org/) 的异步/事件触发模型。但一台独立的虚拟机的扩展有瓶颈（垂直扩展），所以应用程序必须可以在多台物理机器间跨进程工作。
 
-The process model truly shines when it comes time to scale out.  The [share-nothing, horizontally partitionable nature of twelve-factor app processes](/processes) means that adding more concurrency is a simple and reliable operation.  The array of process types and number of processes of each type is known as the *process formation*.
+上述进程模型会在系统急需扩展时大放异彩。 [12-factor应用的进程所具备的无共享，水平分区的特性](/processes) 意味着添加并发会变得简单而稳妥。这些进程的类型以及每个类型中进程的数量就被称作 *进程构成* 。
 
-Twelve-factor app processes [should never daemonize](http://dustin.github.com/2010/02/28/running-processes.html) or write PID files.  Instead, rely on the operating system's process manager (such as [Upstart](http://upstart.ubuntu.com/), a distributed process manager on a cloud platform, or a tool like [Foreman](http://blog.daviddollar.org/2011/05/06/introducing-foreman.html) in development) to manage [output streams](/logs), respond to crashed processes, and handle user-initiated restarts and shutdowns.
+12-factor应用的进程 [不需要守护进程](http://dustin.github.com/2010/02/28/running-processes.html) 或是写入PID文件。相反的，应该借助操作系统的进程管理器(例如 [Upstart](http://upstart.ubuntu.com/) ，分布式的进程管理云平台，或是类似 [Foreman](http://blog.daviddollar.org/2011/05/06/introducing-foreman.html) 的工具)，来管理 [输出流](/logs) ，响应崩溃的进程，以及处理用户触发的重启和关闭超级进程的请求。
