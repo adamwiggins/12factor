@@ -1,7 +1,7 @@
 ## XII. 管理进程
 ### 后台管理任务当作一次性进程运行
 
-[进程构成] 是指用来处理应用的常规业务(比如处理web请求)的一组进程。与此不同，开发人员经常希望执行一些管理或维护应用的一次性任务，例如：
+[进程构成](/concurrency) 是指用来处理应用的常规业务(比如处理web请求)的一组进程。与此不同，开发人员经常希望执行一些管理或维护应用的一次性任务，例如：
 
 * 运行数据移植（Django中的`manage.py syncdb`, Rails中的`rake db:migrate`）。
 * 运行一个控制台（也被称为 [REPL](http://en.wikipedia.org/wiki/Read-eval-print_loop) shell），来执行一些代码或是针对线上数据库做一些检查。大多数语言都通过解释器提供了一个REPL工具(`python` 或 `erl`) ，或是其他命令（Ruby使用 `irb`, Rails使用 `rails console` ）。
