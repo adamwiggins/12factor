@@ -1,38 +1,38 @@
-The Twelve Factors
+12-factors
 ==================
 
-## [I. Codebase](/codebase)
-### One codebase tracked in revision control, many deploys
+## [I. 基准代码](/codebase)
+### 一份基准代码，多份部署
 
-## [II. Dependencies](/dependencies)
-### Explicitly declare and isolate dependencies
+## [II. 依赖](/dependencies)
+### 显式声明依赖关系
 
-## [III. Config](/config)
-### Store config in the environment
+## [III. 配置](/config)
+### 在环境中存储配置
 
-## [IV. Backing Services](/backing-services)
-### Treat backing services as attached resources
+## [IV. 后端服务](/backing-services)
+### 把后端服务当作附加资源
 
-## [V. Build, release, run](/build-release-run)
-### Strictly separate build and run stages
+## [V. 构建，发布，运行](/build-release-run)
+### 严格分离构建和运行
 
-## [VI. Processes](/processes)
-### Execute the app as one or more stateless processes
+## [VI. 进程](/processes)
+### 以一个或多个无状态进程运行应用
 
-## [VII. Port binding](/port-binding)
-### Export services via port binding
+## [VII. 端口绑定](/port-binding)
+### 通过端口绑定提供服务
 
-## [VIII. Concurrency](/concurrency)
-### Scale out via the process model
+## [VIII. 并发](/concurrency)
+### 通过进程模型进行扩展
 
-## [IX. Disposability](/disposability)
-### Maximize robustness with fast startup and graceful shutdown
+## [IX. 易处理](/disposability)
+### 快速启动和优雅终止可最大化健壮性
 
-## [X. Dev/prod parity](/dev-prod-parity)
-### Keep development, staging, and production as similar as possible
+## [X. 开发环境与线上环境等价](/dev-prod-parity)
+### 尽可能的保持开发，预发布，线上环境相同
 
-## [XI. Logs](/logs)
-### Treat logs as event streams
+## [XI. 日志](/logs)
+### 把日志当作事件流
 
-## [XII. Admin processes](/admin-processes)
-### Run admin/management tasks as one-off processes
+## [XII. 管理进程](/admin-processes)
+### 后台管理任务当作一次性进程运行

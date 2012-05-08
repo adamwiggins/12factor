@@ -1,14 +1,14 @@
-## VII. �˿ڰ�
-### ͨ���˿ڰ�(*Port binding*)���ṩ����
+## VII. 端口绑定
+### 通过端口绑定(*Port binding*)来提供服务
 
-������Ӧ����ʱ�������ڷ�����������֮�С�����PHP������Ϊ [Apache HTTPD](http://httpd.apache.org/) ��һ��ģ�������У�����Java������ [Tomcat](http://tomcat.apache.org/) ��
+互联网应用有时会运行于服务器的容器之中。例如PHP经常作为 [Apache HTTPD](http://httpd.apache.org/) 的一个模块来运行，正如Java运行于 [Tomcat](http://tomcat.apache.org/) 。
 
-**12-factorӦ����ȫ���Ҽ���** �����������κ�����������Ϳ��Դ���һ����������ķ��񡣻�����Ӧ�� **ͨ���˿ڰ����ṩ����** ���������������ö˿ڵ�����
+**12-factor应用完全自我加载** 而不依赖于任何网络服务器就可以创建一个面向网络的服务。互联网应用 **通过端口绑定来提供服务** ，并监听发送至该端口的请求。
 
-���ػ����У�������Աͨ������ `http://localhost:5000/` �ĵ�ַ�����ʷ��������ϻ����У�����ͳһ������������������·�������˶˿ڵ�������̡�
+本地环境中，开发人员通过类似 `http://localhost:5000/` 的地址来访问服务。在线上环境中，请求统一发送至公共域名而后路由至绑定了端口的网络进程。
 
-ͨ����ʵ��˼·�ǣ���������������ͨ�� [��������](/dependencies) ����Ӧ�á����磬Python��[Tornado](http://www.tornadoweb.org/), Ruby��[Thin](http://code.macournoyer.com/thin/) , Java�Լ���������JVM���Ե� [Jetty](http://jetty.codehaus.org/jetty/) ����ȫ�� *�û���* ��ȷ�е�˵Ӧ����Ӧ�õĴ��룬�������󡣺����л���Լ���ð󶨵Ķ˿ڼ��ɴ�����Щ����
+通常的实现思路是，将网络服务器类库通过 [依赖声明](/dependencies) 载入应用。例如，Python的[Tornado](http://www.tornadoweb.org/), Ruby的[Thin](http://code.macournoyer.com/thin/) , Java以及其他基于JVM语言的 [Jetty](http://jetty.codehaus.org/jetty/) 。完全由 *用户端* ，确切的说应该是应用的代码，发起请求。和运行环境约定好绑定的端口即可处理这些请求。
 
-HTTP������Ψһһ�������ɶ˿ڰ��ṩ�ķ�����ʵ�������з���������������ͨ�����̰󶨶˿����ȴ��������磬ʹ�� [XMPP](http://xmpp.org/) �� [ejabberd](http://www.ejabberd.im/)  �� �Լ�ʹ�� [RedisЭ��](http://redis.io/topics/protocol) �� [Redis](http://redis.io/) ��
+HTTP并不是唯一一个可以由端口绑定提供的服务。其实几乎所有服务器软件都可以通过进程绑定端口来等待请求。例如，使用 [XMPP](http://xmpp.org/) 的 [ejabberd](http://www.ejabberd.im/)  ， 以及使用 [Redis协议](http://redis.io/topics/protocol) 的 [Redis](http://redis.io/) 。
 
-��Ҫָ�����ǣ��˿ڰ����ַ�ʽҲ��ζ��һ��Ӧ�ÿ��Գ�Ϊ����һ��Ӧ�õ� [��˷���](/backing-services) �����÷��������ṩ����ӦURL������Դ���� [����](/config) �Ա��������á�
+还要指出的是，端口绑定这种方式也意味着一个应用可以成为另外一个应用的 [后端服务](/backing-services) ，调用方将服务方提供的相应URL当作资源存入 [配置](/config) 以备将来调用。
