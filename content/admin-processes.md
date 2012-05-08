@@ -1,14 +1,14 @@
-## XII. Admin processes
-### Run admin/management tasks as one-off processes
+## XII. 管理进程
+### 后台管理任务当作一次性进程运行
 
-The [process formation](/concurrency) is the array of processes that are used to do the app's regular business (such as handling web requests) as it runs.  Separately, developers will often wish to do one-off administrative or maintenance tasks for the app, such as:
+[进程构成] 是指用来处理应用的常规业务(比如处理web请求)的一组进程。与此不同，开发人员经常希望执行一些管理或维护应用的一次性任务，例如：
 
-* Running database migrations (e.g. `manage.py syncdb` in Django, `rake db:migrate` in Rails).
-* Running a console (also known as a [REPL](http://en.wikipedia.org/wiki/Read-eval-print_loop) shell) to run arbitrary code or inspect the app's models against the live database.  Most languages provide a REPL by running the interpreter without any arguments (e.g. `python` or `erl`) or in some cases have a separate command (e.g. `irb` for Ruby, `rails console` for Rails).
-* Running one-time scripts committed into the app's repo (e.g. `php scripts/fix_bad_records.php`).
+* 运行数据移植（Django中的`manage.py syncdb`, Rails中的`rake db:migrate`）。
+* 运行一个控制台（也被称为 [REPL](http://en.wikipedia.org/wiki/Read-eval-print_loop) shell），来执行一些代码或是针对线上数据库做一些检查。大多数语言都通过解释器提供了一个REPL工具(`python` 或 `erl`) ，或是其他命令（Ruby使用 `irb`, Rails使用 `rails console` ）。
+* 运行一些提交到代码仓库的一次性脚本。
 
-One-off admin processes should be run in an identical environment as the regular [long-running processes](/processes) of the app.  They run against a [release](/build-release-run), using the same [code](/code) and [config](/config) as any process run against that release.  Admin code must ship with application code to avoid synchronization issues.
+一次性管理进程应该和正常的 [常驻进程](/processes) 使用同样的环境。这些管理进程和任何其他的进程一样使用相同的 [代码](/codebase) 和 [配置](/config) ，基于某个 [发布版本](/build-release-run)运行。后台管理代码应该随其他应用程序代码一起发布，从而避免同步问题。
 
-The same [dependency isolation](/dependencies) techniques should be used on all process types.  For example, if the Ruby web process uses the command `bundle exec thin start`, then a database migration should use `bundle exec rake db:migrate`.  Likewise, a Python program using Virtualenv should use the vendored `bin/python` for running both the Tornado webserver and any `manage.py` admin processes.
+所有进程类型应该使用同样的 [依赖隔离](/dependencies) 技术。例如，如果Ruby的web进程使用了命令 `bundle exec thin start` ，那么数据库移植应使用 `bundle exec rake db:migrate` 。同样的，如果一个Python程序使用了Virtualenv，则需要在运行Tornado Web服务器和任何 `manage.py` 管理进程时引入 ‵bin/python‵ 。
 
-Twelve-factor strongly favors languages which provide a REPL shell out of the box, and which make it easy to run one-off scripts.  In a local deploy, developers invoke one-off admin processes by a direct shell command inside the app's checkout directory.  In a production deploy, developers can use ssh or other remote command execution mechanism provided by that deploy's execution environment to run such a process.
+12-factor尤其青睐那些提供了REPL shell的语言，因为那会让运行一次性脚本变得简单。在本地部署中，开发人员直接在命令行使用shell命令调用一次性管理进程。在线上部署中，开发人员依旧可以使用ssh或是运行环境提供的其他机制来运行这样的进程。
