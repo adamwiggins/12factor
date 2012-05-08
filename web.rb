@@ -1,5 +1,5 @@
 require 'sinatra'
-require 'maruku'
+require 'redcarpet'
 
 get '/' do
   erb :home
@@ -15,8 +15,18 @@ end
 
 helpers do
   def render_markdown(file)
-    markdown = File.read("content/#{file}.md")
-    Maruku.new(markdown).to_html
+    text = File.read("content/#{file}.md")
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
+      :fenced_code_blocks => true,
+      :no_intra_emphasis => true,
+      :autolink => true,
+      :strikethrough => true,
+      :lax_html_blocks => true,
+      :superscript => true,
+      :hard_wrap => true,
+      :tables => true,
+      :xhtml => true)
+    markdown.render(text)
   rescue Errno::ENOENT
     puts "No content for #{file}, skipping"
   end
