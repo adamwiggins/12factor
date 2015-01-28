@@ -1,4 +1,4 @@
-Quem deve ler este documento?
-=============================
+Who should read this document?
+==============================
 
-Qualquer desenvolvedor que esta construindo aplicações que rodam como serviço. Engenheiros de Operações que implantam ou administram tais aplicações.
+Any developer building applications which run as a service.  Ops engineers who deploy or manage such applications.
