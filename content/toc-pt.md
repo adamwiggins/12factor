@@ -2,7 +2,7 @@ The Twelve Factors
 ==================
 
 ## [I. Base de Código](/codebase)
-### Uma base de código monitorada em controle de revisão, muitos deploys
+### Uma base de código com rastreamento utilizando controle de revisão, muitos deploys
 
 ## [II. Dependências](/dependencies)
 ### Declare e isole as dependências
