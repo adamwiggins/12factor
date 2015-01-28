@@ -27,7 +27,6 @@ The Twelve Factors
 
 ## [IX. Disponibilidade](/disposability)
 ### Maximizar a robustez com inicialização e desligamento rápido
-Maximize robustness with fast startup and graceful shutdown
 
 ## [X. Dev/prod semelhantes](/dev-prod-parity)
 ### Mantenha o desenvolvimento, teste, produção e mais semelhante possível
