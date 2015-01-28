@@ -17,7 +17,7 @@ The Twelve Factors
 ### Separe estritamente os builds e execute em estágios
 
 ## [VI. Processos](/processes)
-### Execute a aplicação como um ou mais processos stateless
+### Execute a aplicação como um ou mais processos que não armazenam estado
 
 ## [VII. Ligação de porta](/port-binding)
 ### Exporte serviços por ligação de porta
