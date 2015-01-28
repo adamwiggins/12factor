@@ -29,7 +29,7 @@ The Twelve Factors
 ### Maximizar a robustez com inicialização e desligamento rápido
 
 ## [X. Dev/prod semelhantes](/dev-prod-parity)
-### Mantenha o desenvolvimento, teste, produção e mais semelhante possível
+### Mantenha o desenvolvimento, teste, produção o mais semelhante possível
 
 ## [XI. Logs](/logs)
 ### Trate logs como fluxo de eventos
