@@ -36,11 +36,12 @@
   <%= yield %>
 
   <footer>
-  <span>Written by Adam Wiggins</span>
-  <span>Last updated Jan 30, 2012</span>
-  <span><a href="https://github.com/heroku/12factor">Sourcecode</a></span>
-  <span><a href="/12factor.epub">Download ePub Book</a></span>
-  <span><a href="https://www.heroku.com/policy/privacy">Privacy Policy</a></span>
+  <div id="locales"><%= render_locales(@factor) %></div>
+  <div>Written by Adam Wiggins</div>
+  <div>Last updated Jan 30, 2012</div>
+  <div><a href="https://github.com/heroku/12factor">Sourcecode</a></div>
+  <div><a href="/12factor.epub">Download ePub Book</a></div>
+  <div><a href="https://www.heroku.com/policy/privacy">Privacy Policy</a></div>
 </footer>
 </body>
 </html>
