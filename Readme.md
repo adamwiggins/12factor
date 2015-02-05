@@ -3,8 +3,6 @@ The Twelve-Factor App
 
 Source for the content app running at: http://www.12factor.net/
 
-中文翻译：http://liangshan.me/blog/2014/05/22/the-twelve-factor-app/
-
 Development
 -----------
 
