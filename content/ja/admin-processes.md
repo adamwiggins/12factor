@@ -3,7 +3,7 @@
 
 [プロセスフォーメーション](./concurrency)は、アプリケーションが実行されたときにアプリケーションの通常の役割（Webリクエストの処理など）に使われるプロセス群である。それとは別に、開発者はしばしばアプリケーションのために1回限りの管理・メンテナンス用のタスクを実行したくなる。例えば：
 
-* データベースのマイグレーションを実行する。（例：Djangoにおける `manage.py syncdb` やRailsにおける `rake db:migrate`）
+* データベースのマイグレーションを実行する。（例：Djangoにおける `manage.py migrate` やRailsにおける `rake db:migrate`）
 * 任意のコードを実行したり、生のデータベースに対してアプリケーションのモデルを調査したりするために、コンソール（[REPL](http://en.wikipedia.org/wiki/Read-eval-print_loop)シェルとも言われる）を実行する。多くの言語ではインタプリタを引数なしで実行する（例：`python` や `perl`）ことでREPLを利用できるが、別のコマンドを用意している場合もある（例：Rubyでの `irb` や Railsでの `rails console`）。
 * アプリケーションのリポジトリにコミットされた1回限りのスクリプトを実行する（例：`php scripts/fix_bad_records.php`）。
 
