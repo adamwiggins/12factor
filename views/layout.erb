@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>The Twelve-Factor App</title>
+  <title>The Twelve-Factor App<%= I18n.t(:translation) %></title>
   <meta name="description" content="A methodology for building modern, scalable, maintainable software-as-a-service apps.">
   <meta name="author" content="Adam Wiggins">
 
@@ -30,17 +30,18 @@
   <% end %>
 
   <header>
-    <h1><a href="/" title="The Twelve-Factor App">The Twelve-Factor App</a></h1>
+    <h1><a href="./" title="The Twelve-Factor App">The Twelve-Factor App</a></h1>
   </header>
 
   <%= yield %>
 
   <footer>
-  <span>Written by Adam Wiggins</span>
-  <span>Last updated Jan 30, 2012</span>
-  <span><a href="https://github.com/heroku/12factor">Sourcecode</a></span>
-  <span><a href="/12factor.epub">Download ePub Book</a></span>
-  <span><a href="https://www.heroku.com/policy/privacy">Privacy Policy</a></span>
+  <div id="locales"><%= render_locales(@factor) %></div>
+  <div>Written by Adam Wiggins</div>
+  <div>Last updated Jan 30, 2012</div>
+  <div><a href="https://github.com/heroku/12factor">Sourcecode</a></div>
+  <div><a href="/12factor.epub">Download ePub Book</a></div>
+  <div><a href="https://www.heroku.com/policy/privacy">Privacy Policy</a></div>
 </footer>
 </body>
 </html>
