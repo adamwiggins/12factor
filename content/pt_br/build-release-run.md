@@ -1,19 +1,18 @@
-## V. Build, release, run
-### Strictly separate build and run stages
+## V. Construa, lance, execute
+### Separe estritamente os estágios de construção e execução
 
-A [codebase](./codebase) is transformed into a (non-development) deploy through three stages:
+Uma [base de código](./codebase) é transformada num deploy (de não-desenvolvimento) através de três estágios:
 
-* The *build stage* is a transform which converts a code repo into an executable bundle known as a *build*.  Using a version of the code at a commit specified by the deployment process, the build stage fetches and vendors [dependencies](./dependencies) and compiles binaries and assets.
-* The *release stage* takes the build produced by the build stage and combines it with the deploy's current [config](./config).  The resulting *release* contains both the build and the config and is ready for immediate execution in the execution environment.
-* The *run stage* (also known as "runtime") runs the app in the execution environment, by launching some set of the app's [processes](./processes) against a selected release.
+* O *estágio de construção* é uma transformação que converte um repositório de código em um pacote executável conhecido como *construção*. Usando uma versão do código de um commit especificado pelo processo de desenvolvimento, o estágio de construção obtém e fornece [dependências](./dependencies) e compila binários e ativos.
+* O *estágio de lançamento* pega a construção produzida pelo estágio de construção e a combina com a atual [configuração](./config) do deploy. O *lançamento* resultante contém tanto a construção quanto a configuração e está pronta para execução imediata no ambiente de execução.
+* O *estágio de execução* roda o app no ambiente de execução, através do início de alguns dos [processos](./processes) do app com um determinado lançamento.
 
-![Code becomes a build, which is combined with config to create a release.](/images/release.png)
+![Código vira uma construção, que é combinada com a configuração para se criar um lançamento.](/images/release.png)
 
-**The twelve-factor app uses strict separation between the build, release, and run stages.**  For example, it is impossible to make changes to the code at runtime, since there is no way to propagate those changes back to the build stage.
+**O app doze-fatores usa separação estrita entre os estágios de construção, lançamento e execução.** Por exemplo, é impossível alterar código em tempo de execução, já que não meios de se propagar tais mudanças de volta ao estágio de construção.
 
-Deployment tools typically offer release management tools, most notably the ability to roll back to a previous release.  For example, the [Capistrano](https://github.com/capistrano/capistrano/wiki) deployment tool stores releases in a subdirectory named `releases`, where the current release is a symlink to the current release directory.  Its `rollback` command makes it easy to quickly roll back to a previous release.
+Ferramentas para deploy tipicamente oferecem ferramentas de gestão de lançamento, mais notadamente a habilidade de se reverter à um lançamento prévio. Por exemplo, a ferramenta de deploy [Capistrano](https://github.com/capistrano/capistrano/wiki) armazena lançamentos em um subdiretório chamado `releases`, onde o lançamento atual é um link simbólico para o diretório da lançamento atual. Seu comando `rollback` torna fácil reverter para um lançamento prévio.
 
-Every release should always have a unique release ID, such as a timestamp of the release (such as `2011-04-06-20:32:17`) or an incrementing number (such as `v100`).  Releases are an append-only ledger and a release cannot be mutated once it is created.  Any change must create a new release.
+Cada lançamento deve sempre ter um identificador de lançamento único, tal qual o timestamp do lançamento (como `2011-04-06-20:32:17`) ou um número incremental (como `v100`). Lançamentos são livro-razões onde apenas se acrescenta informações e um lançamento não pode ser alterada uma vez que é criada. Qualquer mudança deve gerar um novo lançamento.
 
-Builds are initiated by the app's developers whenever new code is deployed.  Runtime execution, by contrast, can happen automatically in cases such as a server reboot, or a crashed process being restarted by the process manager.  Therefore, the run stage should be kept to as few moving parts as possible, since problems that prevent an app from running can cause it to break in the middle of the night when no developers are on hand.  The build stage can be more complex, since errors are always in the foreground for a developer who is driving the deploy.
-
+Construções são iniciadas pelos desenvolvedores do app sempre que novos códigos entrem no deploy. A execução de um executável, todavia, pode acontecer automaticamente em casos como o reinício do servidor, ou um processo travado sendo reiniciado pelo gerenciador de processos. Assim, no estágio de execução deve haver quanto menos partes móveis quanto possível, já que problemas que previnem um app de rodar pode causá-lo a travar no meio da noite quando não há desenvolvedores por perto. O estágio de construção pode ser mais complexo, já que os erros estão sempre à vista do desenvolvedor que está cuidando do deploy.
