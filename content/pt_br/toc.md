@@ -19,7 +19,7 @@ The Twelve Factors
 ## [VI. Processos](./processes)
 ### Execute a aplicação como um ou mais processos que não armazenam estado
 
-## [VII. Ligação de porta](./port-binding)
+## [VII. Vínculo de porta](./port-binding)
 ### Exporte serviços por ligação de porta
 
 ## [VIII. Concorrência](./concurrency)
