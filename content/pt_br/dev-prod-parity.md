@@ -1,60 +1,60 @@
-## X. Dev/prod parity
-### Keep development, staging, and production as similar as possible
+## X. Paridade entre desenv/produção
+### Mantenha o desenvolvimento, homologação e produção o mais similares possível
 
-Historically, there have been substantial gaps between development (a developer making live edits to a local [deploy](./codebase) of the app) and production (a running deploy of the app accessed by end users).  These gaps manifest in three areas:
+Historicamente, houveram lacunas substanciais entre desenvolvimento (um desenvolvedor editando código num [deploy](./codebase) local do app) e produção (um deploy acessado pelos usuários finais). Essas lacunas se manifestam em três áreas:
 
-* **The time gap:** A developer may work on code that takes days, weeks, or even months to go into production.
-* **The personnel gap**: Developers write code, ops engineers deploy it.
-* **The tools gap**: Developers may be using a stack like Nginx, SQLite, and OS X, while the production deploy uses Apache, MySQL, and Linux.
+* **A lacuna do tempo:** Um desenvolvedor pode trabalhar em código que demora dias, semanas ou até meses para ir para produção.
+* **A lacuna de pessoal:** Desenvolvedores escrevem código, engenheiros de operação fazem o deploy dele.
+* **A lacuna de ferramentas:** Desenvolvedores podem estar usando um conjunto como Nginx, SQLite, e OS X, enquanto o app em produção usa Apache, MySQL, e Linux.
 
-**The twelve-factor app is designed for [continuous deployment](http://www.avc.com/a_vc/2011/02/continuous-deployment.html) by keeping the gap between development and production small.**  Looking at the three gaps described above:
+**O App doze-fatores é projetado para [integração contínua](http://www.avc.com/a_vc/2011/02/continuous-deployment.html) deixando a lacuna entre desenvolvimento e produção pequena.** Olhando às três lacunas descritas acima:
 
-* Make the time gap small: a developer may write code and have it deployed hours or even just minutes later.
-* Make the personnel gap small: developers who wrote code are closely involved in deploying it and watching its behavior in production.
-* Make the tools gap small: keep development and production as similar as possible.
+* Diminua a lacuna de tempo: um desenvolvedor pode escrever código e ter o deploy feito em horas ou até mesmo minutos depois.
+* Diminua a lacuna de pessoal: desenvolvedores que escrevem código estão proximamente envolvidos em realizar o deploy e acompanhar seu comportamento em produção.
+* Diminua a lacuna de ferramentas: mantenha desenvolvimento e produção o mais similares possível.
 
-Summarizing the above into a table:
+Resumindo o acima em uma tabela:
 
 <table>
   <tr>
     <th></th>
-    <th>Traditional app</th>
-    <th>Twelve-factor app</th>
+    <th>App tradicional</th>
+    <th>App doze-fatores</th>
   </tr>
   <tr>
-    <th>Time between deploys</th>
-    <td>Weeks</td>
-    <td>Hours</td>
+    <th>Tempo entre deploys</th>
+    <td>Semanas</td>
+    <td>Horas</td>
   </tr>
   <tr>
-    <th>Code authors vs code deployers</th>
-    <td>Different people</td>
-    <td>Same people</td>
+    <th>Autores de código vs deployers</th>
+    <td>Pessoas diferentes</td>
+    <td>Mesmas pessoas</td>
   </tr>
   <tr>
-    <th>Dev vs production environments</th>
-    <td>Divergent</td>
-    <td>As similar as possible</td>
+    <th>Ambientes de desenv vs produção</th>
+    <td>Divergente</td>
+    <td>O mais similar possível</td>
   </tr>
 </table>
 
-[Backing services](./backing-services), such as the app's database, queueing system, or cache, is one area where dev/prod parity is important.  Many languages offer libraries which simplify access to the backing service, including *adapters* to different types of services.  Some examples are in the table below.
+[Serviços de apoio](./backing-services), como o banco de dados do app, sistema de filas, ou cache, são uma área onde paridade entre desenv/produção é importante. Muitas linguagens oferecem diferentes bibliotecas que simplificam o acesso ao serviço de apoio, incluindo *adaptadores* para os diferentes tipos de serviços. Alguns exemplos na tabela abaixo.
 
 <table>
   <tr>
-    <th>Type</th>
-    <th>Language</th>
-    <th>Library</th>
-    <th>Adapters</th>
+    <th>Tipo</th>
+    <th>Linguagem</th>
+    <th>Biblioteca</th>
+    <th>Adaptadores</th>
   </tr>
   <tr>
-    <td>Database</td>
+    <td>Banco de dados</td>
     <td>Ruby/Rails</td>
     <td>ActiveRecord</td>
     <td>MySQL, PostgreSQL, SQLite</td>
   </tr>
   <tr>
-    <td>Queue</td>
+    <td>Fila</td>
     <td>Python/Django</td>
     <td>Celery</td>
     <td>RabbitMQ, Beanstalkd, Redis</td>
@@ -63,14 +63,14 @@ Summarizing the above into a table:
     <td>Cache</td>
     <td>Ruby/Rails</td>
     <td>ActiveSupport::Cache</td>
-    <td>Memory, filesystem, Memcached</td>
+    <td>Memory, sistema de arquivos, Memcached</td>
   </tr>
 </table>
 
-Developers sometimes find great appeal in using a lightweight backing service in their local environments, while a more serious and robust backing service will be used in production.  For example, using SQLite locally and PostgreSQL in production; or local process memory for caching in development and Memcached in production.
+Desenvolvedores as vezes vem uma grande vantagem em usar um serviço de apoio leve em seus ambientes, enquanto um serviço de apoio mais sério e robusto seria usado em produção. Por exemplo, usando SQLite localmente e PostgreSQL em produção; ou memória de processo local para caching em desenvolvimento e Memcached em produção.
 
-**The twelve-factor developer resists the urge to use different backing services between development and production**, even when adapters theoretically abstract away any differences in backing services.  Differences between backing services mean that tiny incompatibilities crop up, causing code that worked and passed tests in development or staging to fail in production.  These types of errors create friction that disincentivizes continuous deployment.  The cost of this friction and the subsequent dampening of continuous deployment is extremely high when considered in aggregate over the lifetime of an application.
+**O desenvolvedor doze-fatores resiste a tentação de usar diferentes serviços de apoio entre desenvolvimento e produção**, mesmo quando adaptadores teoricamente abstraem as diferenças dos serviços de apoio. Diferenças entre serviços de apoio significam que pequenas incompatibilidades aparecerão, causando código que funcionava e passava em desenvolvimento ou homologação, falhará em produção. Tais tipos de erros criam fricção que desincentivam deploy contínuo. O custo dessa fricção e do subsequente decaimento de deploy contínuo é extremamente alto quando considerado que vai acumular no tempo de vida da aplicação.
 
-Lightweight local services are less compelling than they once were.  Modern backing services such as Memcached, PostgreSQL, and RabbitMQ are not difficult to install and run thanks to modern packaging systems, such as [Homebrew](http://mxcl.github.com/homebrew/) and [apt-get](https://help.ubuntu.com/community/AptGet/Howto).  Alternatively, declarative provisioning tools such as [Chef](http://www.opscode.com/chef/) and [Puppet](http://docs.puppetlabs.com/) combined with light-weight virtual environments such as [Vagrant](http://vagrantup.com/) allow developers to run local environments which closely approximate production environments. The cost of installing and using these systems is low compared to the benefit of dev/prod parity and continuous deployment.
+Serviços locais leves são menos tentadores que já foram um dia. Serviços de apoio modernos tais como Memcached, PostgreSQL, e RabbitMQ não são difíceis de instalar e rodam graças a sistemas modernos de empacotamento tias como [Homebrew](http://mxcl.github.com/homebrew/) e [apt-get](https://help.ubuntu.com/community/AptGet/Howto). Alternativamente, ferramentas de provisionamento declarativo tais como [Chef](http://www.opscode.com/chef/) e [Puppet](http://docs.puppetlabs.com/) combinado com ambientes virtuais leves como [Vagrant](http://vagrantup.com/) permitem desenvolvedores rodar ambientes locais que são bem próximos dos ambientes de produção. O custo de instalar e usar esses sistemas é baixo comparado ao benefício de ter a paridade entre desenv/produção e deploy contínuo.
 
-Adapters to different backing services are still useful, because they make porting to new backing services relatively painless.  But all deploys of the app (developer environments, staging, production) should be using the same type and version of each of the backing services.
+Adaptadores para diferentes serviços de apoio ainda são úteis, pois eles fazem a portabilidade para novos serviços de apoio relativamente tranquilas. Mas todos os deploys do app (ambientes de desenvolvimento, homologação, produção) devem usar o mesmo tipo e versão de cada serviço de apoio.
