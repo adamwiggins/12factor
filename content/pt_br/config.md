@@ -11,7 +11,7 @@ Aplicações as vezes armazenam as configurações no código como constantes. I
 
 A prova de fogo para saber se uma aplicação tem todas as configurãções corretamente consignadas fora do código é saber se a base de código poderia ter seu código aberto ao público a qualquer momento, sem comprometer as credenciais.
 
-Note que esta definição de "configuração" **não** inclui configuração interna da aplicação, como `config/routes.rb` em Rails, ou como [módulos de códigos são conectados](http://static.springsource.org/spring/docs/2.5.x/reference/beans.html) em [Spring](http://www.springsource.org/). Este tipo de configuração não varia entre deploys, e por isso é melhor que seja feito no código.
+Note que esta definição de "configuração" **não** inclui configuração interna da aplicação, como `config/routes.rb` em Rails, ou como [módulos de códigos são conectados](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html) em [Spring](http://spring.io/). Este tipo de configuração não varia entre deploys, e por isso é melhor que seja feito no código.
 
 Outra abordagem para configuração é o uso de arquivos de configuração que não são verificados no controle de revisão, como `config/database.yml` em Rails. Isto é uma grande melhoria sobre o uso de constantes que são verificadas no repositório do código, mas ainda tem pontos fracos: é fácil de colocar por engano um arquivo de configuração no repositório; há uma tendência para que os arquivos de configuração sejam espelhados em diferentes lugares e diferentes formatos, tornando-se difícil de ver e gerenciar todas as configurações em um só lugar. Além disso estes formatos tendem a ser específicos da linguagem ou framework.
 
