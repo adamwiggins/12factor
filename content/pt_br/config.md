@@ -1,23 +1,22 @@
-## III. Config
-### Store config in the environment
+## III. Configurações
+### Armazene as configurações no ambiente
 
-An app's *config* is everything that is likely to vary between [deploys](./codebase) (staging, production, developer environments, etc).  This includes:
+A *configuração* de uma aplicação é tudo o que é provável variar entre [deploys](/codebase) (homologação, produção, ambientes de desenvolvimento, etc). Isto inclui:
 
-* Resource handles to the database, Memcached, and other [backing services](./backing-services)
-* Credentials to external services such as Amazon S3 or Twitter
-* Per-deploy values such as the canonical hostname for the deploy
+* Recursos para a base de dados, Memcached, e outros [serviços de apoio](/backing-services)
+* Credenciais para serviços externos como Amazon S3 ou Twitter
+* Valores por deploy como o nome canônico do host para o deploy
 
-Apps sometimes store config as constants in the code.  This is a violation of twelve-factor, which requires **strict separation of config from code**.  Config varies substantially across deploys, code does not.
+Aplicações as vezes armazenam as configurações no código como constantes. Isto é uma violação do twelve-factor, o que exige uma **estrita separação da configuração a partir do código**. Configuração varia substancialmente entre deploys, código não.
 
-A litmus test for whether an app has all config correctly factored out of the code is whether the codebase could be made open source at any moment, without compromising any credentials.
+A prova de fogo para saber se uma aplicação tem todas as configurações corretamente consignadas fora do código é saber se a base de código poderia ter seu código aberto ao público a qualquer momento, sem comprometer as credenciais.
 
-Note that this definition of "config" does **not** include internal application config, such as `config/routes.rb` in Rails, or how [code modules are connected](http://static.springsource.org/spring/docs/2.5.x/reference/beans.html) in [Spring](http://www.springsource.org/).  This type of config does not vary between deploys, and so is best done in the code.
+Note que esta definição de "configuração" **não** inclui configuração interna da aplicação, como `config/routes.rb` em Rails, ou como [módulos de códigos são conectados](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html) em [Spring](http://spring.io/). Este tipo de configuração não varia entre deploys, e por isso é melhor que seja feito no código.
 
-Another approach to config is the use of config files which are not checked into revision control, such as `config/database.yml` in Rails.  This is a huge improvement over using constants which are checked into the code repo, but still has weaknesses: it's easy to mistakenly check in a config file to the repo; there is a tendency for config files to be scattered about in different places and different formats, making it hard to see and manage all the config in one place.  Further, these formats tend to be language- or framework-specific.
+Outra abordagem para configuração é o uso de arquivos de configuração que não são versionados no controle de versão, como `config/database.yml` em Rails. Isto é uma grande melhoria sobre o uso de constantes que são versionadas no repositório do código, mas ainda tem pontos fracos: é fácil de colocar por engano um arquivo de configuração no repositório; há uma tendência para que os arquivos de configuração sejam espelhados em diferentes lugares e diferentes formatos, tornando-se difícil de ver e gerenciar todas as configurações em um só lugar. Além disso estes formatos tendem a ser específicos da linguagem ou framework.
 
-**The twelve-factor app stores config in *environment variables*** (often shortened to *env vars* or *env*).  Env vars are easy to change between deploys without changing any code; unlike config files, there is little chance of them being checked into the code repo accidentally; and unlike custom config files, or other config mechanisms such as Java System Properties, they are a language- and OS-agnostic standard.
+**A aplicação twelve-factor armazena configuração em *variáveis de ambiente*** (muitas vezes abreviadas para *env vars* ou *env*). Env vars são fáceis de mudar entre deploys sem alterar qualquer código. ao contrário de arquivos de configuração, há pouca chance de serem colocados acidentalmente no repositório do código; e ao contrário dos arquivos de configuração personalizados, ou outros mecanismos de configuração como Propriedades do Sistema Java, eles são por padrão agnósticos a linguagem e ao SO. 
 
-Another aspect of config management is grouping.  Sometimes apps batch config into named groups (often called "environments") named after specific deploys, such as the `development`, `test`, and `production` environments in Rails.  This method does not scale cleanly: as more deploys of the app are created, new environment names are necessary, such as `staging` or `qa`.  As the project grows further, developers may add their own special environments like `joes-staging`, resulting in a combinatorial explosion of config which makes managing deploys of the app very brittle.
+Outro aspecto do gerenciamento de configuração é o agrupamento. Às vezes, aplicações de configuração em batch dentro de grupos nomeados (muitas vezes chamados de ambientes) em homenagem a deploys específicos, tais como os ambientes `development`, `test`, e `production` em Rails. Este método não escala de forma limpa: quanto mais deploys da aplicação são criados, novos nomes de ambiente são necessários, tais como `staging` ou `qa`. A medida que o projeto cresce ainda mais, desenvolvedores podem adicionar seus próprios ambientes especiais como `joes-staging`, resultando em uma explosão combinatória de configurações que torna o gerenciamento de deploys da aplicação muito frágil.
 
-In a twelve-factor app, env vars are granular controls, each fully orthogonal to other env vars.  They are never grouped together as "environments," but instead are independently managed for each deploy.  This is a model that scales up smoothly as the app naturally expands into more deploys over its lifetime.
-
+Em uma aplicação twelve-factor, env vars são controles granulares, cada um totalmente ortogonal às outras env vars. Elas nunca são agrupadas como "environments", mas em vez disso são gerenciadas independente de cada deploy. Este é um modelo que escala sem problemas à medida que o app naturalmente se expande em muitos deploys durante seu ciclo de vida.
