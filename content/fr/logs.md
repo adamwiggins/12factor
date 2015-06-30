@@ -3,7 +3,7 @@
 
 Les *logs* fournissent de la visibilité au comportement de l'application qui s'exécute. Dans des environnements de type serveur, ils sont généralement écrits sur un fichier, sur le disque (dans un fichier de log). Mais c'est simplement un format de sortie.
 
-Les logs sont des [flux](http://adam.heroku.com/past/2011/4/1/logs_are_streams_not_files/) d'aggrégats d'évènements, ordonnés dans le temps, collectés à travers les flux de sortie de tous les processus et services externes qui tournent. Les logs, dans leur forme brute, sont au format texte avec un événement par ligne (bien que les traces d'exécutions puissent s'étaler sur plusieurs lignes). Les logs n'ont pas de début ou de fin fixe, mais se remplissent en continu tant que l'application est en marche.
+Les logs sont des [flux (en)](http://adam.heroku.com/past/2011/4/1/logs_are_streams_not_files/) d'aggrégats d'évènements, ordonnés dans le temps, collectés à travers les flux de sortie de tous les processus et services externes qui tournent. Les logs, dans leur forme brute, sont au format texte avec un événement par ligne (bien que les traces d'exécutions puissent s'étaler sur plusieurs lignes). Les logs n'ont pas de début ou de fin fixe, mais se remplissent en continu tant que l'application est en marche.
 
 **Une application 12 facteurs ne s'inquiète jamais du routage ou du stockage de ses flux de sortie.** Elle ne devrait pas tenter d'écrire ou de gérer les fichiers de logs. À la place, chaque processus qui tourne écrit ses flux d'événements, sans tampon, vers `stdout`, la sortie standard ; en phase de développement local, les développeurs pourront voir ce flux dans leur terminal et observer le comportement de l'application.
 

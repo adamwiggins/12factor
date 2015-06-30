@@ -26,7 +26,7 @@ Les 12 facteurs
 ### Grossissez à l'aide du modèle de processus
 
 ## [IX. Jetable](./disposability)
-### Maximisez la robustessse avec des démarrages rapides et des arrêts gracieux
+### Maximisez la robustesse avec des démarrages rapides et des arrêts gracieux
 
 ## [X. Parité dev/prod](./dev-prod-parity)
 ### Gardez le développement, la validation et la production aussi proches que possible
@@ -35,4 +35,4 @@ Les 12 facteurs
 ### Traitez les logs comme des flux d'évènements
 
 ## [XII. Processus d'administration](./admin-processes)
-### Lancez les processus d'administration et de maintenance comme des processus
+### Lancez les processus d'administration et de maintenance comme des one-off-processes
