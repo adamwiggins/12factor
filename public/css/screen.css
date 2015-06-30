@@ -9,7 +9,7 @@ body {
 h1, h2, h3 {
   padding: 0;
   margin: 0;
-}
+}  
 
 h1, h2 {
   line-height: 1.25em;
@@ -40,8 +40,8 @@ header h1 a {
 section {
   padding-top: 16pt;
   text-align: center;
-  min-width: 65em;
 }
+
 section h1 {
   font-size: 19pt;
 }
@@ -49,16 +49,18 @@ section h1 {
 article {
   padding-top: 8pt;
 }
+
 article, nav {
   margin: 0 auto;
   text-align: justify;
-  max-width: 55em;
 }
+
 article p a, article li a {
   text-decoration: none;
   border-bottom: 1px dashed #444;
   color: #000;
 }
+
 article p a:hover, article li a:hover {
   color: #337;
 }
@@ -106,6 +108,15 @@ nav {
   margin-top: 16pt;
   margin-bottom: 48pt;
 }
+nav #locales {
+  text-align: center;
+}
+nav #locales a {
+  color: #000;
+}
+nav #locales span {
+  font-weight: bold;
+}
 nav #next {
   float: right;
 }
@@ -141,10 +152,6 @@ footer {
   text-align: center;
   padding-right: 64pt;
   min-height: 56pt;
-}
-
-footer span {
-  display: block;
 }
 
 footer a {
