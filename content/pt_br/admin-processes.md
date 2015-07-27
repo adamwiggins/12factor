@@ -1,5 +1,5 @@
-## XII. Admin processes
-### Run admin/management tasks as one-off processes
+## XII. Processsos de admin
+### Rode tarefas de administração/gestão como processos pontuais
 
 The [process formation](./concurrency) is the array of processes that are used to do the app's regular business (such as handling web requests) as it runs.  Separately, developers will often wish to do one-off administrative or maintenance tasks for the app, such as:
 
