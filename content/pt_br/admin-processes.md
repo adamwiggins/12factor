@@ -1,7 +1,13 @@
 ## XII. Processsos de admin
 ### Rode tarefas de administração/gestão como processos pontuais
 
+O [processo de formação](./concurrency) é o conjunto de processos que são usados para fazer as negociações regulares da app (tais como manipulação de requisições web) como ela é executada. Separadamente, os desenvolvedores, muitas vezes desejam fazer tarefas pontuais de administração ou manutenção para a app, tais como:
+
 The [process formation](./concurrency) is the array of processes that are used to do the app's regular business (such as handling web requests) as it runs.  Separately, developers will often wish to do one-off administrative or maintenance tasks for the app, such as:
+
+* Executando database migrations (ex: `manage.py migrate` no Django, `rake db:migrate` no Rails).
+* Executando um console (também conhecido como um [REPL](http://en.wikipedia.org/wiki/Read-eval-print_loop) shell) para rodar código arbritário ou inspecionar os modelos da app ao vivo no banco de dados. A maioria das linguagens fornece um REPL para rodar o interpretador sem nenhum argumento (ex: `python` or `perl`) ou em alguns casos tem um comando separado (ex: `irb` para Ruby, `rails console` para Rails).
+* Executando uma vez, scripts comitados no repositório da app (ex: `php scripts/fix_bad_records.php`).     
 
 * Running database migrations (e.g. `manage.py migrate` in Django, `rake db:migrate` in Rails).
 * Running a console (also known as a [REPL](http://en.wikipedia.org/wiki/Read-eval-print_loop) shell) to run arbitrary code or inspect the app's models against the live database.  Most languages provide a REPL by running the interpreter without any arguments (e.g. `python` or `perl`) or in some cases have a separate command (e.g. `irb` for Ruby, `rails console` for Rails).
