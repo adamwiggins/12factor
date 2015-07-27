@@ -1,16 +1,16 @@
 ## XI. Logs
-### Treat logs as event streams
+### Trate logs como fluxos de eventos
 
-*Logs* provide visibility into the behavior of a running app.  In server-based environments they are commonly written to a file on disk (a "logfile"); but this is only an output format.
+*Logs* provém visibilidade no comportamento de um app em execução. Em ambientes de servidor eles são comumente escritos num arquivo em disco (um "logfile"); mas este é apenas um formato de saída.
 
-Logs are the [stream](http://adam.heroku.com/past/2011/4/1/logs_are_streams_not_files/) of aggregated, time-ordered events collected from the output streams of all running processes and backing services.  Logs in their raw form are typically a text format with one event per line (though backtraces from exceptions may span multiple lines).  Logs have no fixed beginning or end, but flow continuously as long as the app is operating.
+Logs são o [fluxo](http://adam.heroku.com/past/2011/4/1/logs_are_streams_not_files/) de eventos agregados e ordenados por tempo coletados dos fluxos de saída de todos os processos em execução e serviços de apoio. Logs na sua forma crua são tipicamente um formato de texto com um evento por linha (apesar que pilhas de exceção podem ocupar várias linhas). Logs não tem começos ou términos fixos, mas fluem continuamente enquanto o app estiver operante.
 
-**A twelve-factor app never concerns itself with routing or storage of its output stream.**  It should not attempt to write to or manage logfiles.  Instead, each running process writes its event stream, unbuffered, to `stdout`.  During local development, the developer will view this stream in the foreground of their terminal to observe the app's behavior.
+**Um app doze-fatores nunca se preocupa com o roteamento ou armazenagem do seu fluxo de saída.** Ele não deve tentar escrever ou gerir arquivos de logs. No lugar, cada processo em execução escreve seu próprio fluxo de evento, sem buffer, para o `stdout`. Durante o desenvolvimento local, o desenvolvedor verá este fluxo no plano de frente do seu terminal para observar o comportamento do app.
 
-In staging or production deploys, each process' stream will be captured by the execution environment, collated together with all other streams from the app, and routed to one or more final destinations for viewing and long-term archival.  These archival destinations are not visible to or configurable by the app, and instead are completely managed by the execution environment.  Open-source log routers (such as [Logplex](https://github.com/heroku/logplex) and [Fluent](https://github.com/fluent/fluentd)) are available for this purpose.  
+Em deploys de homologação ou produção, cada fluxo dos processos serão capturados pelo ambiente de execução, colados com todos os demais fluxos do app, e direcionados para um ou mais destinos finais para visualização e arquivamento de longo prazo. Estes destinos de arquivamento não são visíveis ou configuráveis pelo app, e ao invés disso, são completamente geridos pelo ambiente de execução. Roteadores de log open source (tais como [Logplex](https://github.com/heroku/logplex) e [Fluent](https://github.com/fluent/fluentd)) estão disponíveis para este propósito.
 
-The event stream for an app can be routed to a file, or watched via realtime tail in a terminal.  Most significantly, the stream can be sent to a log indexing and analysis system such as [Splunk](http://www.splunk.com/), or a general-purpose data warehousing system such as [Hadoop/Hive](http://hive.apache.org/).  These systems allow for great power and flexibility for introspecting an app's behavior over time, including:
+O fluxo de evento para um app pode ser direcionado para um arquivo, ou visto em tempo real via `tail` num terminal. Mais significativamente, o fluxo pode ser enviado para um sistema indexador e analisador tal como [Splunk](http://www.splunk.com/), ou um um sistema mais genérico de _data warehousing_ como o [Hadoop/Hive](http://hive.apache.org/). Estes sistemas permitem grande poder e flexibilidade para observar o comportamento de um app durante o tempo, incluindo:
 
-* Finding specific events in the past.
-* Large-scale graphing of trends (such as requests per minute).
-* Active alerting according to user-defined heuristics (such as an alert when the quantity of errors per minute exceeds a certain threshold).
+* Encontrando eventos específicos no passado.
+* Gráficos em larga escala de tendências (como requisições por minuto)
+* Notificações ativas de acordo com as heurísticas determinadas pelo usuário (como uma notificação quando a quantidade de erros por minuto exceder um certo limite).
