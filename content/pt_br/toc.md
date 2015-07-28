@@ -1,5 +1,5 @@
-The Twelve Factors
-==================
+Os Doze Fatores
+===============
 
 ## [I. Base de Código](./codebase)
 ### Uma base de código com rastreamento utilizando controle de revisão, muitos deploys
