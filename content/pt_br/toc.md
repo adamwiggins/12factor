@@ -25,7 +25,7 @@ The Twelve Factors
 ## [VIII. Concorrência](./concurrency)
 ### Dimensione por um modelo de processo
 
-## [IX. Disponibilidade](./disposability)
+## [IX. Descartabilidade](./disposability)
 ### Maximizar a robustez com inicialização e desligamento rápido
 
 ## [X. Dev/prod semelhantes](./dev-prod-parity)
