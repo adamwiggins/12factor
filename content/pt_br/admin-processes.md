@@ -1,14 +1,14 @@
-## XII. Admin processes
-### Run admin/management tasks as one-off processes
+## XII. Processos de administração
+### Rode tarefas de administração/gestão como processos pontuais
 
-The [process formation](./concurrency) is the array of processes that are used to do the app's regular business (such as handling web requests) as it runs.  Separately, developers will often wish to do one-off administrative or maintenance tasks for the app, such as:
+O [processo de formação](./concurrency) é o conjunto de processos que são usados para fazer as negociações regulares da app como ela é executada (tais como manipulação de requisições web). Separadamente, os desenvolvedores, muitas vezes desejam fazer tarefas pontuais de administração ou manutenção para a app, tais como:
 
-* Running database migrations (e.g. `manage.py migrate` in Django, `rake db:migrate` in Rails).
-* Running a console (also known as a [REPL](http://en.wikipedia.org/wiki/Read-eval-print_loop) shell) to run arbitrary code or inspect the app's models against the live database.  Most languages provide a REPL by running the interpreter without any arguments (e.g. `python` or `perl`) or in some cases have a separate command (e.g. `irb` for Ruby, `rails console` for Rails).
-* Running one-time scripts committed into the app's repo (e.g. `php scripts/fix_bad_records.php`).
+* Executando migrações de base de dados (ex: `manage.py migrate` no Django, `rake db:migrate` no Rails).
+* Executando um console (também conhecido como um [REPL](http://en.wikipedia.org/wiki/Read-eval-print_loop) shell) para rodar código arbitrário ou inspecionar os modelos da app ao vivo no banco de dados. A maioria das linguagens fornece um REPL para rodar o interpretador sem nenhum argumento (ex: `python` or `perl`) ou em alguns casos tem um comando separado (ex: `irb` para Ruby, `rails console` para Rails).
+* Executando uma vez os scripts comitados no repositório da app (ex: `php scripts/fix_bad_records.php`).     
 
-One-off admin processes should be run in an identical environment as the regular [long-running processes](./processes) of the app.  They run against a [release](./build-release-run), using the same [codebase](./codebase) and [config](./config) as any process run against that release.  Admin code must ship with application code to avoid synchronization issues.
+Processos de administração pontuais devem ser executados em um ambiente idêntico, como os [processos regulares de longa execução](./processes) da app. Eles rodam uma [versão](./build-release-run), usando a mesma [base de código](./codebase) e [configuração](./config) como qualquer processo executado com essa versão. Códigos de administração devem ser fornecidos com o código da aplicação para evitar problemas de sincronização.
 
-The same [dependency isolation](./dependencies) techniques should be used on all process types.  For example, if the Ruby web process uses the command `bundle exec thin start`, then a database migration should use `bundle exec rake db:migrate`.  Likewise, a Python program using Virtualenv should use the vendored `bin/python` for running both the Tornado webserver and any `manage.py` admin processes.
+A mesma técnica de [isolamento de dependência](./dependencies) deve ser usada em todos tipos de processos. Por exemplo, se o processo web Ruby usa o comando `bundle exec thin start`, então uma migração de base de dados deve usar `bundle exec rake db:migrate`. Da mesma forma, um programa Python usando Virtualenv deve usar `bin/python` vendorizado para executar tanto o servidor web Tornado e qualquer processo de administração `manage.py`.
 
-Twelve-factor strongly favors languages which provide a REPL shell out of the box, and which make it easy to run one-off scripts.  In a local deploy, developers invoke one-off admin processes by a direct shell command inside the app's checkout directory.  In a production deploy, developers can use ssh or other remote command execution mechanism provided by that deploy's execution environment to run such a process.
+Dozes-fatores favorece fortemente linguagens que fornecem um shell REPL embutido, e que tornam mais fácil executar scripts pontuais. Em um deploy local, os desenvolvedores invocam processos de administração pontuais por um comando shell direto dentro do diretório de checkout da app. Em um deploy de produção, desenvolvedores podem usar ssh ou outro mecanismo de execução de comandos remoto fornecido por aquele ambiente de execução do deploy para executar tal processo.
