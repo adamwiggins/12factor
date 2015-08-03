@@ -13,7 +13,7 @@ Development
 Production deploy
 -----------------
 
-    heroku create -s cedar
+    heroku create
     git push heroku master
     heroku open
 
