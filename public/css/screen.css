@@ -89,7 +89,7 @@ section.concrete h2 a:hover {
   color: #337;
 }
 section.concrete h3 {
-  color: #555;
+  color: #333;
   font-weight: normal;
 }
 
@@ -100,7 +100,7 @@ section#factor h2 {
 section#factor h3 {
   font-size: 17pt;
   font-weight: normal;
-  color: #999;
+  color: #555;
   margin-bottom: 16pt;
 }
 
@@ -144,7 +144,7 @@ td, th {
 }
 
 footer {
-  color: #444;
+  color: #999;
   font-size: 10pt;
   background: #000;
   padding-top: 24pt;
@@ -155,7 +155,7 @@ footer {
 }
 
 footer a {
-  color: #444;
+  color: #999;
 }
 
 article img {
