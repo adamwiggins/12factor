@@ -1,5 +1,5 @@
 ## IV. Backing services
-### Tratar los "backing services" como recursos conectables
+### Tratar a los "backing services" como recursos conectables
 
 Un *backing service* es cualquier recurso que la aplicación puede consumir a través de la red como parte de su funcionamiento habitual. Entre otros ejemplos, podemos encontrar bases de datos (como [MySQL](http://dev.mysql.com/) o [CouchDB](http://couchdb.apache.org/)), los sistemas de mensajería y de colas (como [RabbitMQ](http://www.rabbitmq.com/) o [Beanstalkd](http://kr.github.com/beanstalkd/)), los servicios SMTP de email (como [Postfix](http://www.postfix.org/)), y los sistemas de cache (como [Memcached](http://memcached.org/)).
 
