@@ -3,16 +3,14 @@
 
 Los *historiales* proporcionan visibilidad al comportamiento de la ejecución de la aplicación. En entornos basados en servidores es muy común escribir un fichero en disco (un "fichero de histórico"); pero este es solo un posible formato de salida.
 
-Un historial es un resumen de un [flujos](http://adam.heroku.com/past/2011/4/1/logs_are_streams_not_files/), eventos capturados y ordenados según su momento de ejecución del flujo de salida de todos los procesos en ejecución y los servicios de respaldo.
+Los historiales son la [transmisión](http://adam.heroku.com/past/2011/4/1/logs_are_streams_not_files/) de un conjunto de eventos ordenados y capturados de la salida de todos los procesos en ejecución y de los "backing services". En bruto, los historiales suelen estar en formato texto y tienen un evento por linea (aunque las trazas de excepciones suelen estar en varias lineas). Los historiales no tienen un principio y un final fijo, sino que fluyen continuamente mientras la aplicación está en funcionamiento.
 
- time-ordered events collected from the output streams of all running processes and backing services.  Logs in their raw form are typically a text format with one event per line (though backtraces from exceptions may span multiple lines).  Logs have no fixed beginning or end, but flow continuously as long as the app is operating.
+**Una aplicación "twelve-factor" nunca se preocupa del direccionamiento o el almacenamiento de sus transmisiones de salida.** No debería intentar escribir o gestionar ficheros de historial. En su lugar, cada proceso en ejecución escribe sus eventos a la `salida estándar` (o `stdout`). Durante el desarrollo, los desarrolladores verán el flujo en su terminal para observar el comportamiento de la aplicación.
 
-**A twelve-factor app never concerns itself with routing or storage of its output stream.**  It should not attempt to write to or manage logfiles.  Instead, each running process writes its event stream, unbuffered, to `stdout`.  During local development, the developer will view this stream in the foreground of their terminal to observe the app's behavior.
+En despliegues de preproducción y producción, cada transmision de proceso será capturado por el entorno de ejecución, siendo capturados junto con todos los otros flujos de la aplicación, y redirigido a uno o más destinos finales para ser revisados y archivados. Estos destinos donde se archivan no son visibles o configurables por la aplicación, se gestionan totalmente por el entorno de ejecución. Las herramientas de código abierto que capturan y almacenan los historiales, (como [Logplex](https://github.com/heroku/logplex) y [Fluent](https://github.com/fluent/fluentd) se usan con este objetivo.
 
-In staging or production deploys, each process' stream will be captured by the execution environment, collated together with all other streams from the app, and routed to one or more final destinations for viewing and long-term archival.  These archival destinations are not visible to or configurable by the app, and instead are completely managed by the execution environment.  Open-source log routers (such as [Logplex](https://github.com/heroku/logplex) and [Fluent](https://github.com/fluent/fluentd)) are available for this purpose.  
+Las transmisiones de eventos para una aplicación pueden ser redirigidos a un fichero u observados en tiempo real mediante un "tail" en un terminal. Most significantly, la transmision se puede enviar a un sistema de analisis e indexado como [Splunk](http://www.splunk.com/), o a un sistema de almacenamiendo de datos de proposito general como [Hadoop/Hive](http://hive.apache.org/). Estos sistemas se tienen en cuenta por el gran poder y la flexibilidad para inspeccionar el comportamiento de la aplicación a lo largo del tiempo, incluyendo: 
 
-The event stream for an app can be routed to a file, or watched via realtime tail in a terminal.  Most significantly, the stream can be sent to a log indexing and analysis system such as [Splunk](http://www.splunk.com/), or a general-purpose data warehousing system such as [Hadoop/Hive](http://hive.apache.org/).  These systems allow for great power and flexibility for introspecting an app's behavior over time, including:
-
-* Finding specific events in the past.
-* Large-scale graphing of trends (such as requests per minute).
-* Active alerting according to user-defined heuristics (such as an alert when the quantity of errors per minute exceeds a certain threshold).
+* Encontrar eventos específicos del pasado.
+* Gráficas de tendencia a gran escala (como las peticiones por minuto).
+* Activación de alertas de acuerdo con heurísticas definidas por el usuario (como una alerta cuando la cantidad de errores por minuto sobrepasa un cierto limite).
