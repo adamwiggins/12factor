@@ -1,5 +1,5 @@
 ## XI. Historiales
-### Tratar los historiales como un flujo de eventos
+### Tratar los historiales como una transmisión de eventos
 
 Los *historiales* proporcionan visibilidad al comportamiento de la ejecución de la aplicación. En entornos basados en servidores es muy común escribir un fichero en disco (un "fichero de histórico"); pero este es solo un posible formato de salida.
 
