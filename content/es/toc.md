@@ -1,20 +1,20 @@
 Twelve Factors
 ==============
 
-## [I. Repositorio](./codebase)
-### Un repositorio para hacer el seguimiento del control de versiones, multiples despliegues
+## [I. Código base (Codebase)](./codebase)
+### Un código base sobre el que hacer el control de versiones y multiples despliegues
 
 ## [II. Dependencias](./dependencies)
-### Dependencias declaradas explicitamente y aisladas
+### Declarar y aislar explícitamente las dependencias
 
 ## [III. Configuraciones](./config)
-### Almacenar la configuración en el entorno
+### Guardar la configuración en el entorno
 
-## [IV. Servicios de respaldo](./backing-services)
-### Tratar a los servicios de respaldo como piezas intercambiables
+## [IV. Backing services](./backing-services)
+### Tratar a los "backing services" como recursos conectables
 
 ## [V. Construir, desplegar, ejecutar](./build-release-run)
-### Las fases de construcción y ejecución totalmente separadas
+### Separar completamente la etapa de construcción de la etapa de ejecución
 
 ## [VI. Procesos](./processes)
 ### Ejecutar la aplicación como uno o más procesos sin estado
@@ -26,14 +26,13 @@ Twelve Factors
 ### Escalar mediante el modelo de procesos
 
 ## [IX. Disponibilidad](./disposability)
-### Maximizar la solidez con inicios rápidos y finalizaciones seguras
+### Hacer el sistema más robusto intentando conseguir inicios rápidos y finalizaciones seguras
 
 ## [X. Paridad en desarrollo y producción](./dev-prod-parity)
 ### Mantener desarrollo, preproducción y producción tan parecidos como sea posible
 
 ## [XI. Historiales](./logs)
-### Tratar los historiales como flujos de eventos
+### Tratar los historiales como una transmisión de eventos
 
 ## [XII. Administración de procesos](./admin-processes)
-### Ejecutar tareas de administración/gestión como procesos 
-Run admin/management tasks as one-off processes
+### Ejecutar las tareas de gestión/administración como procesos de un solo uso
