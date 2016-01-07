@@ -10,7 +10,7 @@ Uma *base de código* é um único repo (em um sistema de controle de versão ce
 Existe sempre uma correlação um-para-um entre a base de código e a aplicação:
 
 * Se existem várias bases de código, isto não é uma app -- é um sistema distribuído. Cada componente do sistema é uma app, e cada uma pode  individualmente ser compatível com os 12 fatores.
-* Multiplas apps compartilhando uma base de código é uma violação dos 12 fatores. A solução aqui é dividir o código compartilhado entre bibliotecas que podem ser incluídas artavés do [gerenciador de dependências](/dependencies).
+* Multiplas apps compartilhando uma base de código é uma violação dos 12 fatores. A solução aqui é dividir o código compartilhado entre bibliotecas que podem ser incluídas através do [gerenciador de dependências](/dependencies).
 
 Existe apenas uma base de código por aplicação, mas existirão várias deploys da mesma. Um *deploy* é uma instância executando a aplicação. Isto é tipicamente um local de produção, e um ou mais locais de testes. Adicionalmente, todo desenvolvedor tem uma cópia da aplicação rodando em seu ambiente local de desenvolvimento, cada um desses pode ser qualificado como um deploy.
 
