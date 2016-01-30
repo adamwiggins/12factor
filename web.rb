@@ -35,7 +35,7 @@ end
 
 helpers do
   def render_markdown(file)
-    markdown = File.read("content/#{I18n.locale}/#{file}.md")
+    markdown = File.read("content/#{I18n.locale}/#{file}.md", :encoding => 'utf-8')
     Maruku.new(markdown).to_html
   rescue Errno::ENOENT
     puts "No content for #{I18n.locale}/#{file}, skipping"
