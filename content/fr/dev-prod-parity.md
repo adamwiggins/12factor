@@ -38,7 +38,7 @@ Si l'on résume cela en un tableau :
   </tr>
 </table>
 
-[Les services externes](./backing-services), tel que la base de données, la file de messages, ou le cache sont des éléments importants de la parité développement/production. La plupart des langages fournissent des librairies qui simplifient l'accès à ces services externes, en fournissant des adaptateurs pour différents types de services. Voici quelques exemples dans le tableau ci dessous.
+[Les services externes](./backing-services), tel que la base de données, la file de messages, ou le cache sont des éléments importants de la parité développement/production. La plupart des langages fournissent des bibliothèques qui simplifient l'accès à ces services externes, en fournissant des adaptateurs pour différents types de services. Voici quelques exemples dans le tableau ci dessous.
 
 <table>
   <tr>
