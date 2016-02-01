@@ -1,7 +1,7 @@
 ## II. Dépendances
 ### Déclarez explicitement et isolez les dépendances
 
-La plupart des languages de programmation offrent des systèmes pour créer des paquets à partir de librairies afin de les distribuer, tel que [CPAN](http://www.cpan.org/) pour Perl ou [Rubygems](http://rubygems.org/) pour Ruby. Les librairies installées à travers un système de packaging peuvent être installés à travers tout le système, ou bien limités au répertoire contenant l'application (que l'on appelle les "vendor" ou "bundles")
+La plupart des languages de programmation offrent des systèmes pour créer des paquets à partir de bibliothèques afin de les distribuer, tel que [CPAN](http://www.cpan.org/) pour Perl ou [Rubygems](http://rubygems.org/) pour Ruby. Les bibliothèques installées à travers un système de packaging peuvent être installés à travers tout le système, ou bien limités au répertoire contenant l'application (que l'on appelle les "vendor" ou "bundles")
 
 **Une application 12 facteurs ne dépend jamais de l'existence implicite de packages au niveau du système**. Elle déclare toutes ses dépendances, complètement et exactement, à travers un manifeste de *déclaration de dépendances*. De plus, elle utilise un outil d'isolation des dépendances durant l'exécution afin d'assurer qu'aucune dépendances implicite ne s'introduise depuis le système environnant. Les spécifications complètes et explicites sont appliquées uniformément en développement comme en production.
 
