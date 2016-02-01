@@ -11,6 +11,6 @@ Dans les déploiements de validation ou de production, les flux de chaque proces
 
 Le flux d'événements d'une application peut être routé dans un fichier, ou surveillé en temps réel (avec tail) dans un terminal. Plus pertinent, les flux peuvent être envoyés vers un outil d'indexation et d'archivage des logs tel que [Splunk](http://www.splunk.com/), ou bien dans un entrepot de données générique comme [Hadoop/Hive](http://hive.apache.org/). Ces systèmes sont très puissants et flexibles pour inspecter le comportement de l'application au cours du temps, ce qui inclut :
 
-* Trouver un événements spécifique dans le passé
+* Trouver un événement spécifique dans le passé
 * Faire des graphiques à grande échelle des tendances (comme les requêtes par minutes)
 * Lever des alertes, à partir d'heuristiques définies par l'utilisateur (comme alerter dès que la quantité d'erreurs par minutes dépasse un certain seuil)
