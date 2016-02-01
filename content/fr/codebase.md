@@ -10,7 +10,7 @@ Une *base de code* correspond à chaque dépôt (dans un système de contrôle d
 Il y a toujours un rapport direct entre la base de code et l'application :
 
 * S'il y a plusieurs bases de code, ce n'est pas une application, c'est un système distribué. Chaque composant du système distribué est une application, et chacun peut individuellement respecter la méthodologie 12 facteurs.
-* Plusieurs applications partageant le même code est une violation des 12 facteurs. La solution dans ce cas est de factoriser le code partagé dans des librairies qui peuvent être intégrées via un [gestionnaire de dépendances](./dependencies).
+* Plusieurs applications partageant le même code est une violation des 12 facteurs. La solution dans ce cas est de factoriser le code partagé dans des bibliothèques qui peuvent être intégrées via un [gestionnaire de dépendances](./dependencies).
 
 Il y a seulement une base de code par application, mais il y aura plusieurs déploiements de l'application. Un *déploiement* est une instance en fonctionnement de l'application. C'est, par exemple, le site en production, ou bien un ou plusieurs sites de validation. En plus de cela, chaque développeur a une copie de l'application qui fonctionne dans son environnement local de développement, ce qui compte également comme un déploiement.
 
