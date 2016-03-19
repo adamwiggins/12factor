@@ -34,5 +34,5 @@ Os Doze Fatores
 ## [XI. Logs](./logs)
 ### Trate logs como fluxo de eventos
 
-## [XII. Procesos de Admin](./admin-processes)
+## [XII. Processos de Admin](./admin-processes)
 ### Executar tarefas de administração/gerenciamento como processos pontuais
