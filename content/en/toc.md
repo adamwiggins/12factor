@@ -10,7 +10,7 @@ The Twelve Factors
 ## [III. Config](./config)
 ### Store config in the environment
 
-## [IV. Backing Services](./backing-services)
+## [IV. Backing services](./backing-services)
 ### Treat backing services as attached resources
 
 ## [V. Build, release, run](./build-release-run)
