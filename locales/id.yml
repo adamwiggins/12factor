@@ -1,7 +1,0 @@
-id:
-  # Name of language listed in locales menu
-  language: Indonesian (id)
-
-  # A text to make known that the article is a translation not an original.
-  # Empty for English, original.
-  translation: "Teks ini adalah terjemahan"
