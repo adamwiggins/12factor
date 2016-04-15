@@ -38,7 +38,7 @@ Resumiendo lo anterior en una tabla:
   </tr>
 </table>
 
-Los ["backing services"](./backing-services), como la base de datos de la aplicación, el sistema de colas, o la cache, es donde la igualdad en los entornos de desarrollo y producción es importante. Muchos lenguajes ofrecen librerías en las que se simplifica el acceso a los servicios de respaldo, incluidos *adaptadores* para diferentes tipos de servicios. Se pueden observar algunos ejemplos en la siguiente tabla.
+Los ["backing services"](./backing-services), como la base de datos de la aplicación, el sistema de colas, o la caché, es donde la igualdad en los entornos de desarrollo y producción es importante. Muchos lenguajes ofrecen librerías en las que se simplifica el acceso a los servicios de respaldo, incluidos *adaptadores* para diferentes tipos de servicios. Se pueden observar algunos ejemplos en la siguiente tabla.
 
 <table>
   <tr>
@@ -60,14 +60,14 @@ Los ["backing services"](./backing-services), como la base de datos de la aplica
     <td>RabbitMQ, Beanstalkd, Redis</td>
   </tr>
   <tr>
-    <td>Cache</td>
+    <td>Caché</td>
     <td>Ruby/Rails</td>
     <td>ActiveSupport::Cache</td>
     <td>Memoria, sistema de ficheros, Memcached</td>
   </tr>
 </table>
 
-Los desarrolladores, a veces, caen en la tentación de usar "backing services" ligeros en sus entornos de desarrollo, mientras que en producción se usan los más serios y robustos. Por ejemplo, se usa SQLite en desarrollo y PostgreSQL en producción; o memoria local para la cache en desarrollo y Memcached en producción.
+Los desarrolladores, a veces, caen en la tentación de usar "backing services" ligeros en sus entornos de desarrollo, mientras que en producción se usan los más serios y robustos. Por ejemplo, se usa SQLite en desarrollo y PostgreSQL en producción; o memoria local para la caché en desarrollo y Memcached en producción.
 
 **Un desarrollador "twelve-factor" no cae en la tentación de usar diferentes "backing services" en desarrollo y producción**, incluso cuando los adaptadores teóricamente abstractos están lejos de cualquier diferencia en "backing services". Las diferencias entre los servicios de respaldo tienen que ver con las pequeñas incompatibilidades que surgen de la nada, causando que el código que funciona y pasa los tests en desarrollo o en preproducción, falle en producción. Este tipo de errores provocan conflictos que desincentivan la filosofía del despliegue continuo. El coste de estos conflictos y el enfriamiento subsiguiente del despliegue continuo es extremadamente alto cuando se hace balance del total de tiempo de vida de una aplicación.
 
