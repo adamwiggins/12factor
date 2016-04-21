@@ -11,4 +11,4 @@ Chaque service externe est une *ressource*. Par exemple, une base de données My
 
 <img src="/images/attached-resources.png" class="full" alt="Un déploiement de production lié à quatre services externes." />
 
-Les resources peuvent être attachées et détachées à volonté à des déploiements. Par exemple, si la base de données de l'application pose problème pour des raisons matérielles, l'administrateur de l'application peut vouloir lancer un nouveau serveur de base de données restauré à partir d'une sauvegarde récente. L'application courante pourrait être détachée à l'ancienne, puis rattachée à la nouvelle — le tout sans changement dans le code.
+Les resources peuvent être attachées et détachées à volonté à des déploiements. Par exemple, si la base de données de l'application pose problème pour des raisons matérielles, l'administrateur de l'application peut vouloir lancer un nouveau serveur de base de données restauré à partir d'une sauvegarde récente. L'application courante pourrait être détachée de l'ancienne, puis rattachée à la nouvelle — le tout sans changement dans le code.
