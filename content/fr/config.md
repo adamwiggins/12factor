@@ -1,7 +1,7 @@
 ## III. Configuration
 ### Stockez la configuration dans l'environnement
 
-La *configuration* d'une application est tout ce qui est susceptible de varier entre des [déploiements](./codebase) (validation, production, environnement de développement, etc). Cela inclue :
+La *configuration* d'une application est tout ce qui est susceptible de varier entre des [déploiements](./codebase) (validation, production, environnement de développement, etc). Cela inclut :
 
 * Les ressources gérées par la base de données, Memcached, ou tout autre [service de stockage](./backing-services)
 * Les identifiants pour des services externes, tel qu'Amazon S3 ou Twitter
@@ -13,7 +13,7 @@ Un bon moyen de tester si une application a correctement séparé son code, c'es
 
 Notez que cette définition de "configuration" n'inclut **pas** la configuration interne de l'application, tel que `config/routes.rb` avec Rails, ou comment [les modules du noyau sont connectés (en)](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html) dans [Spring](http://spring.io/). Ce type de configuration ne varie pas à travers les déploiements, et est ainsi mieux réalisé dans le code.
 
-Une autre approche de la configuration, c'est d'utiliser des fichiers de configuration qui ne sont pas inclus dans le système de contrôle de version, comme par exemple `config/database.yml` de Rails. C'est une amélioration considérable par rapport à l'utilisation de constantes qui sont versionnées dans le dépôt de code, mais a toujours des faiblesses : il est facile d'ajouter par inadvertance un fichier de configuration dans le dépôt. Il y a une tendance à ce que les fichiers de configuration soient dispersés à différents endroits et dans différents formats, rendant ainsi difficile de voir et gérer la configuration à un unique endroit. De plus, ces formats ont tendances à être spécifiques à un language ou un framework.
+Une autre approche de la configuration, c'est d'utiliser des fichiers de configuration qui ne sont pas inclus dans le système de contrôle de version, comme par exemple `config/database.yml` de Rails. C'est une amélioration considérable par rapport à l'utilisation de constantes qui sont versionnées dans le dépôt de code, mais a toujours des faiblesses : il est facile d'ajouter par inadvertance un fichier de configuration dans le dépôt. Il y a une tendance à ce que les fichiers de configuration soient dispersés à différents endroits et dans différents formats, rendant ainsi difficile de voir et gérer la configuration à un unique endroit. De plus, ces formats ont tendances à être spécifiques à un langage ou un framework.
 
 **Les applications 12 facteurs stockent la configuration dans des *variables d'environnement*** (souvent raccourcies en *variables d'env*, ou *env*). Les variables d'environnement sont faciles à changer entre des déploiements sans changer le moindre code ; contrairement aux fichiers de configuration, il y a peu de chance pour qu'elles soient ajoutées au dépôt de code accidentellement ; et contrairement aux fichiers de configuration personnalisés, ou tout autre mécanisme de configuration comme les propriétés système Java, ce sont des standards agnostiques du langage ou du système d'exploitation.
 
