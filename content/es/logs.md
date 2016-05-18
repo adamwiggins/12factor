@@ -3,7 +3,7 @@
 
 Los *historiales* permiten observar el comportamiento de la aplicación durante su ejecución. En entornos basados en servidores es muy común escribir un fichero en disco (un "fichero de histórico") pero este, es tan solo un posible formato de salida.
 
-Los historiales son la [transmisión](http://adam.heroku.com/past/2011/4/1/logs_are_streams_not_files/) de un conjunto de eventos ordenados y capturados de la salida de todos los procesos en ejecución y de los "backing services". En bruto, los historiales suelen estar en formato texto y tienen un evento por línea (aunque las trazas de excepciones suelen estar en varias líneas). Los historiales no tienen un principio y un final fijo, sino que fluyen continuamente mientras la aplicación está en funcionamiento.
+Los historiales son la [transmisión](https://adam.herokuapp.com/past/2011/4/1/logs_are_streams_not_files/) de un conjunto de eventos ordenados y capturados de la salida de todos los procesos en ejecución y de los "backing services". En bruto, los historiales suelen estar en formato texto y tienen un evento por línea (aunque las trazas de excepciones suelen estar en varias líneas). Los historiales no tienen un principio y un final fijo, sino que fluyen continuamente mientras la aplicación está en funcionamiento.
 
 **Una aplicación "twelve-factor" nunca se preocupa del direccionamiento o el almacenamiento de sus transmisiones de salida.** No debería intentar escribir o gestionar ficheros de historial. En su lugar, cada proceso en ejecución escribe sus eventos a la `salida estándar` (o `stdout`). Durante el desarrollo, los desarrolladores verán el flujo en su terminal para observar el comportamiento de la aplicación.
 
