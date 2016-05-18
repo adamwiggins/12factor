@@ -3,7 +3,7 @@
 
 *Logs* machen das Verhalten einer laufenden App sichtbar. In Server-basierten Umgebungen werden sie üblicherweise in eine Datei auf der Platte geschrieben (eine Logdatei) - das ist aber nur ein Ausgabeformat.
 
-Logs sind der [Stream](http://adam.heroku.com/past/2011/4/1/logs_are_streams_not_files/) von aggregierten, nach Zeit sortierten Ereignissen und zusammengefasst aus den Output Streams aller laufenden Prozesse und unterstützenden Dienste. Logs in ihrer rohen Form sind üblicherweise ein Textformat mit einem Ereignis pro Zeile (obwohl Backtraces von Exceptions über mehrere Zeilen gehen können)
+Logs sind der [Stream](https://adam.herokuapp.com/past/2011/4/1/logs_are_streams_not_files/) von aggregierten, nach Zeit sortierten Ereignissen und zusammengefasst aus den Output Streams aller laufenden Prozesse und unterstützenden Dienste. Logs in ihrer rohen Form sind üblicherweise ein Textformat mit einem Ereignis pro Zeile (obwohl Backtraces von Exceptions über mehrere Zeilen gehen können)
 
 **Eine Zwölf-Faktor-App kümmert sich nie um das Routing oder die Speicherung ihres Output Streams.** Sie sollte nicht versuchen, in Logdateien zu schreiben oder sie zu verwalten. Statt dessen schreibt jeder laufende Prozess seinen Stream von Ereignissen ungepuffert auf `stdout`. Bei einem lokalen Deployment sichtet ein Entwickler diesen Stream im Vordergrund seines Terminals um das Verhalten der App zu beobachten.
 
