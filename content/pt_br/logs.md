@@ -9,7 +9,7 @@ Logs são o [fluxo](https://adam.herokuapp.com/past/2011/4/1/logs_are_streams_no
 
 Em deploys de homologação ou produção, cada fluxo dos processos serão capturados pelo ambiente de execução, colados com todos os demais fluxos do app, e direcionados para um ou mais destinos finais para visualização e arquivamento de longo prazo. Estes destinos de arquivamento não são visíveis ou configuráveis pelo app, e ao invés disso, são completamente geridos pelo ambiente de execução. Roteadores de log open source (tais como [Logplex](https://github.com/heroku/logplex) e [Fluent](https://github.com/fluent/fluentd)) estão disponíveis para este propósito.
 
-O fluxo de evento para um app pode ser direcionado para um arquivo, ou visto em tempo real via `tail` num terminal. Mais significativamente, o fluxo pode ser enviado para um sistema indexador e analisador tal como [Splunk](http://www.splunk.com/), ou um um sistema mais genérico de _data warehousing_ como o [Hadoop/Hive](http://hive.apache.org/). Estes sistemas permitem grande poder e flexibilidade para observar o comportamento de um app durante o tempo, incluindo:
+O fluxo de evento para um app pode ser direcionado para um arquivo, ou visto em tempo real via `tail` num terminal. Mais significativamente, o fluxo pode ser enviado para um sistema indexador e analisador tal como [Splunk](http://www.splunk.com/), ou um sistema mais genérico de _data warehousing_ como o [Hadoop/Hive](http://hive.apache.org/). Estes sistemas permitem grande poder e flexibilidade para observar o comportamento de um app durante o tempo, incluindo:
 
 * Encontrando eventos específicos no passado.
 * Gráficos em larga escala de tendências (como requisições por minuto)
