@@ -1,7 +1,7 @@
 Wprowadzenie
 ============
 
-We współczesnym świecie oprogramowanie jest powszechnie wytwarzane w formie usługi, nazywane  _software-as-sarvice (SaaS)_ lub aplikacjami internetowymi. Dwanaście aspektów aplikacji jest metodologią budowania aplikacji SaaS, które: 
+We współczesnym świecie oprogramowanie jest powszechnie wytwarzane w formie usługi, nazywane  _software-as-service (SaaS)_ lub aplikacjami internetowymi. Dwanaście aspektów aplikacji jest metodologią budowania aplikacji SaaS, które: 
 
 * Używają **deklaratywnego** formatu by zautomatyzować konfigurację aplikacji w celu zmniejszenia czasu i kosztów dołączenia nowych programistów do projektu;
 * Mają **czysty kontrakt** z systemem operacyjnym, umożliwiając **jak największą możliwość przenoszenia** pomiędzy środowiskami, w których działają;
