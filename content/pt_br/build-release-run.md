@@ -11,7 +11,7 @@ Uma [base de código](./codebase) é transformada num deploy (de não-desenvolvi
 
 **O app doze-fatores usa separação estrita entre os estágios de construção, lançamento e execução.** Por exemplo, é impossível alterar código em tempo de execução, já que não há meios de se propagar tais mudanças de volta ao estágio de construção.
 
-Ferramentas para deploy tipicamente oferecem ferramentas de gestão de lançamento, mais notadamente a habilidade de se reverter à um lançamento prévio. Por exemplo, a ferramenta de deploy [Capistrano](https://github.com/capistrano/capistrano/wiki) armazena lançamentos em um subdiretório chamado `releases`, onde o lançamento atual é um link simbólico para o diretório da lançamento atual. Seu comando `rollback` torna fácil reverter para um lançamento prévio.
+Ferramentas para deploy tipicamente oferecem ferramentas de gestão de lançamento, mais notadamente a habilidade de se reverter à um lançamento prévio. Por exemplo, a ferramenta de deploy [Capistrano](https://github.com/capistrano/capistrano/wiki) armazena lançamentos em um subdiretório chamado `releases`, onde o lançamento atual é um link simbólico para o diretório de lançamento atual. Seu comando `rollback` torna fácil reverter para um lançamento prévio.
 
 Cada lançamento deve sempre ter um identificador de lançamento único, tal qual o timestamp do lançamento (como `2011-04-06-20:32:17`) ou um número incremental (como `v100`). Lançamentos são livro-razões onde apenas se acrescenta informações, ou seja, uma vez criado o lançamento não pode ser alterado. Qualquer mudança deve gerar um novo lançamento.
 
