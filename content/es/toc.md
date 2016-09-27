@@ -25,7 +25,7 @@ Twelve Factors
 ## [VIII. Concurrencia](./concurrency)
 ### Escalar mediante el modelo de procesos
 
-## [IX. Disponibilidad](./disposability)
+## [IX. Desechabilidad](./disposability)
 ### Hacer el sistema más robusto intentando conseguir inicios rápidos y finalizaciones seguras
 
 ## [X. Paridad en desarrollo y producción](./dev-prod-parity)
