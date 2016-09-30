@@ -7,7 +7,7 @@ Development
 -----------
 
     bundle install
-    foreman start
+    heroku local:start
     open http://localhost:5000
 
 Production deploy
