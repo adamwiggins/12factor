@@ -1,11 +1,11 @@
 ﻿## VII. Bindung an Ports
 ### Dienste durch das Binden von Ports exportieren
 
-Webapps laufen manchmal in einem Webserver als Container. Zum Beispiel laufen PHP-Apps als Modul in [Apache HTTPD](http://httpd.apache.org/), oder Java-Apps laufen manchmal in [Tomcat](http://tomcat.apache.org/).
+Web-Apps laufen manchmal in einem Webserver als Container. Zum Beispiel laufen PHP-Apps als Modul in [Apache HTTPD](http://httpd.apache.org/), oder Java-Apps laufen manchmal in [Tomcat](http://tomcat.apache.org/).
 
-**Die Zwölf-Faktor-App ist vollständig eigenständig** und verlässt sich nicht darauf, dass ein externer Webserver zur Laufzeit injiziert wird um dem Web einen Dienst zur Verfügung zu stellen. Die Webapp **exportiert HTTP als Dienst, indem sie sich an einen Port bindet** und wartet an diesem Port auf Requests.
+**Die Zwölf-Faktor-App ist vollständig eigenständig** und verlässt sich nicht darauf, dass ein externer Webserver zur Laufzeit injiziert wird, um dem Web einen Dienst zur Verfügung zu stellen. Die Web-App **exportiert HTTP als Dienst, indem sie sich an einen Port bindet** und wartet an diesem Port auf Requests.
 
-In einer lokalen Entwicklungsumgebung besucht ein Entwickler eine Dienst-URL wie `http://localhost:5000/` um auf den Dienst der App zuzugreifen. Beim Deployment sorgt eine Routing-Schicht dafür, dass Requests von einem öffentlich sichtbaren Hostnamen zu den an die Ports gebundenen Prozessen kommen.
+In einer lokalen Entwicklungsumgebung öffnet ein Entwickler eine Dienst-URL wie `http://localhost:5000/`, um auf den Dienst der App zuzugreifen. Beim Deployment sorgt eine Routing-Schicht dafür, dass Requests von einem öffentlich sichtbaren Hostnamen zu den an die Ports gebundenen Prozessen kommen.
 
 Üblicherweise wird dies mittels [Abhängigkeitsdeklaration](./dependencies) implementiert. Zu der App fügt man eine Webserver-Bibliothek hinzu wie [Tornado](http://www.tornadoweb.org/) für Python, [Thin](http://code.macournoyer.com/thin/) für Ruby oder [Jetty](http://jetty.codehaus.org/jetty/) für Java und andere JVM-basierenden Sprachen. Dies findet vollständig im *User Space* statt, also im Code der App. Der Vertrag mit der Laufzeitumgebung ist das Binden an einen Port um Requests zu bedienen.
 
