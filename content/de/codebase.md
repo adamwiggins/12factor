@@ -10,9 +10,8 @@ Eine *Codebase* ist jedes einzelne Repo (in einem zentralisierten Versionsmanage
 Es gibt immer eine eineindeutige Korrelation zwischen einer Codebase und einer App:
 
 * Wenn es mehrere Codebases gibt, ist es keine App -- sondern ein verteiltes System. Jede Komponente in einem verteilten System ist eine App, und Jede kann für sich den zwölf Faktoren entsprechen.
-* Wenn mehrere Apps denselben Code teilen, verletzt dies die zwölf Faktoren. Lösen lässt sich dies indem man den gemeinsamen Code in Libraries auslagert, der über die [Abhängigkeitsverwaltung](./dependencies) geladen werden kann.
+* Wenn mehrere Apps denselben Code teilen, verletzt dies die zwölf Faktoren. Lösen lässt sich dies, indem man den gemeinsamen Code in Bibliotheken auslagert und über die [Abhängigkeitsverwaltung](./dependencies) lädt.
 
 Es gibt nur eine Codebase pro App aber viele Deploys der App. Ein *Deploy* ist eine laufende Instanz der App. Meist gibt es ein Produktionssystem und eines oder mehrere Staging-Systeme. Zusätzlich hat jeder Entwickler eine Kopie der App in seiner lokalen Entwicklungsumgebung, das sind auch Deploys.
 
 Die Codebase ist über alle diese Deploys hinweg dieselbe, auch wenn bei jedem Deploy unterschiedliche Versionen aktiv sind. So hat zum Beispiel ein Entwickler manche Commits noch nicht nach Staging deployt; Staging hat manche Commits noch nicht nach Produktion deployt. Aber alle teilen dieselbe Codebase, was sie als verschiedene Deploys derselben App auszeichnet.
-
