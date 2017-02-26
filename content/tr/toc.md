@@ -13,8 +13,8 @@ On İki Faktör
 ## [IV. Destek servisi](./backing-services)
 ### Destek servislerine ekli kaynak olarak davranma
 
-## [V. Derleme, Sürüm, Çalışma](./build-release-run)
-### Derleme ve çalışma aşamalarını tam olarak ayırma
+## [V. Derleme, Sürüm, Çalıştırma](./build-release-run)
+### Derleme ve çalıştırma aşamalarını tam olarak ayırma
 
 ## [VI. Süreç](./processes)
 ### Uygulamayı bir veya daha fazla bağımsız süreç olarak çalıştırma
