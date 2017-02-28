@@ -5,7 +5,7 @@ Web uygulamaları bazı zamanlar web sunucu konteynırları içinde çalıştır
 
 **On iki faktör uygulama tamamen bağımsız** ve web dönüştürme servisi oluşturmak için çalışma ortamı içindeki web sunucunun çalışma zamanlı enjeksiyonuna dayanmaz. Bu web uygulaması port bağlama tarafından HTTP'yi servis olarak dışa aktarır ve o porta gelen istekleri dinler.
 
-Yerel geliştirme ortamında, geliştiriciler `http://localhost:5000/` gibi servis URL'ini, onların duygulamaları tarafından dışa aktarılan servise erişmek için ziyaret ederler. Dağıtımda, yönlendirme katmanı public-facing makineadından port bağımlı web süreçlerine gelen yönlendirme isteklerini ele alır.
+Yerel geliştirme ortamında, geliştiriciler `http://localhost:5000/` gibi servis URL'ini, onların duygulamaları tarafından dışa aktarılan servise erişmek için ziyaret ederler. Dağıtımda, yönlendirme katmanı dışa bakan makine adından port bağımlı web süreçlerine gelen yönlendirme isteklerini ele alır.
 
 Bu tipik olarak, uygulamaya web sunucusu kütüphanesi eklemek için bağımlılık tanımlaması kullanılarak geliştirilmiştir, Python için [Tornado](http://www.tornadoweb.org/), Ruby için [Thin](http://code.macournoyer.com/thin/) veya Java ve diğer JVM-tabanlı diller için [Jetty](http://jetty.codehaus.org/jetty/). Bu uygulamanın kodu içinde *kullanıcı alanında* gerçekleşir. Çalışma ortamıyla olan anlaşma isteklere hizmet veren bir porta bağlıdır.
 
