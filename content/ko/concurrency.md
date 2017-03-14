@@ -9,6 +9,6 @@
 
 이는 런타임 VM 내부의 쓰레드나 [EventMachine](http://rubyeventmachine.com/), [Twisted](http://twistedmatrix.com/trac/), [Node.js](http://nodejs.org/)에서 구성된 것 처럼 async/evented 모델처럼 개별 프로세스가 내부적으로 동시에 처리하는 것을 금지하는 것은 아닙니다. 하지만 개별 VM이 너무 커질 수 있습니다.(수직 확장) 따라서 애플리케이션은 여러개의 물리적인 머신에서 돌아가는 여러개의 프로세스로 넓게 퍼질 수 있어야만 합니다.
 
-프로세스 모델이 진정으로 빛나는 것은 수평적으로 확장하는 경우입니다. [아무것도 공유하지 않고, 수평으로 분할할 수 있는 Twelve-Factor App 프로세스의 성질](.processes)은 동시성을 높이는 것은 간단하고 안정적인 작업이라는 것을 의미 합니다. 프로세스의 타입과 각 타입별 프로세스의 갯수의 배치를 *프로세스 포메이션*이라고 합니다. 
+프로세스 모델이 진정으로 빛나는 것은 수평적으로 확장하는 경우입니다. [아무것도 공유하지 않고, 수평으로 분할할 수 있는 Twelve-Factor App 프로세스의 성질](./processes)은 동시성을 높이는 것은 간단하고 안정적인 작업이라는 것을 의미 합니다. 프로세스의 타입과 각 타입별 프로세스의 갯수의 배치를 *프로세스 포메이션*이라고 합니다. 
 
 Twelve-Factor App 프로세스는 [절대 데몬화해서는 안되며](http://dustin.github.com/2010/02/28/running-processes.html) PID 파일을 작성해서는 안됩니다. 대신, OS의 프로세스 관리자(예: [Upstart](http://upstart.ubuntu.com/))나 클라우드 플랫폼의 분산 프로세스 매니저, 혹은 [Foreman](http://blog.daviddollar.org/2011/05/06/introducing-foreman.html) 같은 툴에 의존하여 [아웃풋 스트림](./logs)을 관리하고, 충돌이 발생한 프로세스에 대응하고, 재시작과 종료를 처리해야 합니다.
