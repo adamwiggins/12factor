@@ -7,7 +7,7 @@ Z doświadczenia wiadomo, że od zawsze istniały różnice pomiędzy środowisk
 * **Różnica odpowiedzialności**: Developer tworzy kod aplikacji, natomiast kto inny wdraża go do na produkcję.
 * **Różnica narzędzi**: Developer może używać narzędzi takich jak Nginx, SQLite i systemu OS X, natomiast wersja produkcyjna będzie opierać się na Apache, MySQL i systemie Linux.
 
-**Aplikacja 12factor jest zaprojektowana tak by można ją było [bez przerwy wdrażać na produkcję](http://www.avc.com/a_vc/2011/02/continuous-deployment.html) minimalizując różnice pomiędzy środowiskami.** Mając na uwadze powyższe różnice, można sobie z nimi radzić na różne sposoby:
+**Aplikacja 12factor jest zaprojektowana tak by można ją było [bez przerwy wdrażać na produkcję](http://avc.com/2011/02/continuous-deployment/) minimalizując różnice pomiędzy środowiskami.** Mając na uwadze powyższe różnice, można sobie z nimi radzić na różne sposoby:
 
 * Zmniejsz czas deploymentu: czas wdrożenia kodu napisanego przez developera powinien być mierzony w godzinach, a nawet w minutach.
 * Przenieś odpowiedzialność: developer piszący kod powinien być zaangażowany we wdrożenia aplikacji na produkcję.

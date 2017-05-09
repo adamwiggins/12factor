@@ -7,7 +7,7 @@ Historiquement, il y a eu un fossé conséquent entre le développement (un dév
 * **Le fossé des personnes** : les développeurs écrivent le code, et d'autres personnes le déploient.
 * **Le fossé des outils** : les développeurs peuvent utiliser une pile comme Nginx, SQLite, et OS X, alors que le déploiement de production utilise Apache, MySQL, et Linux.
 
-**Les applications 12 facteurs sont conçues pour le [déploiement continu (en)](http://www.avc.com/a_vc/2011/02/continuous-deployment.html) en gardant un fossé étroit entre le développement et la production.** Si l'on regarde les trois fossés décrits plus haut :
+**Les applications 12 facteurs sont conçues pour le [déploiement continu (en)](http://avc.com/2011/02/continuous-deployment/) en gardant un fossé étroit entre le développement et la production.** Si l'on regarde les trois fossés décrits plus haut :
 
 * Réduire le fossé temporel : un développeur peut écrire du code et le déployer quelques heures ou même juste quelques minutes plus tard.
 * Réduire le fossé des personnes : les personnes qui écrivent le code sont impliquées dans son déploiement et pour surveiller son comportement en production

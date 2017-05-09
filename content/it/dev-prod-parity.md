@@ -7,7 +7,7 @@ Storicamente, ci sono sempre state differenze sostanziali tra gli ambienti di sv
 * **Personale**: gli sviluppatori scrivono il codice, gli ops effettuano il deploy;
 * **Strumenti**: gli sviluppatori potrebbero usare uno stack quale Nginx, SQLite ed OS X, mentre in produzione per il deploy verrebbero installati Apache, MySQL e Linux.
 
-**Un'applicazione twelve-factor è progettata per il [rilascio continuo](http://www.avc.com/a_vc/2011/02/continuous-deployment.html), tenendo così queste differenze al minimo possibile.** A proposito di queste tre tipologie di differenze appena viste:
+**Un'applicazione twelve-factor è progettata per il [rilascio continuo](http://avc.com/2011/02/continuous-deployment/), tenendo così queste differenze al minimo possibile.** A proposito di queste tre tipologie di differenze appena viste:
 
 * Rendi la differenze temporali minime: cerca di scrivere (o far scrivere) del codice da rilasciare nel giro di poche ore, se non minuti;
 * Rendi le differenze a livello di personale minime: fai in modo che gli sviluppatori siano coinvolti anche nella fase di deploy, per permettere loro di osservare il comportamento di ciò che hanno scritto anche in produzione;

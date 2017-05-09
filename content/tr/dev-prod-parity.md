@@ -7,7 +7,7 @@ Tarihsel olarak, geliştirme (bir geliştirici uygulamanın yerel [dağıtımın
 * **Eleman aralığı:** Geliştiriciler kod yazar, ops mühendisleri dağıtır.
 * **Araçların aralığı:** Geliştiriciler  ürün dağıtımı Apache, MySQL ve Linux kullanırken; Nginx, SQLite, ve OS X gibi yığınları kullanıyor olabilir.
 
-**On iki faktör uygulaması, geliştirme ve ürün aralığını küçük tutarak, [sürekli dağıtım](http://www.avc.com/a_vc/2011/02/continuous-deployment.html) için tasarlanmıştır.** Yukarda tanımlanan üç aralığa bakarsak:
+**On iki faktör uygulaması, geliştirme ve ürün aralığını küçük tutarak, [sürekli dağıtım](http://avc.com/2011/02/continuous-deployment/) için tasarlanmıştır.** Yukarda tanımlanan üç aralığa bakarsak:
 
 * Zaman aralığını küçültme: bir geliştirici kod yazabilir ve bu kodu saatler veya hatta dakikalar sonra dağıtmış olabilir.
 * Eleman aralığını küçültme: kodu yazan geliştiriciler, kodu dağıtmakla yakından ilişkilidir ve üründeki davranışını izler.
