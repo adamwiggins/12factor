@@ -7,7 +7,7 @@ Historically, there have been substantial gaps between development (a developer 
 * **The personnel gap**: Developers write code, ops engineers deploy it.
 * **The tools gap**: Developers may be using a stack like Nginx, SQLite, and OS X, while the production deploy uses Apache, MySQL, and Linux.
 
-**The twelve-factor app is designed for [continuous deployment](http://www.avc.com/a_vc/2011/02/continuous-deployment.html) by keeping the gap between development and production small.**  Looking at the three gaps described above:
+**The twelve-factor app is designed for [continuous deployment](http://avc.com/2011/02/continuous-deployment/) by keeping the gap between development and production small.**  Looking at the three gaps described above:
 
 * Make the time gap small: a developer may write code and have it deployed hours or even just minutes later.
 * Make the personnel gap small: developers who wrote code are closely involved in deploying it and watching its behavior in production.

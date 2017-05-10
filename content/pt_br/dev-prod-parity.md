@@ -7,7 +7,7 @@ Historicamente, houveram lacunas substanciais entre desenvolvimento (um desenvol
 * **A lacuna de pessoal:** Desenvolvedores escrevem código, engenheiros de operação fazem o deploy dele.
 * **A lacuna de ferramentas:** Desenvolvedores podem estar usando um conjunto como Nginx, SQLite, e OS X, enquanto o app em produção usa Apache, MySQL, e Linux.
 
-**O App doze-fatores é projetado para [implantação contínua](http://www.avc.com/a_vc/2011/02/continuous-deployment.html) deixando a lacuna entre desenvolvimento e produção pequena.** Olhando às três lacunas descritas acima:
+**O App doze-fatores é projetado para [implantação contínua](http://avc.com/2011/02/continuous-deployment/) deixando a lacuna entre desenvolvimento e produção pequena.** Olhando às três lacunas descritas acima:
 
 * Diminua a lacuna de tempo: um desenvolvedor pode escrever código e ter o deploy feito em horas ou até mesmo minutos depois.
 * Diminua a lacuna de pessoal: desenvolvedores que escrevem código estão proximamente envolvidos em realizar o deploy e acompanhar seu comportamento em produção.

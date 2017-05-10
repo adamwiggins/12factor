@@ -7,7 +7,7 @@ Historisch gibt es große Lücken zwischen Entwicklung (wo ein Entwickler live a
 * **Die Personal-Lücke**: Entwickler schreiben Code, Operatoren deployen ihn.
 * **Die Werkzeug-Lücke**: Entwickler nutzen vielleicht einen Stack wie Nginx, SQLite und OS X - die Produktion nutzt Apache, MySQL und Linux.
 
-**Die Zwölf-Faktor-App ist ausgelegt auf [Continuous Deployment](http://www.avc.com/a_vc/2011/02/continuous-deployment.html) indem sie die Lücke zwischen Entwicklung und Produktion klein hält.** Mit Blick auf die oben beschriebenen drei Lücken:
+**Die Zwölf-Faktor-App ist ausgelegt auf [Continuous Deployment](http://avc.com/2011/02/continuous-deployment/) indem sie die Lücke zwischen Entwicklung und Produktion klein hält.** Mit Blick auf die oben beschriebenen drei Lücken:
 
 * Die Zeit-Lücke klein halten: Ein Entwickler kann Code schreiben, der Stunden oder sogar Minuten später deployed wird.
 * Die Personal-Lücke klein halten: Entwickler die Code schreiben sind intensiv am Deployment und der Überwachung des Verhaltens auf Produktion beteiligt.
