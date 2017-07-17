@@ -1,0 +1,5 @@
+language: ruby
+rvm:
+  - 2.3.1
+script: exit 0
+sudo: false
