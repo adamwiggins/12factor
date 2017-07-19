@@ -5,6 +5,12 @@
   "env": {
   },
   "addons": [
-
-  ]
+  ],
+  "environments": {
+    "test": {
+      "scripts": {
+        "test": "exit 0"
+      }
+    }
+  }
 }
