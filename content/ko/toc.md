@@ -28,8 +28,8 @@ The Twelve Factors
 ## [IX. 폐기 가능(Disposability)](./disposability)
 ### 빠른 시작과 그레이스풀 셧다운(graceful shutdown)을 통한 안정성 극대화
 
-## [X. dev/prod 일치](./dev-prod-parity)
-### development, staging, production 환경을 최대한 비슷하게 유지
+## [X. 개발/프로덕션환경 일치](./dev-prod-parity)
+### 개발, 스테이징, 프로덕션 환경을 최대한 비슷하게 유지
 
 ## [XI. 로그](./logs)
 ### 로그를 이벤트 스트림으로 취급

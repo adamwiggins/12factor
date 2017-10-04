@@ -5,7 +5,7 @@
 
 ![Scale는 실행되는 프로세스의 갯수로 표현되고, Workload Diversity는 프로세스의 타입으로 표현됩니다. ](/images/process-types.png)
 
-**Twelve-Factor App에서 프로세스들은 일급 시민입니다.** Twelve-Factor App에서의 프로세스는 [서비스 데몬들을 실행하기 위한 유닉스 프로세스 모델](https://adam.herokuapp.com/past/2011/5/9/applying_the_unix_process_model_to_web_apps/)에서 큰 힌트를 얻었습니다. 이 모델을 사용하면 개발자는 애플리케이션이 작업을 적절한 *프로세스 타입*에 할당함으로서 다양한 작업 부하를 처리할 수 있도록 설계할 수 있습니다. 예를 들어, HTTP 요청은 웹 프로세스가 처리하며, 오래 걸리는 백그라운드 작업은 worker 프로세스가 처리하도록 할 수 있습니다.
+**Twelve-Factor App에서 프로세스들은 일급 시민입니다.** Twelve-Factor App에서의 프로세스는 [서비스 데몬들을 실행하기 위한 유닉스 프로세스 모델](https://adam.herokuapp.com/past/2011/5/9/applying_the_unix_process_model_to_web_apps/)에서 큰 힌트를 얻었습니다. 이 모델을 사용하면 개발자는 애플리케이션의 작업을 적절한 *프로세스 타입*에 할당함으로서 다양한 작업 부하를 처리할 수 있도록 설계할 수 있습니다. 예를 들어, HTTP 요청은 웹 프로세스가 처리하며, 시간이 오래 걸리는 백그라운드 작업은 worker 프로세스가 처리하도록 할 수 있습니다.
 
 이는 런타임 VM 내부의 쓰레드나 [EventMachine](http://rubyeventmachine.com/), [Twisted](http://twistedmatrix.com/trac/), [Node.js](http://nodejs.org/)에서 구성된 것 처럼 async/evented 모델처럼 개별 프로세스가 내부적으로 동시에 처리하는 것을 금지하는 것은 아닙니다. 하지만 개별 VM이 너무 커질 수 있습니다.(수직 확장) 따라서 애플리케이션은 여러개의 물리적인 머신에서 돌아가는 여러개의 프로세스로 넓게 퍼질 수 있어야만 합니다.
 
