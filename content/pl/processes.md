@@ -3,7 +3,7 @@
 
 Aplikacja jest uruchamiana w środowisku wykonawczym w postaci jednego lub kilku *procesów*.
 
-W najprostszym przypadku kod aplikacji jest samodzielnym skryptem, środowiskiem wykonawczym jest laptop developera z wsparciem dla języka programowania a proces jest uruchamiany za pomocą linii komend (na przykład `python my_script.py`). Innym razem wdrożenie produkcyjne mocno rozwiniętej aplikacji może wymagać wiele [różnych rodzajów procesów](./concurrency).
+W najprostszym przypadku kod aplikacji jest samodzielnym skryptem, środowiskiem wykonawczym jest laptop developera z wsparciem dla języka programowania, a proces jest uruchamiany za pomocą linii komend (na przykład `python my_script.py`). Innym razem wdrożenie produkcyjne mocno rozwiniętej aplikacji może wymagać wiele [różnych rodzajów procesów](./concurrency).
 
 **Wg zasad 12factor, procesy są bezstanowe i [nie-współdzielące](http://en.wikipedia.org/wiki/Shared_nothing_architecture).**  Jakiekolwiek dane wymagające zapisu musza być zmagazynowane w "trwałej" [usłudze wspierającej](./backing-services), najczęściej będącą bazą danych.
 

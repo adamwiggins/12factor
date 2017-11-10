@@ -10,7 +10,7 @@ Aplikacja 12factor zawsze jest zarządzana w systemie kontroli wersji takim jak 
 Aplikacja powinna zawsze odzwierciedlać bazowy kod:
 
 * Jeśli istnieje wiele źródeł, z których pobierany jest kod, nie można mówić o aplikacji, a systemie rozproszonym. Każdy komponent w systemie rozproszonym będzie wtedy aplikacją i każdy z osobna może spełniać wszystkie zasady 12factor.
-* Jeśli wiele aplikacji dzieli ten sami kod, mamy do czynienia z naruszeniem 12factor. Wyjściem z tej sytuacji może być wyizolowanie współdzielonego kodu do bibliotek, które będą dodane do aplikacji przez tzw. [dependency manager](./dependencies).
+* Jeśli wiele aplikacji dzieli ten sam kod, mamy do czynienia z naruszeniem 12factor. Wyjściem z tej sytuacji może być wyizolowanie współdzielonego kodu do bibliotek, które będą dodane do aplikacji przez tzw. [dependency manager](./dependencies).
 
 Aplikacja może posiadać tylko jeden codebase, jednocześnie mając wiele wdrożeń.  *Deploy* (z ang. wdrożenie) jest działającą instancją aplikacji. Zazwyczaj mówi się o wersji produkcyjnej i jednej lub więcej przedprodukcyjnych. Ponadto każdy developer pracujący nad aplikacją posiada jej kopię działającą w swoim lokalnym środowisku developerskim, co również kwalifikuje się jako osobne wdrożenie.
 
