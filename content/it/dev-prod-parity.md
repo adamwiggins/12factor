@@ -29,7 +29,7 @@ Riassumendo tutto in una tabella:
   <tr>
     <th>Sviluppatori e Ops</th>
     <td>Sono diversi</td>
-    <td>Sono gli stessi/td>
+    <td>Sono gli stessi</td>
   </tr>
   <tr>
     <th>Sviluppo e Produzione</th>
