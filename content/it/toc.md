@@ -5,7 +5,7 @@ I "Dodici Fattori"
 ### Una sola codebase sotto controllo di versione, tanti deploy
 
 ## [II. Dipendenze](./dependencies)
-### Dipendenze dichiarate ed isolate
+### Dipendenze dichiarate e isolate
 
 ## [III. Configurazione](./config)
 ### Memorizza le informazioni di configurazione nell'ambiente
