@@ -3,7 +3,7 @@
 
 I *log* offrono una maggiore chiarezza riguardo un comportamento di un'app in esecuzione. In ambienti basati su server, questi sono tendenzialmente scritti su un file su disco (logfile). A ogni modo, è solo un formato.
 
-Un log può essere definito infatti come uno [stream](https://adam.herokuapp.com/past/2011/4/1/logs_are_streams_not_files/) di eventi aggregati e ordinati cronologicamente. Tali eventi vengono presi da tutti i vari output stream presenti di tutti i processi attivi, oltre che dai vari backing service. Nella loro forma grezza, i log i presentano come un file di testo con un evento per ogni linea (con le dovute eccezioni). Non hanno un inizio o una fine ben definiti, ma un continuo di informazioni fin quando l'applicazione è al lavoro.
+Un log può essere definito infatti come uno [stream](https://adam.herokuapp.com/past/2011/4/1/logs_are_streams_not_files/) di eventi aggregati e ordinati cronologicamente. Tali eventi vengono presi da tutti i vari output stream presenti di tutti i processi attivi, oltre che dai vari backing service. Nella loro forma grezza, i log si presentano come un file di testo con un evento per ogni linea (con le dovute eccezioni). Non hanno un inizio o una fine ben definiti, ma un continuo di informazioni fin quando l'applicazione è al lavoro.
 
 **Un'applicazione twelve-factor non dovrebbe preoccuparsi di lavorare con il proprio output stream.** Non dovrebbe lavorare o comunque gestire i vari logfile. Dovrebbe, invece, fare in modo che ogni processo si occupi di scrivere il proprio stream di eventi su "`stdout`". Durante lo sviluppo in locale, quindi, lo sviluppatore potrà visionare lo stream in modo completo direttamente dal terminale, per capire meglio il comportamento della sua applicazione.
 
