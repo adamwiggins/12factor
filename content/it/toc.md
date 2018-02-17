@@ -2,7 +2,7 @@ I "Dodici Fattori"
 ==================
 
 ## [I. Codebase](./codebase)
-### Una sola codebase sotto controllo di versione, tanti deploy
+### Una sola codebase sotto controllo di versione, tanti deployment
 
 ## [II. Dipendenze](./dependencies)
 ### Dipendenze dichiarate e isolate

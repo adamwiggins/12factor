@@ -1,7 +1,7 @@
 Background
 ==========
 
-Chi ha scritto questo documento è stato coinvolto direttamente nella realizzazione e deploy di centinaia di applicazioni, e indirettamente assistito allo sviluppo, operazioni e scaling di centinaia (o migliaia) di app tramite il proprio lavoro sulla piattaforma [Heroku](http://www.heroku.com/).
+Chi ha scritto questo documento è stato coinvolto direttamente nella realizzazione e nel deployment di centinaia di applicazioni, e ha indirettamente assistito allo sviluppo, le operazioni e lo scaling di centinaia (o migliaia) di app tramite il proprio lavoro sulla piattaforma [Heroku](http://www.heroku.com/).
 
 Questo documento riassume tutta quella che è stata la nostra esperienza, basata sull'osservazione di un grande numero di applicazioni SaaS. Si tratta di una "triangolazione" di pratiche di sviluppo ideali (con una particolare attenzione alla crescita organica dell'app nel tempo), la collaborazione dinamica nel corso del tempo tra gli sviluppatori sulla codebase e la necessità di evitare i costi di [software erosion](http://blog.heroku.com/archives/2011/6/28/the_new_heroku_4_erosion_resistance_explicit_contracts/).
 
