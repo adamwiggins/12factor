@@ -1,11 +1,11 @@
 ## X. Parità tra Sviluppo e Produzione
 ### Mantieni lo sviluppo, staging e produzione simili il più possibile
 
-Storicamente, ci sono sempre state differenze sostanziali tra gli ambienti di sviluppo (lo sviluppatore che effettua delle modifiche live ad un [deploy](./codebase) in locale) e quello di produzione (un deploy in esecuzione raggiungibile dagli utenti finali). Differenze (o gap) che si possono raggruppare in tre categorie:
+Storicamente, ci sono sempre state differenze sostanziali tra gli ambienti di sviluppo (lo sviluppatore che effettua delle modifiche live a un [deployment](./codebase) in locale) e quello di produzione (un deployment in esecuzione raggiungibile dagli utenti finali). Differenze (o gap) che si possono raggruppare in tre categorie:
 
 * **Tempo:** uno sviluppatore può lavorare sul codice per giorni, settimane o mesi prima di poter andare in produzione;
-* **Personale**: gli sviluppatori scrivono il codice, gli ops effettuano il deploy;
-* **Strumenti**: gli sviluppatori potrebbero usare uno stack quale Nginx, SQLite ed OS X, mentre in produzione per il deploy verrebbero installati Apache, MySQL e Linux.
+* **Personale**: gli sviluppatori scrivono il codice, gli ops effettuano il deployment;
+* **Strumenti**: gli sviluppatori potrebbero usare uno stack quale Nginx, SQLite e OS X, mentre in produzione per il deployment verrebbero installati Apache, MySQL e Linux.
 
 **Un'applicazione twelve-factor è progettata per il [rilascio continuo](http://avc.com/2011/02/continuous-deployment/), tenendo così queste differenze al minimo possibile.** A proposito di queste tre tipologie di differenze appena viste:
 
@@ -22,7 +22,7 @@ Riassumendo tutto in una tabella:
     <th>App Twelve-factor</th>
   </tr>
   <tr>
-    <th>Tempo tra i Deploy</th>
+    <th>Tempo tra i Deployment</th>
     <td>Settimane</td>
     <td>Ore</td>
   </tr>
@@ -67,10 +67,10 @@ I [backing service](./backing-services), come il database dell'applicazione o la
   </tr>
 </table>
 
-Gli sviluppatori, inoltre, trovano utile usare dei servizi "leggeri" in fase di sviluppo, passando quindi a qualcosa di più serio e robusto in produzione. Ad esempio, usando SQLite localmente e PostgreSQL in produzone. Ancora, un sistema di cache in locale in fase di sviluppo e Memcached in produzione.
+Gli sviluppatori, inoltre, trovano utile usare dei servizi "leggeri" in fase di sviluppo, passando quindi a qualcosa di più serio e robusto in produzione. Per esempio, usando SQLite localmente e PostgreSQL in produzone. Ancora, un sistema di cache in locale in fase di sviluppo e Memcached in produzione.
 
 **Lo sviluppatore twelve-factor "resiste" a questa necessità**, anche se gli adapter ci sono e funzionano in modo tale da astrarre in modo sufficiente tutte le differenze nella gestione. Nulla impedisce, infatti, a qualche altra incompatibilità di uscire allo scoperto quando meno ce lo si aspetta, soprattutto se in ambiente di sviluppo funziona tutto e poi, magari, in produzione i test non vengono superati. Il costo di questa differenza può risultare abbastanza alto, soprattutto in situazioni in cui si effettua il rilascio continuo.
 
-Rispetto al passato, usare dei sistemi "light" in locale è una prassi poco convincente. Si pensi al fatto che alcuni servizi moderni come Memcached o PostgreSQL si possono installare ed usare senza difficoltà tramite alcuni sistemi di packaging come [Homebrew](http://mxcl.github.com/homebrew/) ed [apt-get](https://help.ubuntu.com/community/AptGet/Howto).  In alternativa, esistono anche alcuni tool di provisioning come [Chef](http://www.opscode.com/chef/) e [Puppet](http://docs.puppetlabs.com/), che combinati con sistemi di ambienti virtuali come [Vagrant](http://vagrantup.com/) permettono agli sviluppatori di riprodurre in locale delle macchine molto simili, se non identiche, a quelle in produzione. Ne risente quindi positivamente il costo di deploy.
+Rispetto al passato, usare dei sistemi "light" in locale è una prassi poco convincente. Si pensi al fatto che alcuni servizi moderni come Memcached o PostgreSQL si possono installare e usare senza difficoltà tramite alcuni sistemi di packaging come [Homebrew](http://mxcl.github.com/homebrew/) e [apt-get](https://help.ubuntu.com/community/AptGet/Howto).  In alternativa, esistono anche alcuni tool di provisioning come [Chef](http://www.opscode.com/chef/) e [Puppet](http://docs.puppetlabs.com/), che combinati con sistemi di ambienti virtuali come [Vagrant](http://vagrantup.com/) permettono agli sviluppatori di riprodurre in locale delle macchine molto simili, se non identiche, a quelle in produzione. Ne risente quindi positivamente il costo di deployment.
 
-Tutto questo, sia chiaro, non rende gli adapter meno utili: grazie ad essi infatti il porting verso nuovi servizi, in un secondo momento, rimane un processo indolore. Nonostante questo, comunque, rimane scontato che sarebbe buona norma usare uno stesso backing service su tutti i deploy di un'applicazione.
+Tutto questo, sia chiaro, non rende gli adapter meno utili: grazie ad essi infatti il porting verso nuovi servizi, in un secondo momento, rimane un processo indolore. Nonostante questo, comunque, rimane scontato che sarebbe buona norma usare uno stesso backing service su tutti i deployment di un'applicazione.

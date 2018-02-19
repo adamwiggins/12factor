@@ -1,4 +1,4 @@
 A chi è destinato questo documento?
 ==============================
 
-Ad ogni sviluppatore che costruisce applicazioni SaaS (Software As a Service), e ad ogni ops che effettua il deploy e gestisce queste applicazioni.
+A ogni sviluppatore che costruisca applicazioni SaaS (Software As a Service), e a ogni ops che effettui il deploy e gestisca queste applicazioni.
