@@ -1,76 +1,75 @@
-## X. Dev/prod parity
-### Keep development, staging, and production as similar as possible
+## X. Sự tương đồng giữa quá trình phát triển và vận hành thực tế
+### Đảm bảo sự tương đồng giữa môi trường phát triển, kiểm thử và thực tế 
 
-Historically, there have been substantial gaps between development (a developer making live edits to a local [deploy](./codebase) of the app) and production (a running deploy of the app accessed by end users).  These gaps manifest in three areas:
+Trước đây, có sự khác biệt nhất định giữa quá trình phát triển (lập trình viên có thể tạo ra các bản chỉnh sửa [triển khai](./codebase) cục bộ của ứng dụng) và vận hành thực tế (phiên bản được triển khai thực tế và truy cập bởi khách hàng). Khác biệt này được thể hiện ở ba lĩnh vực:
 
-* **The time gap:** A developer may work on code that takes days, weeks, or even months to go into production.
-* **The personnel gap**: Developers write code, ops engineers deploy it.
-* **The tools gap**: Developers may be using a stack like Nginx, SQLite, and OS X, while the production deploy uses Apache, MySQL, and Linux.
+* **Về thời gian**: Lập trình viên có thể làm việc với mã nguồn hàng ngày, tuận, thậm chỉ là hàng tháng để có một phiên bản vận hành thực tế.
+* **Về tính cá nhân**: Lập trình viên viết mã nguồn, người vận hành triển khai mã nguồn đó.
+* **Về công cụ**: Lập trình viên có thể sử dụng tập các công cụ như là Nginx, SQLite, và OS X, trong khi triển khai thực tế sử dụng Apache, MySQL, và Linux.
 
-**The twelve-factor app is designed for [continuous deployment](http://www.avc.com/a_vc/2011/02/continuous-deployment.html) by keeping the gap between development and production small.**  Looking at the three gaps described above:
+**Ứng dụng áp dụng mười hai hệ số được thiết kế để [triển khai liên tục](http://www.avc.com/a_vc/2011/02/continuous-deployment.html) bằng việc giảm thiểu khác biệt giữa quá trình triển khai và vận hành thực tế.** Chúng ta cùng xem lại các sự khác biệt ở trên:
 
-* Make the time gap small: a developer may write code and have it deployed hours or even just minutes later.
-* Make the personnel gap small: developers who wrote code are closely involved in deploying it and watching its behavior in production.
-* Make the tools gap small: keep development and production as similar as possible.
+* Giảm thiểu thời gian: lập trình viên có thể viết mã nguồn và nó được triển khai vài giờ, thậm chí vài phút sau đó.
+* Giảm thiểu tính cá nhân: lập trình viên người viết ra các dòng lệnh, có thể tham gia trực tiếp vào quá trình triển khai và quan sát các hình vi của ứng dụng trong môi trường vận hành thực tế.
+* Giảm thiểu các công cụ: đảm bảo sự tương đồng giữa môi trường phát triển và vận hành.
 
-Summarizing the above into a table:
-
+Tổng kết vấn đề trên thông qua bảng sau:
 <table>
   <tr>
     <th></th>
-    <th>Traditional app</th>
-    <th>Twelve-factor app</th>
+    <th>Ứng dụng truyền thống</th>
+    <th>Ứng dụng sử dụng mười hai hệ số</th>
   </tr>
   <tr>
-    <th>Time between deploys</th>
-    <td>Weeks</td>
-    <td>Hours</td>
+    <th>Thời gian giữa các lần triển khai</th>
+    <td>Hàng tuần</td>
+    <td>Hàng giờ</td>
   </tr>
   <tr>
-    <th>Code authors vs code deployers</th>
-    <td>Different people</td>
-    <td>Same people</td>
+    <th>Tác giả và người triển khai mã nguồn</th>
+    <td>Khác nhau</td>
+    <td>Cùng một người</td>
   </tr>
   <tr>
-    <th>Dev vs production environments</th>
-    <td>Divergent</td>
-    <td>As similar as possible</td>
+    <th>Môi trường phát triển và thực tế</th>
+    <td>Không đồng nhất</td>
+    <td>Tương đồng</td>
   </tr>
 </table>
 
-[Backing services](./backing-services), such as the app's database, queueing system, or cache, is one area where dev/prod parity is important.  Many languages offer libraries which simplify access to the backing service, including *adapters* to different types of services.  Some examples are in the table below.
+[Dịch vụ hỗ trợ](./backing-services), như là cơ sở dữ liệu của ứng dụng, hệ thống hàng đợi hoặc bộ đệm, là nơi mà thường có sự khác biệt giữa môi trường phát triển và vận hành. Rất nhiều ngôn ngữ cung cấp các thư viện, bao gồm nhiều *mô phỏng* của các loại dịch vụ khác nhau được cung cấp để làm đơn giản hoá việc truy cập các dịch vụ hỗ trợ. Một vài ví dụ ở bảng sau:
 
 <table>
   <tr>
-    <th>Type</th>
-    <th>Language</th>
-    <th>Library</th>
-    <th>Adapters</th>
+    <th>Loại</th>
+    <th>Ngôn ngữ</th>
+    <th>Thư viện</th>
+    <th>Mô phỏng</th>
   </tr>
   <tr>
-    <td>Database</td>
+    <td>Cơ sở dữ liệu</td>
     <td>Ruby/Rails</td>
     <td>ActiveRecord</td>
     <td>MySQL, PostgreSQL, SQLite</td>
   </tr>
   <tr>
-    <td>Queue</td>
+    <td>Hàng đợi</td>
     <td>Python/Django</td>
     <td>Celery</td>
     <td>RabbitMQ, Beanstalkd, Redis</td>
   </tr>
   <tr>
-    <td>Cache</td>
+    <td>Bộ đệm</td>
     <td>Ruby/Rails</td>
     <td>ActiveSupport::Cache</td>
     <td>Memory, filesystem, Memcached</td>
   </tr>
 </table>
 
-Developers sometimes find great appeal in using a lightweight backing service in their local environments, while a more serious and robust backing service will be used in production.  For example, using SQLite locally and PostgreSQL in production; or local process memory for caching in development and Memcached in production.
+Lập trình viên thường thích sử dụng các dịch vụ hỗ trợ đơn giản trên môi trường cục bộ của họ, trong khi nhiều dịch vụ hỗ trợ mạnh mẽ và an toàn hơn được sử dụng trong môi trường vận hành thực tế. Ví dụ, sử dụng SQLite ở cục bộ và Postgresql trong vận hành, hoặc sử dụng trực tiếp bộ nhớ cho bộ đệm trong phát triển và Memcached trong vận hành.
 
-**The twelve-factor developer resists the urge to use different backing services between development and production**, even when adapters theoretically abstract away any differences in backing services.  Differences between backing services mean that tiny incompatibilities crop up, causing code that worked and passed tests in development or staging to fail in production.  These types of errors create friction that disincentivizes continuous deployment.  The cost of this friction and the subsequent dampening of continuous deployment is extremely high when considered in aggregate over the lifetime of an application.
+**Ứng dụng sử dụng mười hai hệ số không cho phép sử dụng dịch vụ hỗ trợ khác nhau giữa môi trường phát triển và vận hành**, mặc dù các bộ mô phỏng có thể trừu tượng hoá bất kỳ sự khác biệt của dịch vụ hỗ trợ. Sự khác biệt giữa dịch vụ hỗ trợ có nghĩa là dù bất kỳ sự không đồng bộ nhỏ nào cũng có thể mở rộng, là nguyên nhân cho việc mã nguồn có thể hoạt động tốt ở môi trường phát triển hoặc kiểm thử nhưng không hoạt động trong môi trường thực tế. Các kiểu lỗi này làm cản trở quá trình triển khai liên tục. Chi phí cho các cản trở và làm giảm ảnh hưởng cho chúng thường rất tốn kém trong suốt quá trình phát triển của một ứng dụng.
 
-Lightweight local services are less compelling than they once were.  Modern backing services such as Memcached, PostgreSQL, and RabbitMQ are not difficult to install and run thanks to modern packaging systems, such as [Homebrew](http://mxcl.github.com/homebrew/) and [apt-get](https://help.ubuntu.com/community/AptGet/Howto).  Alternatively, declarative provisioning tools such as [Chef](http://www.opscode.com/chef/) and [Puppet](http://docs.puppetlabs.com/) combined with light-weight virtual environments such as [Vagrant](http://vagrantup.com/) allow developers to run local environments which closely approximate production environments. The cost of installing and using these systems is low compared to the benefit of dev/prod parity and continuous deployment.
+Các dịch vụ đơn giản ở cục bộ không được ưu tiên như các dịch vụ tương tự. Các dịch vụ hỗ trợ hiện đại như  Memcached, PostgreSQL, và RabbitMQ không quá khó để cài đặt thông qua các dịch vụ đóng gói như là [Homebrew](http://mxcl.github.com/homebrew/) và [apt-get](https://help.ubuntu.com/community/AptGet/Howto). Ngoài ra, các công cụ cung cấp khai báo [Chef](http://www.opscode.com/chef/) và [Puppet](http://docs.puppetlabs.com/) kết hợp với các môi trường ảo hoá đơn giản [Vagrant](http://vagrantup.com/) cho phép lập trình viên có thể vận hành ở cục bộ một môi trường khá giống với môi trường vận hành thực tế. Chi phí cho việc cài đặt và sử dụng nhỏ hơn rất nhiều so với chi phí của triển khai liên tục và sự khác biệt giữa môi trường phát triển và vận hành.
 
-Adapters to different backing services are still useful, because they make porting to new backing services relatively painless.  But all deploys of the app (developer environments, staging, production) should be using the same type and version of each of the backing services.
+Bộ mô phỏng đối với các dịch vụ hỗ trợ vẫn có ích, vì chúng làm giảm ảnh hưởng của việc chuyển đổi sang dịch vụ hỗ trợ mới. Nhưng tất cả các bước triển khai của ứng dụng (môi trường của lập trình viên, kiểm thử, vân hành thực tế) nên sử dụng cùng một loại và phiên bản của các kiểu dịch vụ hỗ trợ.

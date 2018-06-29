@@ -1,22 +1,27 @@
-## III. Config
-### Store config in the environment
+## III. Cấu hình
+### Lưu trữ cấu hình trong môi trường
 
-An app's *config* is everything that is likely to vary between [deploys](./codebase) (staging, production, developer environments, etc).  This includes:
+Cấu hình của ứng dụng là những thứ có thể thay đổi qua các [triển khai](./codebase) (hệ thống thử, hệ thống sản xuất, môi trường phát triển, etc). Nó bao gồm:
+* Tài nguyên xử lý cơ sở dữ liệu, Memcached, và [dịch vụ lớp dưới](./backing-services) khác
+* Thông tin đăng nhập đến các dịch vụ như là Amazon S3 hay Twitter
+* Các giá trị ứng với từng triển khai như như là tên của máy chủ để triển khai
 
-* Resource handles to the database, Memcached, and other [backing services](./backing-services)
-* Credentials to external services such as Amazon S3 or Twitter
-* Per-deploy values such as the canonical hostname for the deploy
+Các ứng dụng thường lưu trữ các cấu hình như là hằng số trong mã nguồn. Điều này không phù hợp với nguyên tắc của 12-thừa số, yêu cầu **giới hạn tách biệt các cấu hình khỏi mã nguồn**. Các cấu hình thay đổi qua các triển khai, mã nguồn thì không.
 
-Apps sometimes store config as constants in the code.  This is a violation of twelve-factor, which requires **strict separation of config from code**.  Config varies substantially across deploys, code does not.
+Một litmus test cho ứng dụng có các cấu hình được thừa số hoá chính xác là mã gốc có khả năng nguồn mở hoá bất kỳ lúc nào mà không lo sợ bị mất các thông tin đăng nhập.
 
-A litmus test for whether an app has all config correctly factored out of the code is whether the codebase could be made open source at any moment, without compromising any credentials.
+Chú ý rằng, định nghĩa của "cấu hình" không bao gồm các cấu hình nội tại của ứng dụng, như là `config/routes.rb` trong Rails, hoặc [các thành phần được kết nối](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html) trong [Spring](http://spring.io/). Những cấu hình kiểu này thường không thay đổi giữa các triển khai, và do đó đã thực hiện tốt trong mã nguồn.
 
-Note that this definition of "config" does **not** include internal application config, such as `config/routes.rb` in Rails, or how [code modules are connected](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html) in [Spring](http://spring.io/).  This type of config does not vary between deploys, and so is best done in the code.
+Một cách tiếp cận khác với các cấu hình là việc sử dụng tệp tin cấu hình mà tệp tin đó không được quản lý phiên bản, như là `config/database.yml` trong Rails. Đây là một cải tiến lớn so với việc
+sử dụng hằng số trong mã nguồn đã được quản lý phiên bản, nhưng vẫn có điểm yếu: dễ bị thêm nhầm vào quản lý phiên bản, các tệp tin cấu hình dễ bị phân tán ở những nơi khác nhau và các định dạng khác
+nhau, làm cho nó trở nên khó đọc và quản lý tất các cấu hỉnh một cách tập trung. Ngoài ra, định dạng của các tệp tin chứa cấu hình thường do đặc tả của ngôn ngữ- hoặc framework-.
 
-Another approach to config is the use of config files which are not checked into revision control, such as `config/database.yml` in Rails.  This is a huge improvement over using constants which are checked into the code repo, but still has weaknesses: it's easy to mistakenly check in a config file to the repo; there is a tendency for config files to be scattered about in different places and different formats, making it hard to see and manage all the config in one place.  Further, these formats tend to be language- or framework-specific.
+**Ứng dụng áp dụng mười hai thừa số chứa các cấu hình trong *environment variables (biến môi trường)*** (thường viết tắt là *env vars* hoặc *env*). Các biến môi trường rất dễ để thay đổi giữa các triển khai
+mà không phải thay đổi mã nguồn; không giống như tệp tin cấu hình, vẫn có khả năng để bị thêm vào kho mã (code repository); và không giống như các tệp tin cấu hình tuỳ chỉnh, hoặc cơ chế quảnl lý cấu 
+hình như là *Java System Properties*, các biến môi trường là *agnostic standard* theo ngôn ngữ và hệ điều hành.
 
-**The twelve-factor app stores config in *environment variables*** (often shortened to *env vars* or *env*).  Env vars are easy to change between deploys without changing any code; unlike config files, there is little chance of them being checked into the code repo accidentally; and unlike custom config files, or other config mechanisms such as Java System Properties, they are a language- and OS-agnostic standard.
+Một khía cạnh khác của quản lý cấu hình là nhóm các cấu hình. Đôi khi, các ứng dụng tổ chức các cấu hình theo nhóm (thường được gọi là "các môi trường") được đặt tên theo các triển khai, như là các môi trường`development`, `test`, and `production` trong Rails. Phương pháp này không mở rộng rõ ràng: nếu như có nhiều triển khải của ứng dụng được tạo ra, tên của các môi trường rất quan trọng, như là `staging` hoặc `qa`. Nếu một dự án phát triển sau này, lập trình viên có thể thêm các môi trường của riêng họ như là `joes-staging`, kết quả là một sự bùng nổ về các cấu hình, làm cho việc quản lý 
+các triển khai trở nên không ổn định.
 
-Another aspect of config management is grouping.  Sometimes apps batch config into named groups (often called "environments") named after specific deploys, such as the `development`, `test`, and `production` environments in Rails.  This method does not scale cleanly: as more deploys of the app are created, new environment names are necessary, such as `staging` or `qa`.  As the project grows further, developers may add their own special environments like `joes-staging`, resulting in a combinatorial explosion of config which makes managing deploys of the app very brittle.
-
-In a twelve-factor app, env vars are granular controls, each fully orthogonal to other env vars.  They are never grouped together as "environments", but instead are independently managed for each deploy.  This is a model that scales up smoothly as the app naturally expands into more deploys over its lifetime.
+Trong một ứng dụng áp dụng mười hai thừa số, các biến môi trường được quản lý chi tiết, hoàn toàn độc lập với các biến môi trường khác. Chúng không được nhóm với nhau như là các "môi trường", nhưng
+thay vào đó được quản lý độc lập theo các triển khai. Mô hình này giúp cho việc mở rộng trở nên trơn tru như là việc thêm vào các triển khai theo vòng đời của phần mềm được mở rộng một cách tự nhiên.

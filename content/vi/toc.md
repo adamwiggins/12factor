@@ -4,35 +4,35 @@
 ## [I. Mã gốc](./codebase)
 ### Một mã gốc được theo dõi với hệ thống quản lý phiên bản, và nhiều lần triển khai
 
-## [II. Dependencies](./dependencies)
-### Explicitly declare and isolate dependencies
+## [II. Các phụ thuộc](./dependencies)
+### Khai báo rõ ràng và phân tách các phụ thuộc
 
-## [III. Config](./config)
-### Store config in the environment
+## [III. Cấu hình](./config)
+### Lưu trữ cấu hình trong môi trường
 
-## [IV. Backing Services](./backing-services)
-### Treat backing services as attached resources
+## [IV. Dịch vụ hỗ trợ](./backing-services)
+### Dịch vụ hỗ trợ như là tài nguyên bổ xung
 
-## [V. Build, release, run](./build-release-run)
-### Strictly separate build and run stages
+## [V. Xây dựng, phát hành, vận hành](./build-release-run)
+### Tách biệt hoàn toàn giữa bước xây dựng và vận hành
 
-## [VI. Processes](./processes)
-### Execute the app as one or more stateless processes
+## [VI. Tiến trình](./processes)
+### Vận hành ứng dụng như là một hoặc nhiều tiến trình phi trạng thái 
 
-## [VII. Port binding](./port-binding)
-### Export services via port binding
+## [VII. Mở cổng mạng](./port-binding)
+### Cung cấp các dịch vụ thông qua công mạng
 
-## [VIII. Concurrency](./concurrency)
-### Scale out via the process model
+## [VIII. Đồng bộ](./concurrency)
+### Mở rộng theo chiều ngang thông qua mô hình tiến trình
 
-## [IX. Disposability](./disposability)
-### Maximize robustness with fast startup and graceful shutdown
+## [IX. Tính khả dụng](./disposability)
+### Tối ưu hoá với khởi động nhanh và dừng phần mềm ổn định
 
-## [X. Dev/prod parity](./dev-prod-parity)
-### Keep development, staging, and production as similar as possible
+## [X. Sự tương đồng giữa quá trình phát triển và vận hành thực tế](./dev-prod-parity)
+### Đảm bảo sự tương đồng giữa môi trường phát triển, kiểm thử và thực tế 
 
-## [XI. Logs](./logs)
-### Treat logs as event streams
+## [XI. Nhật ký](./logs)
+### Nhật ký là các luồng sự kiện
 
-## [XII. Admin processes](./admin-processes)
-### Run admin/management tasks as one-off processes
+## [XII. Tiến trình quản trị](./admin-processes)
+### Thực thi nhiệm vụ quản trị như là một tiến trình 

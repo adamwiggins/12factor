@@ -1,16 +1,16 @@
-## XI. Logs
-### Treat logs as event streams
+## [XI. Nhật ký](./logs)
+### Nhật ký là các luồng sự kiện
 
-*Logs* provide visibility into the behavior of a running app.  In server-based environments they are commonly written to a file on disk (a "logfile"); but this is only an output format.
+*Nhật ký* cung cấp khả năng thể hiện các hình vi của ứng dụng đang vận hành, trong môi trường máy chủ chúng thường được ghi lại thành các tệp tin trên ổ đĩa cứng (a "logfile"); nhưng chỉ có một định dạng biểu diễn duy nhất.
 
-Logs are the [stream](http://adam.heroku.com/past/2011/4/1/logs_are_streams_not_files/) of aggregated, time-ordered events collected from the output streams of all running processes and backing services.  Logs in their raw form are typically a text format with one event per line (though backtraces from exceptions may span multiple lines).  Logs have no fixed beginning or end, but flow continuously as long as the app is operating.
+Nhật ký như là [luồng](http://adam.heroku.com/past/2011/4/1/logs_are_streams_not_files/) của sự kết hợp, theo trình tự thời gian của các sự kiện, được thu thập từ các luồng ra của các tiến trình đang vận hành và dịch vụ hỗ trợ của ứng dụng. Nhật ký ở dạng nguyên gốc thường là các chuỗi ký tự được định dạng với mỗi sự kiện trên một dòng (mặc dù các truy vết của ngoại lệ thường chia thành nhiều dòng). Nhật ký không có định điểm bắt đầu hay kết thúc, nhưng là luồng liên tục miễn là ứng dụng vẫn đang vận hành. 
 
-**A twelve-factor app never concerns itself with routing or storage of its output stream.**  It should not attempt to write to or manage logfiles.  Instead, each running process writes its event stream, unbuffered, to `stdout`.  During local development, the developer will view this stream in the foreground of their terminal to observe the app's behavior.
+**Ứng dụng sử dụng mười hai hệ số không bao giờ quan tâm đến việc điều hướng hay lưu trữ luồng đầu ra.** Ứng dụng không nên ghi hoặc quản lý các logfiles. Thay vào đó, mỗi tiến trình đang vận hành ghi các luồng sự kiện, không có bộ đệm, ra `stdout`. Trong môi trường phát triển cục bộ, lập trình viên sẽ xem các luồng này ở trên thiết bị đầu cuối để nắm bắt được hành vi của ứng dụng.
 
-In staging or production deploys, each process' stream will be captured by the execution environment, collated together with all other streams from the app, and routed to one or more final destinations for viewing and long-term archival.  These archival destinations are not visible to or configurable by the app, and instead are completely managed by the execution environment.  Open-source log routers (such as [Logplex](https://github.com/heroku/logplex) and [Fluent](https://github.com/fluent/fluentd)) are available for this purpose.  
+Trong quá trình triển khai kiểm thử hoặc kiểm thử, mỗi luồng của tiến trình sẽ được lưu trữ bởi môi trường thực thi, thu tập cùng với tất các các luồng của ứng dụng, và định hướng đến một hoặc nhiều điểm đến cuối cùng để đọc và lưu trữ lâu dài. Các bộ định hướng nhật ký nguồn mở (như là [Logplex](https://github.com/heroku/logplex) và [Fluent](https://github.com/fluent/fluentd)) luôn sẵn sàng cho mục đích này.
 
-The event stream for an app can be routed to a file, or watched via realtime tail in a terminal.  Most significantly, the stream can be sent to a log indexing and analysis system such as [Splunk](http://www.splunk.com/), or a general-purpose data warehousing system such as [Hadoop/Hive](http://hive.apache.org/).  These systems allow for great power and flexibility for introspecting an app's behavior over time, including:
+Luồng sự kiện của ứng dụng có thể định hướng ra các tệp tin, hoặc xem xét thời gian thực ở thiết bị đầu cuối. Hơn nữa, luồng còn có thể được đánh chỉ mục và phân tích bởi hệ thống như là [Splunk](http://www.splunk.com/), hoặc hệ thống phân tích dữ liệu tổng quát như là [Hadoop/Hive](http://hive.apache.org/). Các hệ thống này cung cấp các công cụ mạnh mẽ và linh hoạt cho việc phân tích hành vi của ứng dụng theo thời gian như là:
 
-* Finding specific events in the past.
-* Large-scale graphing of trends (such as requests per minute).
-* Active alerting according to user-defined heuristics (such as an alert when the quantity of errors per minute exceeds a certain threshold).
+* Tìm kiếm các sự kiện đặc biệt trong quá khứ
+* Đồ thị hoá xu hướng tổng quát (đồ thị số lượng yêu cầu theo phút)
+* Kích hoạt các cảnh báo theo kinh nghiệm của người dùng (như là cảnh báo khi số lượng lỗi theo phút vượt quá ngưỡng nào đó).

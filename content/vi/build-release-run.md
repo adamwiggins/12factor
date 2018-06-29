@@ -1,19 +1,18 @@
-## V. Build, release, run
-### Strictly separate build and run stages
+## V. Xây dựng, phát hành, vận hành
+### Tách biệt hoàn toàn giữa bước xây dựng và vận hành
 
-A [codebase](./codebase) is transformed into a (non-development) deploy through three stages:
+[Mã gốc](./codebase) được chuyển sang (tạm dừng phát triển) triển khai thông qua ba bước:
 
-* The *build stage* is a transform which converts a code repo into an executable bundle known as a *build*.  Using a version of the code at a commit specified by the deployment process, the build stage fetches and vendors [dependencies](./dependencies) and compiles binaries and assets.
-* The *release stage* takes the build produced by the build stage and combines it with the deploy's current [config](./config).  The resulting *release* contains both the build and the config and is ready for immediate execution in the execution environment.
-* The *run stage* (also known as "runtime") runs the app in the execution environment, by launching some set of the app's [processes](./processes) against a selected release.
+* Bước xây dựng* là bước chuyển các đoạn mã thành các gói có khả năng thực thi được gọi là một *bản xảy dựng*. Sử dụng phiên bản của mã nguồn ở một bản cam kết (commit) quy định bở quy trình triển khai, bước xây dựng lấy về và cung cấp các [phụ thuộc](./dependencies) và biên dịch các thành phần và tài nguyên.
+* Bước phát hành* sử dụng các kết quả của bước xây dựng và kết hợp với các [cấu hình](./config) triển khai hiện tại. Kết quả của *phát hành* bao gồm cả bản xây dựng và các câu hình cho phép ứng dụng có thể được vận hành trong môi trường vận hành.
+* Bước vận hành* (được biết như là "thời gian vận hành" (runtime)) vận hành ứng dụng trong môi trường thực thi, bằng việc thực thi một tập các [tiến trình](./process) của của ứng dụng với một phiên bản phát hành cụ thể.
 
-![Code becomes a build, which is combined with config to create a release.](/images/release.png)
+![Mã nguồn được xây dựng, kết hợp với các cấu hình để cung cập một phát hành.](/images/release.png)
 
-**The twelve-factor app uses strict separation between the build, release, and run stages.**  For example, it is impossible to make changes to the code at runtime, since there is no way to propagate those changes back to the build stage.
+**Ứng dụng sử dụng mười hai-hệ số tách biệt hoàn toàn giữa các bước xây dựng, phát hành và vận hành.** Ví dụ, chúng ta không thể tạo ra các thay đổi của mã nguồn khi đang vận hành, do đó không có khả năng quay ngược lại bước xây dựng.
 
-Deployment tools typically offer release management tools, most notably the ability to roll back to a previous release.  For example, the [Capistrano](https://github.com/capistrano/capistrano/wiki) deployment tool stores releases in a subdirectory named `releases`, where the current release is a symlink to the current release directory.  Its `rollback` command makes it easy to quickly roll back to a previous release.
+Công cụ triển khai thường cung cấp công cụ quản lý phát hành, cùng với các ký pháp cho phép quay ngược lại bản phat hành trước đó. Ví dụ, công cụ triển khai [Capistrano](https://github.com/capistrano/capistrano/wiki) lưu trữ các phát hành trong thư mục con tên là `releases`, nơi mà phiên bản hiện tại được liên kết giả đến thư mục phát hành hiện tại. Lệnh `rollback` làm cho việc quay trở lại phiên bản trước trở nên dễ dàng. 
 
-Every release should always have a unique release ID, such as a timestamp of the release (such as `2011-04-06-20:32:17`) or an incrementing number (such as `v100`).  Releases are an append-only ledger and a release cannot be mutated once it is created.  Any change must create a new release.
+Mỗi phát hành đều có một định danh duy nhất ID, như là dựa vào thời gian phát hành (như `2011-04-06-20:32:17`) hoặc một số tự tăng (như `v100`). Các phiên bản được tạo ra thành một chuỗi liên tục và một phiên bản không thể thay đổi sau khi nó được tạo ra. Bất cứ thay đổi nào đểu tạo ra một bản phát hành mới.
 
-Builds are initiated by the app's developers whenever new code is deployed.  Runtime execution, by contrast, can happen automatically in cases such as a server reboot, or a crashed process being restarted by the process manager.  Therefore, the run stage should be kept to as few moving parts as possible, since problems that prevent an app from running can cause it to break in the middle of the night when no developers are on hand.  The build stage can be more complex, since errors are always in the foreground for a developer who is driving the deploy.
-
+Các bước xây dựng được khởi tạo với nhà phát triển ứng dụng khi mà mã nguồn được triển khai. Thời gian thực thi, ngược lại, có thể tự động xảy ra trong trường hợp các máy chủ được khởi động lại, hoặc tiến trình tạm dừng được khởi động lại bởi bộ quản lý các tiến trình. Do đó, bước vận hành nên được giữ các thành phần thay đổi càng ít càng tốt, vì các sự cố xảy ra làm ứng dụng không vận hành được có thể gây ra các thiệt hại lúc nửa đêm khi mà không có bất kỳ lập trình viên nào có thể khắc phục sự cố. Bước xây dựng có thể phức tạp hơn, vì các lỗi có thể xuất hiện trước mắt cho lập trình viên, người đang thực hiện triển khai biết được.

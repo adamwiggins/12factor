@@ -1,14 +1,14 @@
-## VII. Port binding
-### Export services via port binding
+## VII. Mở cổng mạng
+### Cung cấp các dịch vụ thông qua mở cổng mạng
 
-Web apps are sometimes executed inside a webserver container.  For example, PHP apps might run as a module inside [Apache HTTPD](http://httpd.apache.org/), or Java apps might run inside [Tomcat](http://tomcat.apache.org/).
+Các ứng dụng web thường được thực thi bên trong một máy chủ web. Ví dụ, ứng dụng PHP có thể thực thi như là một thành phần của [Apache HTTPD](http://httpd.apache.org/), hoặc ứng dụng Java có thể thực thi thông qua [Tomcat](http://tomcat.apache.org/).
 
-**The twelve-factor app is completely self-contained** and does not rely on runtime injection of a webserver into the execution environment to create a web-facing service.  The web app **exports HTTP as a service by binding to a port**, and listening to requests coming in on that port.
+**Ứng dụng áp dụng mười hai-hệ số có khả năng tự đóng gói hoàn toàn chính nó** và không phụ thuộc vào việc tích hợp thêm máy chủ web trong thời gian thực thi vào môi trường thực thi để tạo ra dịch vụ web. Ứng dụng web **cung cấp cơ chế HTTP như là dịch vụ bởi việc mở một cổng nhất định**, và lắng nghe các yêu cầu được gửi tới cổng này.
 
-In a local development environment, the developer visits a service URL like `http://localhost:5000/` to access the service exported by their app.  In deployment, a routing layer handles routing requests from a public-facing hostname to the port-bound web processes.
+Trong môi trường phát triển cục bộ, lập trình viên có thể truy cập dịch vụ thông qua URL như là `http://localhost:5000/` để truy cập đến các dịch vụ được cung cấp bởi ứng dụng của họ. Trong triển khai, lớp điều khiển luồng sẽ điều khiểu các yêu cầu từ đường dẫn công khai thông qua tên máy chủ đến tiến trình cung cấp cổng của ứng dụng.
 
-This is typically implemented by using [dependency declaration](./dependencies) to add a webserver library to the app, such as [Tornado](http://www.tornadoweb.org/) for Python, [Thin](http://code.macournoyer.com/thin/) for Ruby, or [Jetty](http://jetty.codehaus.org/jetty/) for Java and other JVM-based languages.  This happens entirely in *user space*, that is, within the app's code.  The contract with the execution environment is binding to a port to serve requests.
+Việc này thường được triển khai bằng [các định nghĩa ràng buộc](./dependencies) để thêm các thư viện máy chủ cho ứng dụng như là [Tornado](http://www.tornadoweb.org/) cho Python, [Thin](http://code.macournoyer.com/thin/) cho Ruby, hoặc [Jetty](http://jetty.codehaus.org/jetty/) cho Java và các ngôn ngữ dựa trên máy ảo JVM. Điều này được xử lý ở *không gian của người dùng*, hay bên trong mã nguồn của ứng dụng. Ràng buộc đối với môi trường thực thi là việc mở cổng dịch vụ để lắng nghe các yêu cầu.
 
-HTTP is not the only service that can be exported by port binding.  Nearly any kind of server software can be run via a process binding to a port and awaiting incoming requests.  Examples include [ejabberd](http://www.ejabberd.im/) (speaking [XMPP](http://xmpp.org/)), and [Redis](http://redis.io/) (speaking the [Redis protocol](http://redis.io/topics/protocol)).
+HTTP không phải là dịch vụ duy nhất mà có thể cung cấp bởi việc mở cộng mạng. Gần như bất kỳ máy chủ phần mềm nào cũng có thể vận hành như là tiến trình được mở cổng mạng và chờ đợi các yêu cầu được gửi tới. Ví dụ bao gôm [ejabberd](http://www.ejabberd.im/) (sử dụng [XMPP](http://xmpp.org/)), và [Redis](http://redis.io/) (sử dụng [giao thức Redis](http://redis.io/topics/protocol)).
 
-Note also that the port-binding approach means that one app can become the [backing service](./backing-services) for another app, by providing the URL to the backing app as a resource handle in the [config](./config) for the consuming app.
+Chú ý là cách tiếp cận bằng mở cổng mạng có nghĩa là ứng dụng có thể trở thành [dịch vụ hỗ trợ(./backing-services) cho bất kỳ ứng dụng nào khác, bằng việc cung cấp URL đến dịch vụ hỡ trợ như là tài nguyên được điều khiển tronng [cấu hình](./config) cho ứng dụng cần sử dụng dịch vụ.
