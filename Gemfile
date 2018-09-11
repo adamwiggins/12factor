@@ -1,5 +1,9 @@
 source 'http://rubygems.org'
 
-gem 'sinatra', '1.2.6'
-gem 'thin', '1.2.7'
-gem 'maruku', '0.6.0'
+ruby '2.5.1'
+
+gem 'sinatra'
+gem 'thin'
+gem 'maruku'
+gem 'i18n'
+gem 'rack-ssl-enforcer'

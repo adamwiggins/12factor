@@ -1,0 +1,16 @@
+{
+  "name": "12factor",
+  "scripts": {
+  },
+  "env": {
+  },
+  "addons": [
+  ],
+  "environments": {
+    "test": {
+      "scripts": {
+        "test": "exit 0"
+      }
+    }
+  }
+}
