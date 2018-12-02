@@ -1,16 +1,17 @@
 ## XI. Logs
-### Treat logs as event streams
+### จัดการ logs ให้เป็นแบบ event stream
 
-*Logs* provide visibility into the behavior of a running app.  In server-based environments they are commonly written to a file on disk (a "logfile"); but this is only an output format.
+*Logs* จะทำให้เห็นได้ว่า app ทำงานอย่างไร ในสภาพแวดล้อม server-based โดยทั่วไปจะเขียนเป็นไฟล์บนดิสก์ (ใน "logfile") แต่นี่เป็นเพียง output format เท่านั้น
 
-Logs are the [stream](https://adam.herokuapp.com/past/2011/4/1/logs_are_streams_not_files/) of aggregated, time-ordered events collected from the output streams of all running processes and backing services.  Logs in their raw form are typically a text format with one event per line (though backtraces from exceptions may span multiple lines).  Logs have no fixed beginning or end, but flow continuously as long as the app is operating.
+Logs เป็น [stream](https://adam.herokuapp.com/past/2011/4/1/logs_are_streams_not_files/) ของการรวบรวม, time-ordered events ที่รวมรวมจาก output stream ของ process ทั้งหมดที่ทำงานอยู่และ backing service, Log ในรูปแบบเดิมโดยปรกติเป็นรูปแบบข้อความด้วยหนึ่ง event ต่อบรรทัด (แม้กระทั้ง backtrace จาก exception ที่มีหลายบรรทัด) Log ไม่มีจุดเริ่มต้นหรือสิ้นสุดที่แน่นอน แต่มีการไหลอย่างต่อเนื่องตราบใดที่ app ทำงานอยู่
 
-**A twelve-factor app never concerns itself with routing or storage of its output stream.**  It should not attempt to write to or manage logfiles.  Instead, each running process writes its event stream, unbuffered, to `stdout`.  During local development, the developer will view this stream in the foreground of their terminal to observe the app's behavior.
+**Twelve-factor app ไม่เคยกังวลกับการกำหนดเส้นทางหรือการจัดเก็บสตรีมข้อมูลขาออก** ไม่ควรพยายามเขียนหรือจัดการ logfile แทนที่, แต่ล่ะ process ที่ทำงานจะเขียน event stream ไม่มีการบัฟเฟอร์ ด้วย `stdout` ในระหว่าง local development, developer จะดูสตรีมนี้ในเบื้องหลังของ terminal เพื่อสังเกตุพฤติกรรมของ app
 
-In staging or production deploys, each process' stream will be captured by the execution environment, collated together with all other streams from the app, and routed to one or more final destinations for viewing and long-term archival.  These archival destinations are not visible to or configurable by the app, and instead are completely managed by the execution environment.  Open-source log routers (such as [Logplex](https://github.com/heroku/logplex) and [Fluentd](https://github.com/fluent/fluentd)) are available for this purpose.
+ใน staging หรือ production deploy แต่ละสตรีมของ process จะตรวจจับโดยสภาพแวดล้อมการดำเนินงาน รวบรวมเข้าด้วยกันกับสตรีมอื่นๆ จาก app และเชื่อมเส้นทางไปที่จุดหมายปลายทางสุดท้ายที่ใช้ดูและเก็บถาวรในระยะยาว จุดหมายที่เก็บถาวรเหล่านี้ไม่สามารถมองเห็นหรือกำหนดค่าโดย app และแทนจะได้รับการจัดการอย่างสมบูรณ์โดยสภาพแวดล้อมการดำเนินงาน, Open-source log routers (เช่น [Logplex](https://github.com/heroku/logplex) และ [Fluentd](https://github.com/fluent/fluentd)) มีไว้เพื่อการนี้
 
-The event stream for an app can be routed to a file, or watched via realtime tail in a terminal.  Most significantly, the stream can be sent to a log indexing and analysis system such as [Splunk](http://www.splunk.com/), or a general-purpose data warehousing system such as [Hadoop/Hive](http://hive.apache.org/).  These systems allow for great power and flexibility for introspecting an app's behavior over time, including:
+สตรีมเหตุการณ์สำหรับ app สามารถกำหนดเส้นทางไปที่ไฟล์ หรือดูได้ผ่านเรียลไทม์ใน terminal สตรีมสามารถส่งไป log indexing และระบบวิเคราะห์ เช่น [Splunk](http://www.splunk.com/) หรือ ระบบคลังข้อมูลทั่วไป เช่น [Hadoop/Hive](http://hive.apache.org/) ระบบเหล่านี้มีพลังมากและยืดหยุ่นในการตรวจสอบพฤติกรรมของ app ในช่วงเวลาหนึ่ง, รวมทั้ง:
 
-* Finding specific events in the past.
-* Large-scale graphing of trends (such as requests per minute).
-* Active alerting according to user-defined heuristics (such as an alert when the quantity of errors per minute exceeds a certain threshold).
+* ค้นหาเหตุการณ์เฉพาะที่ผ่านมา
+* กราฟขนาดใหญ่สำหรับแสดงแนวโน้ม (เช่น จำนวน request ต่อนาที)
+* การแจ้งเตือนแบบแอคทีฟตามการวิเคราะห์พฤติกรรมที่ผู้ใช้ระบุ (เช่น การแจ้งเตือนเมื่อจำนวน error ต่อนาทีเกินเกณฑ์ที่กำหนด)
+

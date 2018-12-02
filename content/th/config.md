@@ -1,22 +1,22 @@
 ## III. Config
-### Store config in the environment
+### จัดเก็บการตั้งค่า (config) ไว้ในสิ่งแวดล้อมของระบบ
 
-An app's *config* is everything that is likely to vary between [deploys](./codebase) (staging, production, developer environments, etc).  This includes:
+*การตั้งค่า (config)* ของ app เป็นสิ่งที่เปลี่ยนแปลงระหว่าง [deploys](./codebase) (staging, production, developer environments เป็นต้น) รวมทั้ง:
 
-* Resource handles to the database, Memcached, and other [backing services](./backing-services)
-* Credentials to external services such as Amazon S3 or Twitter
-* Per-deploy values such as the canonical hostname for the deploy
+* ทรัพยากรที่จัดการกับฐานข้อมูล, Memcached, และ [backing services](./backing-services) อื่นๆ
+* ข้อมูลประจำตัว (credentials) สำหรับบริการภายนอก อย่างเช่น Amazon S3 หรือ Twitter
+* ค่า Pre-deploy อย่างเช่น canonical hostname สำหรับ deploy
 
-Apps sometimes store config as constants in the code.  This is a violation of twelve-factor, which requires **strict separation of config from code**.  Config varies substantially across deploys, code does not.
+บางครั้ง app เก็บการตั้งค่าเป็นค่าคงทีใน code เป็นการละเมิด twelve-factor ซึ่งต้องการให้ **แยกการตั้งค่าออกจาก code อย่างสมบูรณ์** การตั้งค่าสามารถเปลี่ยนแปลงได้ตาม deploy ที่ไม่อยู่ใน code
 
-A litmus test for whether an app has all config correctly factored out of the code is whether the codebase could be made open source at any moment, without compromising any credentials.
+การทดสอบ litmus เพื่อดูว่า app มีการเอาการตั้งค่าทั้งหมดออกจาก code ถูกต้องหรือไม่ ทำให้ codebase สามารถ open source ได้ตลอดเวลา โดยไม่กระทบกับ credential ใดๆ
 
-Note that this definition of "config" does **not** include internal application config, such as `config/routes.rb` in Rails, or how [code modules are connected](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html) in [Spring](http://spring.io/).  This type of config does not vary between deploys, and so is best done in the code.
+โปรดทราบว่าการนิยามนี้ของ "การตั้งค่า" **ไม่**รวมการตั้งค่า internal application อย่างเช่น `config/routes.rb` ใน Rails หรือ [code modules เชื่อมต่อกันอย่างไร](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html) ใน [Spring](http://spring.io/) ชนิดของการตั้งค่าเหล่านี้ไม่เปลี่ยนแปลงตาม deploy และควรจะอยู่ใน code
 
-Another approach to config is the use of config files which are not checked into revision control, such as `config/database.yml` in Rails.  This is a huge improvement over using constants which are checked into the code repo, but still has weaknesses: it's easy to mistakenly check in a config file to the repo; there is a tendency for config files to be scattered about in different places and different formats, making it hard to see and manage all the config in one place.  Further, these formats tend to be language- or framework-specific.
+อีกวิธีการหนึ่งของการตั้งค่าคือการใช้ไฟล์การตั้งค่าซึ่งไม่รวมไว้ใน revision control อย่างเช่น `config/database.yml` ใน Reals ซึ่งเป็นการพัฒนาสำหรับการใช้ค่าคงที่ซึ่งถูกรวมเข้าไปใน code repo แต่ก็ยังมีจุดอ่อนคือมันจะเกิดความผิดพลาดจากการที่รวมค่าการตั้งค่านี้เข้าไปใน repo จะทำให้มีแนวโน้มที่การไฟล์การตั้งค่าจะกระจายอยู่ในที่แตกต่างกันและแตกต่างรูปแบบ ทำให้มันยากที่จะดูแลและจัดการการตั้งค่าทั้งหมดในหนึ่งที่ นอกจากนี้รูปแบบเหล่านี้ยังขึ้นอยู่กับภาษาคอมพิวเตอร์ หรือ เฉพาะ framework.
 
-**The twelve-factor app stores config in *environment variables*** (often shortened to *env vars* or *env*).  Env vars are easy to change between deploys without changing any code; unlike config files, there is little chance of them being checked into the code repo accidentally; and unlike custom config files, or other config mechanisms such as Java System Properties, they are a language- and OS-agnostic standard.
+**Twelve-factor app เก็บการตั้งค่าไว้ใน *environment variable*** (เรียกสั้นๆ ว่า *env vars* หรือ *env*) Env vars จะทำให้ง่ายที่จะเปลี่ยนแปลงระหว่าง deloy โดยปราศจากการเปลี่ยนแปลงของ code ใดๆ ไม่เหมือนกับไฟล์การตั้งค่าที่จะมีโอการผิดพลาดที่จะรวมเข้าไปใน code repo ได้ และไม่เหมือนกับไฟล์การตั้งค่าที่กำหนดเองหรือกลไกการตั้งค่าอื่นๆ อย่างเช่น Java System Properties ที่เป็ของภาษาคอมพิวเตอร์ และมาตรฐานของระบบปฏิบัติการ (OS-agnostic)
 
-Another aspect of config management is grouping.  Sometimes apps batch config into named groups (often called "environments") named after specific deploys, such as the `development`, `test`, and `production` environments in Rails.  This method does not scale cleanly: as more deploys of the app are created, new environment names are necessary, such as `staging` or `qa`.  As the project grows further, developers may add their own special environments like `joes-staging`, resulting in a combinatorial explosion of config which makes managing deploys of the app very brittle.
+อีกแง่มุมของการจัดการการตั้งค่าคือการจัดกลุ่ม (Grouping) บางครั้งการตั้งค่า app แบบกลุ่ม (batch) ในชื่อของกลุ่ม (เรียกว่า "environment") หลังจาก deploy เฉพาะ อย่างเช่น `development`, `test` และ `production` environment ใน Rails วิธีการนี้ทำให้การขยายไม่เรียบร้อยทำให้มี deploy ของ app ถูกสร้างมากขึ้น, จำเป็นต้องตั้งชื่อของ environment ใหม่ อย่างเช่น `staging` หรือ `qa` เป็นตั้น เมื่อ project โตขึ้น developer อาจจะเพิ่ม environments เฉพาะของตัวเองขึ้นมา เช่น `joes-staging` ผมก็คือมีการตั้งค่าจำนวนมากเกินไปซึ่งทำให้จัดการ deploy ของ app ทำได้ยากมาก
 
-In a twelve-factor app, env vars are granular controls, each fully orthogonal to other env vars.  They are never grouped together as "environments", but instead are independently managed for each deploy.  This is a model that scales up smoothly as the app naturally expands into more deploys over its lifetime.
+ใน twelve-factor app, env vars เป็นรากฐานการควบควมของแต่ล่ะ evn vars อื่นๆ ไม่เคยมีการจัดกลุ่มเป็น "environments" แต่จะจัดการแบบอิสระสำหรับแต่ล่ะ deploy แทน นี่เป็นรูปแบบที่การขยายทำได้อย่างราบรื่นของ app เป็นการขยายโดยธรรมชาติของ deploy มากขึ้นตลอดอายุการทำงานของ app.

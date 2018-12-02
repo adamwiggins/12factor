@@ -1,19 +1,19 @@
 ## X. Dev/prod parity
-### Keep development, staging, and production as similar as possible
+### ทำให้ development, staging และ production ให้มีความใกล้เคียงกันที่สุด
 
-Historically, there have been substantial gaps between development (a developer making live edits to a local [deploy](./codebase) of the app) and production (a running deploy of the app accessed by end users).  These gaps manifest in three areas:
+ในอดีต มีช่องว่างที่มากมายระหว่าง development (developer แก้ไข app ในเครื่องตัวเอง [deploy](./codebase)) และ production (deploy ที่ทำงานและใช้งานโดยผู้ใช้งานที่แท้จริง) ช่องว่างที่ชัดเจนมี 3 เรื่่อง:
 
-* **The time gap:** A developer may work on code that takes days, weeks, or even months to go into production.
-* **The personnel gap**: Developers write code, ops engineers deploy it.
-* **The tools gap**: Developers may be using a stack like Nginx, SQLite, and OS X, while the production deploy uses Apache, MySQL, and Linux.
+* **ช่องว่างของเวลา** developer จะทำงานบน code ที่ใช้เวลาเป็นวัน, เป็นอาทิตย์ หรือเป็นเดือนที่จะเอาขึ้นสู่ production 
+* **ช่องว่างของบุคคล** developer เขียน code แต่วิศวกร ops ทำการ deploy code
+* **ช่องว่างของเครื่องมือ** developer อาจจะใช้ stack อย่างเช่น Nginx, SQLite และ OSX ขณะที่ production deploy ใช้ Apache, MySQL และ Linux
 
-**The twelve-factor app is designed for [continuous deployment](http://avc.com/2011/02/continuous-deployment/) by keeping the gap between development and production small.**  Looking at the three gaps described above:
+**Twelve-factor app ถูกออกแบบสำหรับ [การ deployment อย่างต่อเนื่อง (continuous deployment)](http://avc.com/2011/02/continuous-deployment/) ด้วยการรักษาช่องว่างระหว่าง development และ production ให้แคบที่สุด** โดยพิจารณาจากช่องว่าง 3 เรื่องด้านบน:
 
-* Make the time gap small: a developer may write code and have it deployed hours or even just minutes later.
-* Make the personnel gap small: developers who wrote code are closely involved in deploying it and watching its behavior in production.
-* Make the tools gap small: keep development and production as similar as possible.
+* ทำให้เวลาสั้นลง: developer อาจจะเขียน code และทำการ deploy ในเวลาเพียงชั่วโมงเดียวหรือเพียงไม่กี่นาทีหลังจากเขียน code เสร็จ
+* ทำให้ช่องว่างบุคคลแคบลง: developer เป็นคนเขียน code และเป็นคนที่ deploy code เองและเป็นคนที่ดูใน production เอง
+* ทำให้ช่องว่างเครื่องมือแคบลง: ทำให้ใช้เครื่องมือ developement และ production เหมือนกันมากที่สุดเท่าที่จะทำได้
 
-Summarizing the above into a table:
+สรุปข้างบนเป็นตาราง:
 
 <table>
   <tr>
@@ -22,23 +22,23 @@ Summarizing the above into a table:
     <th>Twelve-factor app</th>
   </tr>
   <tr>
-    <th>Time between deploys</th>
-    <td>Weeks</td>
-    <td>Hours</td>
+    <th>เวลาระหว่าง deploys</th>
+    <td>สัปดาห์</td>
+    <td>ชั่วโมง</td>
   </tr>
   <tr>
-    <th>Code authors vs code deployers</th>
-    <td>Different people</td>
-    <td>Same people</td>
+    <th>คนเขียน code vs คน deploy code </th>
+    <td>คนละคน</td>
+    <td>คนเดียวกัน</td>
   </tr>
   <tr>
-    <th>Dev vs production environments</th>
-    <td>Divergent</td>
-    <td>As similar as possible</td>
+    <th>สภาพแวดล้อม Dev vs production</th>
+    <td>แตกต่างกัน</td>
+    <td>เหมือนกันมากที่สุด</td>
   </tr>
 </table>
 
-[Backing services](./backing-services), such as the app's database, queueing system, or cache, is one area where dev/prod parity is important.  Many languages offer libraries which simplify access to the backing service, including *adapters* to different types of services.  Some examples are in the table below.
+[Backing services](./backing-services) อย่างเช่น ฐานข้อมูลของ app, ระบบคิว, หรือ ระบบแคช เป็นสิ่งที่ dev/prod ควรมีควมคล้ายคลึงกันมากที่สุด หลายภาษามี library ซึ่งทำให้เข้าถึง backing service ได้ง่าย รวมทั้ง *adapter* กับบริการที่แตกต่างกัน ตัวอย่างบางส่วนในตารางนี้:
 
 <table>
   <tr>
@@ -67,10 +67,12 @@ Summarizing the above into a table:
   </tr>
 </table>
 
-Developers sometimes find great appeal in using a lightweight backing service in their local environments, while a more serious and robust backing service will be used in production.  For example, using SQLite locally and PostgreSQL in production; or local process memory for caching in development and Memcached in production.
+Developer บางครั้งหาวิธีที่ใช้ backing service ง่ายๆ ในเครื่องตัวเอง ในขณะที่ backing service ใช้งานอย่างเคร่งครัดและแข็งแกร่งใน production ตัวอย่างเช่น ใช้ SQLite ในเครื่องพัฒนา และใช้ PostgreSQL ใน production หรือใช้ local process memory สำหรับแคชใน development และ Memcached ใน production
 
-**The twelve-factor developer resists the urge to use different backing services between development and production**, even when adapters theoretically abstract away any differences in backing services.  Differences between backing services mean that tiny incompatibilities crop up, causing code that worked and passed tests in development or staging to fail in production.  These types of errors create friction that disincentivizes continuous deployment.  The cost of this friction and the subsequent dampening of continuous deployment is extremely high when considered in aggregate over the lifetime of an application.
+**Twelve-factor developer ต่อต้านกำใช้งาน backing service ที่แตกต่างกันระหว่าง development และ production** แม้ว่าเมื่อใช้ adapter ในทางทฤษฎีแล้วไม่มีความแตกต่างกันใน backing service ความแตกต่างระหว่าง backing service หมายความว่าความไม่เข้ากันเพียงเล็กน้อยที่เป็นสาเหตุให้ code ทำงานได้และผ่านการทดสอบใน development หรือ staging แต่ไปทำงานผิดพลาดใน production ความผิดหลาดเหล่านี้สร้างความไม่ลงรอยกันกับการ delopyment อย่างต่อเนื่อง และราคาของความไม่ลงรอยกันนี้และความผันผวนตามมาของการ deployment อย่างต่อเนื่องสูงมากเมื่อพิจารณาตลอดอายุการทำงานของ application
 
-Lightweight local services are less compelling than they once were.  Modern backing services such as Memcached, PostgreSQL, and RabbitMQ are not difficult to install and run thanks to modern packaging systems, such as [Homebrew](http://mxcl.github.com/homebrew/) and [apt-get](https://help.ubuntu.com/community/AptGet/Howto).  Alternatively, declarative provisioning tools such as [Chef](http://www.opscode.com/chef/) and [Puppet](http://docs.puppetlabs.com/) combined with light-weight virtual environments such as [Docker](https://www.docker.com/) and [Vagrant](http://vagrantup.com/) allow developers to run local environments which closely approximate production environments. The cost of installing and using these systems is low compared to the benefit of dev/prod parity and continuous deployment.
+Lightweight local service ไม่น่าสนใจมากเหมือนเมื่อก่อน ด้วย backing service สมัยใหม่อย่างเช่น Memcached, PostgreSQL และ RabbitMQ ไม่มีความแตกต่างกันในการติดตั้งและทำงาน ต้องขอบคุณระบบ packaging สมัยใหม่ อย่างเช่น [Homebrew](http://mxcl.github.com/homebrew/) และ [apt-get](https://help.ubuntu.com/community/AptGet/Howto) อีกทางเลือกหนึ่ง เครืองมือจัดเตรียมที่เปิดเผยอย่างเช่น [Chef](http://www.opscode.com/chef/) และ [Puppet](http://docs.puppetlabs.com/) รวม light-weight สิ่งแวดล้อมเสมือนอย่างเช่น [Docker](https://www.docker.com/) และ [Vagrant](http://vagrantup.com/) ทำให้ developer รัน app ในสิ่งแวดล้องของเครื่องได้ใกล้เคียงกับสิ่งแวดล้อมของ production มากที่สุด และค่าใช้จ่ายของการติดตั้งและใช้งานระบบเหล่านี้ต่ำมากถ้าเทียบกับประโยชน์ที่ได้รับสำหรับความเท่าเทียมกันของ dev/prod และการ deployment ที่ต่อเนื่อง
 
-Adapters to different backing services are still useful, because they make porting to new backing services relatively painless.  But all deploys of the app (developer environments, staging, production) should be using the same type and version of each of the backing services.
+Adapter ไปยัง backing service ที่แตกต่างกันยังคงมีประโยชน์อยู่ เพราะว่าจะทำให้ port ไปใช้กับ backing service ใหม่ๆ ได้อย่างง่ายดาย แต่การ deploy ทั้งหมดของ app (developer environment, staging, production) ควรจะใช้ชนิดและเวอร์ชันที่เหมือนกันของแต่ล่ะ backing service.
+
+

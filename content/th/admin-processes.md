@@ -1,14 +1,16 @@
 ## XII. Admin processes
-### Run admin/management tasks as one-off processes
+### รันงานของผู้ดูแลระบบ/การจัดการให้เป็นกระบวนการแบบครั้งเดียว
 
-The [process formation](./concurrency) is the array of processes that are used to do the app's regular business (such as handling web requests) as it runs.  Separately, developers will often wish to do one-off administrative or maintenance tasks for the app, such as:
+[process formation](./concurrency) เป็นอาร์เรย์ของ process ที่ใช้ในการทำธุรกิจปรกติของ app (เช่นการจัดการ reqeust ของเว็บ) ขณะทำงาน developer มักต้องการทำการดูแลหรือบำรุงรักษาเพียงคนเดียวสำหรับ app เช่น:
 
-* Running database migrations (e.g. `manage.py migrate` in Django, `rake db:migrate` in Rails).
-* Running a console (also known as a [REPL](http://en.wikipedia.org/wiki/Read-eval-print_loop) shell) to run arbitrary code or inspect the app's models against the live database.  Most languages provide a REPL by running the interpreter without any arguments (e.g. `python` or `perl`) or in some cases have a separate command (e.g. `irb` for Ruby, `rails console` for Rails).
-* Running one-time scripts committed into the app's repo (e.g. `php scripts/fix_bad_records.php`).
+* รันการย้ายข้อมูลฐานข้อมูล (เช่น `manage.py migrate` ใน Django, `rake db:migrate` ใน Rails)
+* รันคอนโซล (เป็นที่รู้จักในชื่อ [REPL](http://en.wikipedia.org/wiki/Read-eval-print_loop) shell) เพื่อรัน code แบบทันทีทันใดหรือตรวจสอบโมเดลของ app ที่ติดต่อกับฐานข้อมูลทันที ภาษาคอมพิวเตอร์ส่วนใหญ่มี REPL โดยการรัน interpreter โดยไม่ต้องมี argument ใดๆ (เช่น `python` หรือ `perl`) หรือในบางกรณีมีการแยกคำสั่ง (เช่น `irb` สำหรับ Ruby, `rails console` สำหรับ Rails) 
+* รันสคริปต์ครั้งเดียวที่ commit ไปที่ repo ของ app (เช่น `php scripts/fix_bad_records.php`)
 
-One-off admin processes should be run in an identical environment as the regular [long-running processes](./processes) of the app.  They run against a [release](./build-release-run), using the same [codebase](./codebase) and [config](./config) as any process run against that release.  Admin code must ship with application code to avoid synchronization issues.
+การดูแล process ครั้งเดียวควรจะทำงานในสภาพแวดล้อมที่เหมือนกับทั้วไป [long-running processes](./processes) สำหรับ app ซึ่งทำงานกับ [release](./build-release-run) ใช้ [codebase](./codebase) and [การตั้งค่า](./config) เดียวกันกับ process ใดๆที่ทำงานกับ release ผู้ดูแลระบบของ code จำเป็นต้อง ship ด้วย application code เพื่อหลีกเลี่ยงปัญหาการประสาน (synchronization)
 
-The same [dependency isolation](./dependencies) techniques should be used on all process types.  For example, if the Ruby web process uses the command `bundle exec thin start`, then a database migration should use `bundle exec rake db:migrate`.  Likewise, a Python program using Virtualenv should use the vendored `bin/python` for running both the Tornado webserver and any `manage.py` admin processes.
+เทคนิค [dependency isolation](./dependencies) เดียวกันควรจะใช้กับชนิดของ process ทั้งหมด ตัวอย่างเช่น ถ้า Ruby web process ใช้คำสั่ง `bundle exec thin start` ดังนั้นการย้ายข้อมูลฐานข้อมูลควรจะใช้คำสั่ง `bundle exec rake db:migrate` ในทำนองเดียวกันกับ Python program ใช้ Virtualenv ควรจะใช้คำสั่ง `bin/python` สำหรับทำงานทั้ง Tornado webserver และการดูแลระบบ process `manage.py` ใดๆ
 
-Twelve-factor strongly favors languages which provide a REPL shell out of the box, and which make it easy to run one-off scripts.  In a local deploy, developers invoke one-off admin processes by a direct shell command inside the app's checkout directory.  In a production deploy, developers can use ssh or other remote command execution mechanism provided by that deploy's execution environment to run such a process.
+Twelve-factor ชื่นชอบภาษาคอมพิวเตอร์ที่มี PERL shell out of the box เป็นอย่างมาก และซึ่งทำให้ง่ายสำหรับรันสคริปต์ครั้งเดียว ใน local deploy, developer ใช้กระบวนการดูแลระบบครั้งเดียวโดยใช้คำสั่ง shell ข้างใน app ใน production deploy, developer สามารถใช้ ssh หรือคำสั่งรีโมทอื่นที่กลไกกำทำงานโดยสภาพแวดล้อมการดำเนินงานของ deploy เพื่อรัน process
+
+
