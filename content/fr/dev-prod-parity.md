@@ -10,8 +10,8 @@ Historiquement, il y a eu un fossé conséquent entre le développement (un dév
 **Les applications 12 facteurs sont conçues pour le [déploiement continu (en)](http://avc.com/2011/02/continuous-deployment/) en gardant un fossé étroit entre le développement et la production.** Si l'on regarde les trois fossés décrits plus haut :
 
 * Réduire le fossé temporel : un développeur peut écrire du code et le déployer quelques heures ou même juste quelques minutes plus tard.
-* Réduire le fossé des personnes : les personnes qui écrivent le code sont impliquées dans son déploiement et pour surveiller son comportement en production
-* Réduire le fossé des outils : réduire, autant que possible, les différences entre le développement et la production
+* Réduire le fossé des personnes : les personnes qui écrivent le code sont impliquées dans son déploiement et pour surveiller son comportement en production.
+* Réduire le fossé des outils : réduire, autant que possible, les différences entre le développement et la production.
 
 Si l'on résume cela en un tableau :
 
@@ -24,7 +24,7 @@ Si l'on résume cela en un tableau :
   <tr>
     <th>Temps entre les déploiements</th>
     <td>Semaines</td>
-    <td>heures</td>
+    <td>Heures</td>
   </tr>
   <tr>
     <th>Auteurs du code et ceux qui le déploient</th>
@@ -44,7 +44,7 @@ Si l'on résume cela en un tableau :
   <tr>
     <th>Type</th>
     <th>Langage</th>
-    <th>Librarie</th>
+    <th>Librairie</th>
     <th>Adaptateurs</th>
   </tr>
   <tr>
