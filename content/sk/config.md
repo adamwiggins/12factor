@@ -1,22 +1,22 @@
-## III. Config
-### Store config in the environment
+## III. Konfigurácia
+### Konfigurácia uložená v prostredí
 
-An app's *config* is everything that is likely to vary between [deploys](./codebase) (staging, production, developer environments, etc).  This includes:
+*Konfigurácia* aplikácie je všetko, čo sa líši medzi [nasadeniami](./codebase) (staging, produkcia, vývojárske prostredie, atď).  To zahŕňa:
 
-* Resource handles to the database, Memcached, and other [backing services](./backing-services)
-* Credentials to external services such as Amazon S3 or Twitter
-* Per-deploy values such as the canonical hostname for the deploy
+* Pripojenia k databázam, Memcached a iným [podporným službám](./backing-services)
+* Prihlasovacie údaje k externým službám ako Amazon S3 alebo Twitter
+* Špeciálne hodnotu Per-nasadenie values such ako napríklad kanonické názvy hostov.
 
-Apps sometimes store config as constants in the code.  This is a violation of twelve-factor, which requires **strict separation of config from code**.  Config varies substantially across deploys, code does not.
+Aplikácia si niekedy ukladá konštanty v kóde. Toto je porušenie dvanástich faktorov, ktoré vyžaduje **striktné oddelenie konfigurácie od kódu**.  Konfigurácia sa medzi nasadeniami podstatne odlišuje, kód nie.
 
-A litmus test for whether an app has all config correctly factored out of the code is whether the codebase could be made open source at any moment, without compromising any credentials.
+Litmusovým testom správneho oddelenia konfigurácie, je to či by mohla byť v ktoromkoľvek momente open-sourcovaná bez úniku prihlasovacích údajov.
 
-Note that this definition of "config" does **not** include internal application config, such as `config/routes.rb` in Rails, or how [code modules are connected](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html) in [Spring](http://spring.io/).  This type of config does not vary between deploys, and so is best done in the code.
+Všimnite si, že definícia "konfigurácie" **nezahŕňa** internú konfiguráciu aplikácie, ako napríklad `config/routes.rb` v Rails, alebo [prepojenie modulov](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html) v [Spring](http://spring.io/).  Tento typ konfigurácie sa medzi nasadeniami nelíši, a preto je najlepšie ho nechať v kóde.
 
-Another approach to config is the use of config files which are not checked into revision control, such as `config/database.yml` in Rails.  This is a huge improvement over using constants which are checked into the code repo, but still has weaknesses: it's easy to mistakenly check in a config file to the repo; there is a tendency for config files to be scattered about in different places and different formats, making it hard to see and manage all the config in one place.  Further, these formats tend to be language- or framework-specific.
+Ďalšou možnosťou, ako pristupovať ku konfiguráciám je mať konfiguračné súbory, ktoré nie sú uložené v revíznom systéme, ako napríklad `config/database.yml` v Rails.  Je to obrovské zlepšenie oproti konštantám uloženým v repozitári, ale stále má slabosť: je veľmi jednoduché omylom tento súbor uložiť do repozitára; je tendencia mať konfiguračné súbory na rôznych miestach a v rôznych formátoch, a preto je ťažké ich spravovať z jedného miesta. Navyše, tieto formáty zvyknú byť špecifické pre jazyk alebo framework.
 
-**The twelve-factor app stores config in *environment variables*** (often shortened to *env vars* or *env*).  Env vars are easy to change between deploys without changing any code; unlike config files, there is little chance of them being checked into the code repo accidentally; and unlike custom config files, or other config mechanisms such as Java System Properties, they are a language- and OS-agnostic standard.
+**Dvanásť faktorová aplikácia konfiguráciu ukladá v *premenných prostredia*** (často skrátané na *env vars* alebo *env*).  Premenné prostredia sa dajú jednoducho meniť pri nasadeniach bez potreby zmeny v kóde; na rozdiel od konfiguračných súborov je minimálna šanca, že ich niekto omylom uloží do repozitára; a narozdiel od rôznych konfiguračných súborov, alebo iných konfiguračných mechanizmov ako napr. Java System Properties, premenné prostredia sú nezávislé na jazyku alebo OS.
 
-Another aspect of config management is grouping.  Sometimes apps batch config into named groups (often called "environments") named after specific deploys, such as the `development`, `test`, and `production` environments in Rails.  This method does not scale cleanly: as more deploys of the app are created, new environment names are necessary, such as `staging` or `qa`.  As the project grows further, developers may add their own special environments like `joes-staging`, resulting in a combinatorial explosion of config which makes managing deploys of the app very brittle.
+Ďalším pohľadom na správu konfigurácie je zoskupovanie.  Niekedy aplikácie zoskupia konfigurácie do pomenovaných skupín (často nazývaných called "prostredia") a sú pomenované podľa jednotlivých typov nasadení, ako napríklad `development`, `test`, a `production` prostredia v Rails.  Tento spôsob je náročné škálovať čistým spôsobom: ako pribúdajú ďalšie typy nasadení, je potrebné vytvárať nové názvy prostredí, ako napríklad `staging` alebo `qa`.  Ako projekt ďalej rastie, developeri môžu pridávať ďalšie vlastné špeciálne prostredia ako `joes-staging`, a výsledkom je kombinatorická explózia konfiguračných prostredí a tým sa stáva spravovanie nasadení veľmi citlivé.
 
-In a twelve-factor app, env vars are granular controls, each fully orthogonal to other env vars.  They are never grouped together as "environments", but instead are independently managed for each deploy.  This is a model that scales up smoothly as the app naturally expands into more deploys over its lifetime.
+V dvanásť faktorovej aplikácii sú premenné prostredia granulárne nastavenia, každé ortogonálne k inej premennej prostredia.  Nikdy sa nezoskupujú spolu do pomenovaných "prostredí", ale namiesto toho sú nezávisle spravované pre každé nasadenie.  Tento model sa plynule škáluje počas prirodzeného rastu aplikácie ako pribúdajú ďalšie typy nasadení.
