@@ -1,14 +1,15 @@
 ## VII. Port binding
-### Export services via port binding
+### Export služieb cez port binding
 
-Web apps are sometimes executed inside a webserver container.  For example, PHP apps might run as a module inside [Apache HTTPD](http://httpd.apache.org/), or Java apps might run inside [Tomcat](http://tomcat.apache.org/).
+Webové aplikácie sú niekedy vykonávané vnútri webserverového kontainera.  Napríklad PHP aplikácie bežia ako modul vnútri [Apache HTTPD](http://httpd.apache.org/), alebo Java aplikácie môžu bežať vnútri [Tomcat](http://tomcat.apache.org/).
 
-**The twelve-factor app is completely self-contained** and does not rely on runtime injection of a webserver into the execution environment to create a web-facing service.  The web app **exports HTTP as a service by binding to a port**, and listening to requests coming in on that port.
+**Dvanásť faktorová aplikácia je úplne sebestačn** a nespolieha sa na vsunutie webservera v exekučnom prostredí na to, aby vytvorila webovú službu.  Webová aplikácia **exportuje HTTP ako službu bindovaním na port**, a počúvaním požiadaviek prichádzajúcich na daný port.
 
-In a local development environment, the developer visits a service URL like `http://localhost:5000/` to access the service exported by their app.  In deployment, a routing layer handles routing requests from a public-facing hostname to the port-bound web processes.
+V lokálnom vývojárskom prostredí developer pristupuje na službu exportovanú jeho aplikáciou cez URL napríklad `http://localhost:5000/`.  Pri nasadení, smerovacia vrstva presmerúva požiadavky z verejnej domény na port web procesu.
 
-This is typically implemented by using [dependency declaration](./dependencies) to add a webserver library to the app, such as [Tornado](http://www.tornadoweb.org/) for Python, [Thin](http://code.macournoyer.com/thin/) for Ruby, or [Jetty](http://www.eclipse.org/jetty/) for Java and other JVM-based languages.  This happens entirely in *user space*, that is, within the app's code.  The contract with the execution environment is binding to a port to serve requests.
+Toto sa typicky implementuje použitím [deklarácie závislostí](./dependencies) a pridá sa tak knižnica webservera do aplikácie. Napríklad [Tornado](http://www.tornadoweb.org/) pre Python, [Thin](http://code.macournoyer.com/thin/) pre Ruby, alebo [Jetty](http://www.eclipse.org/jetty/) pre Javu a iných jazykoch bežiacich na JVM.  Deje sa to úplne v *používateľskom priestore*, takže v kóde aplikácie.  Dohoda s exekučným prostredím je je bindovanie na port na ktorom bude obsluhovať požiadavky.
 
-HTTP is not the only service that can be exported by port binding.  Nearly any kind of server software can be run via a process binding to a port and awaiting incoming requests.  Examples include [ejabberd](http://www.ejabberd.im/) (speaking [XMPP](http://xmpp.org/)), and [Redis](http://redis.io/) (speaking the [Redis protocol](http://redis.io/topics/protocol)).
+HTTP nie je jediná služba, ktorú je možné exportovať bindovaním na port.  Skoro každý serverový softvér môže bežať na otvorenom porte a čakať na prichádzajúce požiadavky.  Príklady zahŕňajú [ejabberd](http://www.ejabberd.im/) (protokol [XMPP](http://xmpp.org/)), a [Redis](http://redis.io/) (protokol [Redis](http://redis.io/topics/protocol)).
 
-Note also that the port-binding approach means that one app can become the [backing service](./backing-services) for another app, by providing the URL to the backing app as a resource handle in the [config](./config) for the consuming app.
+Všimnite si, že pripojenie na port znamená, že aplikácia sa môže stať [podpornou službou](./backing-services) pre inú aplikáciu, poskytnutím URL na podpornú službu ako zdroj v [configu](./config) pre konzumujúcu aplikáciu.
+

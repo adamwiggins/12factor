@@ -29,10 +29,10 @@ The Twelve Factors
 ### Maximalizácia robustnosti rýchlym štartom a vhodným vypnutím
 
 ## [X. Dev/prod parity](./dev-prod-parity)
-### Vývojové testovacie a produkčné prostredie sú čo najpodobnejšie ako sa dá
+### Vývojové, testovacie a produkčné prostredie sú čo najpodobnejšie ako sa dá
 
 ## [XI. Logy](./logs)
 ### Logy sú prúdy udalostí
 
 ## [XII. Admin procesy](./admin-processes)
-### Spúštanie admininstrátorských/správcovských úloh ako jednorazových procesov
+### Spúštanie administrátorských/správcovských úloh ako jednorazových procesov

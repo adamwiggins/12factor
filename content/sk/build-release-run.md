@@ -1,19 +1,19 @@
 ## V. Build, release, run
-### Strictly separate build and run stages
+### Jasne oddelené fázy build, release a run
 
-A [codebase](./codebase) is transformed into a (non-development) deploy through three stages:
+[Kód](./codebase) sa transformuje do (nevývojárskeho) nasadenia troma krokmi:
 
-* The *build stage* is a transform which converts a code repo into an executable bundle known as a *build*.  Using a version of the code at a commit specified by the deployment process, the build stage fetches vendors [dependencies](./dependencies) and compiles binaries and assets.
-* The *release stage* takes the build produced by the build stage and combines it with the deploy's current [config](./config).  The resulting *release* contains both the build and the config and is ready for immediate execution in the execution environment.
-* The *run stage* (also known as "runtime") runs the app in the execution environment, by launching some set of the app's [processes](./processes) against a selected release.
+* *Krok build* transformuje kód v repozitári na vykonateľný balík nazývaný *build*.  Použitím verzie kódu v čase commitu špecifikovaného nasadzovacím procesom, krok build stiahne [závislosti](./dependencies) a skompiluje binárky a assets.
+* *Krok release* zoberie build vytvorený predchádzajúcim krokom a skombinuje ho s aktuálnou [konfiguráciou](./config) pre dané nasadenie.  Výsledok *release* obsahuje build a konfiguráciu pripravené na okamžité vykonanie v exekučnom prostredí.
+* *Krok run* (alebo "runtime") spustí aplikáciu v exekučnom prostredí naštartovaním aplikačných [procesov](./processes) voči danému release.
 
-![Code becomes a build, which is combined with config to create a release.](/images/release.png)
+![Kód sa stane buildom, ktorý sa skombinuje s konfiguráciou a vytvorí sa release.](/images/release.png)
 
-**The twelve-factor app uses strict separation between the build, release, and run stages.**  For example, it is impossible to make changes to the code at runtime, since there is no way to propagate those changes back to the build stage.
+**Dvanásť faktorová aplikácia striktne oddeľuje fázy build, release a run.**  Napríklad: je nemožné spraviť zmeny v kóde počas jeho behu, keďže neexistuje spôsob, ako by sa tieto zmeny dostali späť do fázy build.
 
-Deployment tools typically offer release management tools, most notably the ability to roll back to a previous release.  For example, the [Capistrano](https://github.com/capistrano/capistrano/wiki) deployment tool stores releases in a subdirectory named `releases`, where the current release is a symlink to the current release directory.  Its `rollback` command makes it easy to quickly roll back to a previous release.
+Nástroje na nasadzovanie zvyčajne ponúkajú spôsoby na správu release, hlavne teda možnosť vrátiť sa na predchádzajúci release.  Napríklad [Capistrano](https://github.com/capistrano/capistrano/wiki) si ukladá release v podpriečinku s názvom `releases`, kde je aktuálny release symlink na priečinok s aktuálnym releasom.  Tento príkaz `rollback` umožňuje jednoducho a rýchlo vrátiť sa na predchádzajúci release.
 
-Every release should always have a unique release ID, such as a timestamp of the release (such as `2011-04-06-20:32:17`) or an incrementing number (such as `v100`).  Releases are an append-only ledger and a release cannot be mutated once it is created.  Any change must create a new release.
+Každý release by mal vždy mať unikátne release ID, ako napríklad timestamp release (napríklad `2019-04-06-20:32:17`) alebo inkrementálne číslo (napr. `v100`).  Releasy sú záznamy, ktoré iba pribúdajú a release sa nedá zmeniť potom jeho vytvorení.  Každá zmenu musí vytvoriť nový release.
 
-Builds are initiated by the app's developers whenever new code is deployed.  Runtime execution, by contrast, can happen automatically in cases such as a server reboot, or a crashed process being restarted by the process manager.  Therefore, the run stage should be kept to as few moving parts as possible, since problems that prevent an app from running can cause it to break in the middle of the night when no developers are on hand.  The build stage can be more complex, since errors are always in the foreground for a developer who is driving the deploy.
+Buildy inicializujú developeri aplikácie kedykoľvek sa nasadzuje nový kód. Vykonávanie behu sa na rozdiel od buildov vykonáva automaticky v prípade reštartu servera, alebo pri reštarte padnutého procesu správcom procesov.  Preto by fáza spustenia mala mať čo najmenej pohyblivých častí, keďže problémy, ktoré so spustením aplikácie môžu nastať v strede noci, keď developeri nie sú k dispozícii.  Fáza build môže byť komplexnejšia, keďže chyby sú vždy viditeľné developerom, ktorí spustili nasadenie.
 

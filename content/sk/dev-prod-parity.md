@@ -1,60 +1,60 @@
 ## X. Dev/prod parity
-### Keep development, staging, and production as similar as possible
+### Vývojové, testovacie a produkčné prostredie sú čo najpodobnejšie ako sa dá
 
-Historically, there have been substantial gaps between development (a developer making live edits to a local [deploy](./codebase) of the app) and production (a running deploy of the app accessed by end users).  These gaps manifest in three areas:
+Historicky bývali podstatné rozdiely medzi vývojovým prostredím (developer upravoval živé lokálne [nasadenie](./codebase)) a produkčným prostredím (bežiace nasadenie aplikácie, na ktoré pristupujú používatelia). Tieto rozdiely sa prejavujú v týchto troch oblastiach:
 
-* **The time gap:** A developer may work on code that takes days, weeks, or even months to go into production.
-* **The personnel gap**: Developers write code, ops engineers deploy it.
-* **The tools gap**: Developers may be using a stack like Nginx, SQLite, and OS X, while the production deploy uses Apache, MySQL, and Linux.
+* **Časový rozdiel:** Developer môže pracovať na kóde, ktorý trvá dni, týždne alebo dokonca mesiace pred tým ako sa dostane na produkciu.
+* **Personálny rozdiel**: Developeri píšu kód, systémový administrátory ho nasadzujú.
+* **Nástrojový rozdiel**: Developeri môžu používať Nginx, SQLite, a OS X, pričom na produkcii beží Apache, MySQL, a Linux.
 
-**The twelve-factor app is designed for [continuous deployment](http://avc.com/2011/02/continuous-deployment/) by keeping the gap between development and production small.**  Looking at the three gaps described above:
+**Dvanásť faktorová aplikácia je navrhnutá pre [continuous deployment](http://avc.com/2011/02/continuous-deployment/) tak, že udržiava rozdiely medzi vývojom a produkciou.**  Keď sa pozrieme na tri rozdiely popísané vyššie:
 
-* Make the time gap small: a developer may write code and have it deployed hours or even just minutes later.
-* Make the personnel gap small: developers who wrote code are closely involved in deploying it and watching its behavior in production.
-* Make the tools gap small: keep development and production as similar as possible.
+* Zmenšite časový rozdiel: developer napíše kód a nasadí ho v priebehu hodín alebo dokonca minút.
+* Zmenšite personálny rozdiel: developeri, ktorí kód píšu by mali byť prítomní pri nasadzovaní a sledovaní správania na produkcii.
+* Zmenšite nástrojvý rozdiel: udržujte vývojové a produkčné prostredie nakoľko sa dá rovnaké.
 
-Summarizing the above into a table:
-
+Súhrn vyššie napísaného v tabuľke:
+ 
 <table>
   <tr>
     <th></th>
-    <th>Traditional app</th>
-    <th>Twelve-factor app</th>
+    <th>Tradičná aplikácia</th>
+    <th>Dvanásť faktorová aplikácia</th>
   </tr>
   <tr>
-    <th>Time between deploys</th>
-    <td>Weeks</td>
-    <td>Hours</td>
+    <th>Čas medzi nasadeniami</th>
+    <td>Týždne</td>
+    <td>Hodiny</td>
   </tr>
   <tr>
-    <th>Code authors vs code deployers</th>
-    <td>Different people</td>
-    <td>Same people</td>
+    <th>Autori kódu vs nasadzovači kódu</th>
+    <td>Rôzni ľudia</td>
+    <td>Rovnakí ľudia</td>
   </tr>
   <tr>
-    <th>Dev vs production environments</th>
-    <td>Divergent</td>
-    <td>As similar as possible</td>
+    <th>Vývojárske vs produkčné prostredie</th>
+    <td>Rozdielne</td>
+    <td>Čo najpodobnejšie</td>
   </tr>
 </table>
 
-[Backing services](./backing-services), such as the app's database, queueing system, or cache, is one area where dev/prod parity is important.  Many languages offer libraries which simplify access to the backing service, including *adapters* to different types of services.  Some examples are in the table below.
+[Podporné služby](./backing-services) ako napríklad databáza, fronty alebo cache sú oblasťou, kde je zhodnosť vývojárskeho-produkčného prostredia dôležitá.  Veľa jazykov poskytuje knižnice, ktoré uľahčujú prístup k podporným službám, vrátane *adaptérov* k rôznym typom služieb.  Niektoré príklady sú v tabuľke nižšie.
 
 <table>
   <tr>
-    <th>Type</th>
-    <th>Language</th>
-    <th>Library</th>
-    <th>Adapters</th>
+    <th>Typ</th>
+    <th>Jazyk</th>
+    <th>Knižnica</th>
+    <th>Adapér</th>
   </tr>
   <tr>
-    <td>Database</td>
+    <td>Databáza</td>
     <td>Ruby/Rails</td>
     <td>ActiveRecord</td>
     <td>MySQL, PostgreSQL, SQLite</td>
   </tr>
   <tr>
-    <td>Queue</td>
+    <td>Fronta</td>
     <td>Python/Django</td>
     <td>Celery</td>
     <td>RabbitMQ, Beanstalkd, Redis</td>
@@ -63,14 +63,14 @@ Summarizing the above into a table:
     <td>Cache</td>
     <td>Ruby/Rails</td>
     <td>ActiveSupport::Cache</td>
-    <td>Memory, filesystem, Memcached</td>
+    <td>Pamäť, súborový systém, Memcached</td>
   </tr>
 </table>
 
-Developers sometimes find great appeal in using a lightweight backing service in their local environments, while a more serious and robust backing service will be used in production.  For example, using SQLite locally and PostgreSQL in production; or local process memory for caching in development and Memcached in production.
+Developeri niekedy radi používajú odľahčené podporné služby na lokálny vývoj, pričom na produkcii sú robustnejšie podporné služby.  Napríklad používajú SQLite lokálne a PostgreSQL na produkcii; alebo pamäť lokálneho procesu počas vývoja a Memcached na produkcii.
 
-**The twelve-factor developer resists the urge to use different backing services between development and production**, even when adapters theoretically abstract away any differences in backing services.  Differences between backing services mean that tiny incompatibilities crop up, causing code that worked and passed tests in development or staging to fail in production.  These types of errors create friction that disincentivizes continuous deployment.  The cost of this friction and the subsequent dampening of continuous deployment is extremely high when considered in aggregate over the lifetime of an application.
+**Dvanásť faktorový vývojár odoláva nutkaniu používať rôzne podporné služby medzi vývojom a produkciou**, aj v prípade, že adaptéry teoreticky abstrahujú rozdiely medzi službami. Rozdiely medzi službami znamenajú, že sa vyskytnú maličné nekompatibility a spôsobia, že kód prejde cez testy pri vývoji alebo testovaní a zlyhá na produkcii. Tieto typy chýb vytvárajú trenie, ktoré spomaľuje priebežné nasadzovanie.  Cena tohoto trenia a následné spomalenie priebežného nasadzovania je extrémne vysoká, keď ju sčítame cez celú životnosť aplikácie.
 
-Lightweight local services are less compelling than they once were.  Modern backing services such as Memcached, PostgreSQL, and RabbitMQ are not difficult to install and run thanks to modern packaging systems, such as [Homebrew](http://mxcl.github.com/homebrew/) and [apt-get](https://help.ubuntu.com/community/AptGet/Howto).  Alternatively, declarative provisioning tools such as [Chef](http://www.opscode.com/chef/) and [Puppet](http://docs.puppetlabs.com/) combined with light-weight virtual environments such as [Docker](https://www.docker.com/) and [Vagrant](http://vagrantup.com/) allow developers to run local environments which closely approximate production environments. The cost of installing and using these systems is low compared to the benefit of dev/prod parity and continuous deployment.
+Odľahčené lokálne služby už nie sú také príťažlivé ako boli. Moderné podporné služby ako Memcached, PostgreSQL a RabbitMQ nie je ťažké nainštalovať a spustiť vďaka moderným balíčkovacím systémom ako [Homebrew](http://mxcl.github.com/homebrew/) a [apt-get](https://help.ubuntu.com/community/AptGet/Howto).  Alternatívne deklaratívne nástroje ako [Chef](http://www.opscode.com/chef/) a [Puppet](http://docs.puppetlabs.com/) skombinované s odľahčenými virtuálnymi prostrediami ako [Docker](https://www.docker.com/) a [Vagrant](http://vagrantup.com/) umôžňujú vývojárom vytvoriť lokálne prostredie, ktoré tesne aproximuje produkčné prostredie. Cena inštalácie a používania týchto systémov je nízka v porovnaní s výhodami rovnakého prostredia vývoj/produkcia.
 
-Adapters to different backing services are still useful, because they make porting to new backing services relatively painless.  But all deploys of the app (developer environments, staging, production) should be using the same type and version of each of the backing services.
+Adaptéry k rôznym podporným službám sú stále užitočné, pretože umožňujú plynulú migráciu na nové podporné služby. Ale všetky nasadenia aplikácia (vývojárske prostredie, testovacie, produkcia) by mali používať rovnaký typ a verziu každej podpornej služby.
