@@ -9,7 +9,7 @@ body {
 h1, h2, h3 {
   padding: 0;
   margin: 0;
-}
+}  
 
 h1, h2 {
   line-height: 1.25em;
@@ -40,8 +40,8 @@ header h1 a {
 section {
   padding-top: 16pt;
   text-align: center;
-  min-width: 65em;
 }
+
 section h1 {
   font-size: 19pt;
 }
@@ -49,16 +49,18 @@ section h1 {
 article {
   padding-top: 8pt;
 }
+
 article, nav {
   margin: 0 auto;
   text-align: justify;
-  max-width: 55em;
 }
+
 article p a, article li a {
   text-decoration: none;
   border-bottom: 1px dashed #444;
   color: #000;
 }
+
 article p a:hover, article li a:hover {
   color: #337;
 }
@@ -87,7 +89,7 @@ section.concrete h2 a:hover {
   color: #337;
 }
 section.concrete h3 {
-  color: #555;
+  color: #333;
   font-weight: normal;
 }
 
@@ -98,13 +100,22 @@ section#factor h2 {
 section#factor h3 {
   font-size: 17pt;
   font-weight: normal;
-  color: #999;
+  color: #555;
   margin-bottom: 16pt;
 }
 
 nav {
   margin-top: 16pt;
   margin-bottom: 48pt;
+}
+nav #locales {
+  text-align: center;
+}
+nav #locales a {
+  color: #000;
+}
+nav #locales span {
+  font-weight: bold;
 }
 nav #next {
   float: right;
@@ -113,6 +124,7 @@ nav #prev {
   float: left;
 }
 nav #next a, nav #prev a {
+  display: block;
   font-size: 19pt;
   text-decoration: none;
   color: #000;
@@ -133,7 +145,7 @@ td, th {
 }
 
 footer {
-  color: #444;
+  color: #999;
   font-size: 10pt;
   background: #000;
   padding-top: 24pt;
@@ -143,12 +155,8 @@ footer {
   min-height: 56pt;
 }
 
-footer span {
-  display: block;
-}
-
 footer a {
-  color: #444;
+  color: #999;
 }
 
 article img {
