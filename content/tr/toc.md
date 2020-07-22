@@ -1,35 +1,35 @@
 On İki Faktör
 =============
 
-## [I. Kod Tabanı](./codebase)
-### Bir çok dağıtım kod tabanı gözden geçirme kontrolünde izleme
+## [I. Kod tabanı](./codebase)
+### Versiyon kontrol sistemi üzerinde tek bir kod tabanı, birden fazla dağıtım
 
-## [II. Bağımlıklar](./dependencies)
-### Bağımlıkları açık bir şekilde açıklama ve ayırma
+## [II. Bağımlılıklar](./dependencies)
+### Bağımlılıkların açıkça tanımlanması ve izole edilmesi
 
 ## [III. Yapılandırma](./config)
-### Ortamda yapılandırma depolama
+### Yapılandırma ayarlarını ortamda saklama
 
-## [IV. Destek servisi](./backing-services)
-### Destek servislerine ekli kaynak olarak davranma
+## [IV. Yardımcı servisler](./backing-services)
+### Yardımcı servislere iliştirilmiş kaynaklar olarak davranmak
 
-## [V. Derleme, Sürüm, Çalıştırma](./build-release-run)
+## [V. Derleme, yayınlama, çalıştırma](./build-release-run)
 ### Derleme ve çalıştırma aşamalarını tam olarak ayırma
 
 ## [VI. Süreç](./processes)
-### Uygulamayı bir veya daha fazla bağımsız süreç olarak çalıştırma
+### Uygulamayı bir veya daha fazla bağımsız işlem olarak çalıştırma
 
-## [VII. Port Bağlama](./port-binding)
-### Port bağlama yolu üzerinden dışarı aktarma
+## [VII. Port bağlama](./port-binding)
+### Servisin portlar üzerinden sunulması
 
-## [VIII. Eş Zamanlılık](./concurrency)
-### Süreç modeli yardımıyla dağıtıklaştırma
+## [VIII. Eş zamanlılık](./concurrency)
+### Süreç modeli ile ölçeklendirme
 
-## [IX. Kullanıma Hazır Olma Durumu](./disposability)
-### Hızlı başlangıç ve otomatik zararsız kapama ile sağlamlığı üst düzeye çıkarma
+## [IX. İmha edilebilirlik](./disposability)
+### Hızlı başlangıç ve zararsız sonlanma ile maksimum servis sağlığı
 
 ## [X.Geliştirme/Üretim Eşitliği](./dev-prod-parity)
-### Gelişim, evreleme ve üretimi olabildikçe benzer tutma
+### Geliştirme, test etme ve gerçek çalışma ortamının birbirine olabildiğince benzer olması
 
 ## [XI. Günlükler](./logs)
 ### Günlüklere olay akışı gibi davranma
