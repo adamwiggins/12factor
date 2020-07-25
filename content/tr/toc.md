@@ -16,7 +16,7 @@ On İki Faktör
 ## [V. Derleme, yayınlama, çalıştırma](./build-release-run)
 ### Derleme ve çalıştırma aşamalarını tam olarak ayırma
 
-## [VI. Süreç](./processes)
+## [VI. İşlemler](./processes)
 ### Uygulamayı bir veya daha fazla bağımsız işlem olarak çalıştırma
 
 ## [VII. Port bağlama](./port-binding)
@@ -29,7 +29,7 @@ On İki Faktör
 ### Hızlı başlangıç ve zararsız sonlanma ile maksimum servis sağlığı
 
 ## [X.Geliştirme/Üretim Eşitliği](./dev-prod-parity)
-### Geliştirme, test etme ve gerçek çalışma ortamının birbirine olabildiğince benzer olması
+### Geliştirme, test etme ve canlı yayın ortamının birbirine olabildiğince benzer olması
 
 ## [XI. Günlükler](./logs)
 ### Günlüklere olay akışı gibi davranma
