@@ -2,22 +2,22 @@ On İki Faktör
 =============
 
 ## [I. Kod tabanı](./codebase)
-### Versiyon kontrol sistemi üzerinde tek bir kod tabanı, birden fazla dağıtım
+### Sürüm kontrol sistemi üzerinde tek bir kod tabanı, birden fazla dağıtım
 
 ## [II. Bağımlılıklar](./dependencies)
 ### Bağımlılıkların açıkça tanımlanması ve izole edilmesi
 
 ## [III. Yapılandırma](./config)
-### Yapılandırma ayarlarını ortamda saklama
+### Yapılandırma ayarlarını ortam değişkeni olarak saklama
 
 ## [IV. Yardımcı servisler](./backing-services)
-### Yardımcı servislere iliştirilmiş kaynaklar olarak davranmak
+### Yardımcı servisleri iliştirilmiş kaynaklar olarak ele almak
 
 ## [V. Derleme, yayınlama, çalıştırma](./build-release-run)
 ### Derleme ve çalıştırma aşamalarını tam olarak ayırma
 
-## [VI. İşlemler](./processes)
-### Uygulamayı bir veya daha fazla bağımsız işlem olarak çalıştırma
+## [VI. Süreçler](./processes)
+### Uygulamayı bir veya daha fazla bağımsız süreç olarak çalıştırma
 
 ## [VII. Port bağlama](./port-binding)
 ### Servisin portlar üzerinden sunulması
@@ -32,7 +32,7 @@ On İki Faktör
 ### Geliştirme, test etme ve canlı yayın ortamının birbirine olabildiğince benzer olması
 
 ## [XI. Günlükler](./logs)
-### Günlüklere olay akışı gibi davranma
+### Günlükleri olay akışı olarak ele almak
 
 ## [XII. Yönetici Süreci](./admin-processes)
-### Yönetici/yönetim görevlerini tek seferlik işlem olarak çalıştırma
+### Yönetici/yönetim görevlerini tek seferlik süreçler olarak çalıştırma

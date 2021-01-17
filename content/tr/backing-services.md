@@ -1,7 +1,7 @@
 ## IV. Yardımcı servisler
-### Yardımcı servislere iliştirilmiş kaynaklar olarak davranmak
+### Yardımcı servisleri iliştirilmiş kaynaklar olarak ele almak
 
-Bir *yardımcı servis* uygulamanın kendi işlevselliğinin bir parçası olarak ağ üzerinden tükettiği herhangi bir servistir. Örnekler veritabanları ([MySQL](http://dev.mysql.com/) veya [CouchDB](http://couchdb.apache.org/) gibi), mesajlaşma/kuyruk sistemleri ([RabbitMQ](http://www.rabbitmq.com/) veya [Beanstalkd](https://beanstalkd.github.io)), e-posta göndermek için SMTP servisi ([Postfix](http://www.postfix.org/) gibi) ve önbellekleme sistemlerini ([Memcached](http://memcached.org/) gibi) içerir.
+Bir *yardımcı servis* uygulamanın kendi işlevselliğinin bir parçası olarak ağ üzerinden tükettiği herhangi bir servistir. Yardımcı servislere örnek olarak; veritabanları ([MySQL](http://dev.mysql.com/) veya [CouchDB](http://couchdb.apache.org/) gibi), mesajlaşma/kuyruk sistemleri ([RabbitMQ](http://www.rabbitmq.com/) veya [Beanstalkd](https://beanstalkd.github.io)), e-posta göndermek için SMTP servisleri ([Postfix](http://www.postfix.org/) gibi) ve önbellekleme sistemleri ([Memcached](http://memcached.org/) gibi) gösterilebilir.
 
 Veritabanları gibi yardımcı servisler, geleneksel olarak uygulamayı da yöneten sistem yöneticileri tarafından yönetilirler. Ancak bu yerel servislere ilave olarak, uygulama üçüncü parti uygulamalar tarafından sağlanan ve yönetilen servislere de sahip olabilirler. Bunlardan bazıları; SMTP servisleri ([Postmark](http://postmarkapp.com/) gibi), metrik toplama servisleri ([New Relic](http://newrelic.com/) veya [Loggly](http://www.loggly.com/) gibi), statik içerik barındırma servisleri ([Amazon S3](http://aws.amazon.com/s3/) gibi) ve hatta API-erişilebilir tüketici servisleridir ([Twitter](http://dev.twitter.com/), [Google Maps](http://code.google.com/apis/maps/index.html), ve [Last.fm](http://www.last.fm/api) gibi).
 

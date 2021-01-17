@@ -1,5 +1,5 @@
 ## III. Yapılandırma
-### Yapılandırma ayarlarını ortamda saklama
+### Yapılandırma ayarlarını ortam değişkeni saklama
 
 Bir uygulamanın *yapılandırma ayarları* [dağıtımlar](./codebase) arasında farklı olma ihtimali olan her şeydir. Örneğin:
 
@@ -15,7 +15,7 @@ Bu *yapılandırma ayarı* tanımının, [Spring](http://spring.io/)'de [kod mod
 
 Yapılandırmaya diğer bir yaklaşım da Rails'deki `config/database.yml` gibi dosyaların versiyon kontrol sistemine dahil edilmeden kullanımıdır. Bu, kod deposuna dahil edilmiş sabitler kullanmaya göre büyük bir gelişimdir, fakat hala zayıflıkları vardır: Bu dosyaların yanlışlıkla versiyon kontrol sistemine dahil edilme olasılığı oldukça yüksektir. Yapılandırma dosyalarının farklı yerlerde ve farklı formatlarda dağılmış olması eğilimi mevcuttur, ve bu durum bütün yapılandırmayı bir yerde görmeyi ve yönetmeyi zorlaştırır. Dahası, bu formatlar genelde dil veya çatı için özelleşmiştir.
 
-**On iki faktör uygulamalarında yapılandırma *ortam değişkenlerinde* kaydedilir** (sıklıkla *env vars* veya *env* olarak kısaltılır). Ortam değişkenleri herhangi bir kod değişikliği olmadan, dağıtımlar arasında kolay değişebilir; Yapılandırma dosyalarının aksine, kod deposunaa yanlışlıkla dahil edilme ihtimali düşüktür; ve özel yapılandırma dosyalarının veya Java sistem özellikleri gibi yapılandırma mekanizmalarının aksine, onlar dil ve işletim sisteminden etkilenmez.
+**On iki faktör uygulamalarında yapılandırma *ortam değişkenlerinde* kaydedilir** (sıklıkla *env vars* veya *env* olarak kısaltılır). Ortam değişkenleri herhangi bir kod değişikliği olmadan, dağıtımlar arasında kolay değişebilir; Yapılandırma dosyalarının aksine, kod deposuna yanlışlıkla dahil edilme ihtimali düşüktür; ve özel yapılandırma dosyalarının veya Java sistem özellikleri gibi yapılandırma mekanizmalarının aksine, onlar dil ve işletim sisteminden etkilenmez.
 
 Yapılandırma yönetiminin diğer bir açısı da gruplandırmadır. Bazen uygulamalar, Rails'deki `geliştirme`, `test` ve `canlı` ortamları gibi belirli dağıtımlardan sonra adlandırılmış gruplar içinde yapılandırılır. Bu yöntem temiz bir şekilde ölçeklenemez. Çünkü uygulamanın daha fazla dağıtımı oluştukça, yeni ortam isimleri gerekli olur, `staging` veya `qa` gibi. Projeler ilerde geliştikçe, geliştiriciler `joes-staging` kendi özel ortam değişkenlerini ekleyebilir. Bu da yapılandırma dosyalarının hızla artmasıyla sonuçlanarak dağıtım yönetimini oldukça kırılganlaştırır.
 

@@ -1,9 +1,9 @@
 ## I. Kod Tabanı
-### Versiyon kontrol sistemi üzerinde tek bir kod tabanı, birden fazla dağıtım
+### Sürüm kontrol sistemi üzerinde tek bir kod tabanı, birden fazla dağıtım
 
-On iki faktör bir uygulama her zaman [Git](http://git-scm.com/), [Mercurial](http://mercurial.selenic.com/) veya [Subversion](http://subversion.apache.org/) gibi bir versiyon kontrol sistemiyle izlenir. Bu versiyon kontrol sistemindeki dosya veritabanına kod deposu (İng. code repository) veya kısaca depo (İng. repo) denir.
+On iki faktör bir uygulama her zaman [Git](http://git-scm.com/), [Mercurial](http://mercurial.selenic.com/) veya [Subversion](http://subversion.apache.org/) gibi bir sürüm kontrol sistemiyle izlenir. Bu sürüm kontrol sistemindeki dosya veritabanına kod deposu (İng. code repository) veya kısaca depo (İng. repo) denir.
 
-Bir *kod tabanı*, tek bir depo (Subversion gibi merkezi versiyon kontrol sistemi) ya da kök *commit* paylaşan birden fazla depodan (Git gibi merkezi olmayan versiyon kontrol sistemi) oluşur.
+Bir *kod tabanı*, tek bir depo (Subversion gibi merkezi sürüm kontrol sistemi) ya da kök *commit* paylaşan birden fazla depodan (Git gibi merkezi olmayan sürüm kontrol sistemi) oluşur.
 
 ![Bir kod tabanı bir çok dağıtımla eşlenir](/images/codebase-deploys.png)
 

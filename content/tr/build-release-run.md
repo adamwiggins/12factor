@@ -5,7 +5,7 @@ Bir [kod tabanı](./codebase) üç aşamada (geliştirme dağıtımı olmayan) d
 
 * *Derleme aşaması* kod deposunun *derleme* olarak bilinen çalıştırılabilir bir pakete çevrilmesidir. Dağıtım evresi tarafından seçilen commit'teki kod kullanılır. Sistem, üçüncü parti [bağımlılıkları](./dependencies) toparlar ve çalıştırılabilirleri ve statik dosyaları derler.
 * *Yayınlama aşaması*, derleme aşaması tarafından üretilmiş derlemeyi alır ve dağıtımı güncel [yapılandırmasıyla](./config) birleştirir. Son durumda oluşan *yayın* derleme ve yapılandırmanın ikisini de içerir ve çalışma ortamında çalıştırmak için hazırdır.
-* *Çalıştırma evresi* (aynı zamanda "runtime" olarak bilinir) seçili yayının karşılığındaki [işlemleri](./processes) başlatarak, çalıştırma ortamındaki uygulamayı çalıştırır.
+* *Çalıştırma evresi* (aynı zamanda "runtime" olarak bilinir) seçili yayının karşılığındaki [süreçleri](./processes) başlatarak, çalıştırma ortamındaki uygulamayı çalıştırır.
 
 ![Kod, sürüm oluşturmak için yapılandırmayla birleşmiş derlemeye dönüşür.](/images/release.png)
 
@@ -15,4 +15,4 @@ Dağıtım araçları genelde yayın yönetim araçları da sunar. En dikkat çe
 
 Her yayın zaman damgası gibi (`2011-04-06-20:32:17` gibi) özel bir ID'ye veya her yeni yayında artan bir numaraya (`v100` gibi) sahip olmalıdır. Yayınlar yalnızca eklemeli bir defterdir ve bir kere oluşturulduğu zaman değiştirilemez. Herhangi bir değişiklik yeni bir yayın oluşturmalıdır.
 
-Derlemeler, geliştiricilerin kod değişikliklerini kod depolarına yüklemesiyle başlatılır. Çalıştırma evresi ise, sunucuların yeniden başlatılması veya çökmüş işlemlerin tekrar ayağa kaldırılması gibi durumlarda otomatik olarak gerçekleştirilir. Bu yüzden çalıştırma evresi olabildiği kadar az sayıda hareketli parçaya sahip olmalıdır ki, gecenin bir yarısında, işinin başında olan hiçbir geliştirici yokken bozulmasın. Derleme evresi ise daha karmaşık olabilir, çünkü hatalar dağıtımı çalıştıran geliştiricilerin her zaman önündedir.
+Derlemeler, geliştiricilerin kod değişikliklerini kod depolarına yüklemesiyle başlatılır. Çalıştırma evresi ise, sunucuların yeniden başlatılması veya çökmüş süreçlerin tekrar ayağa kaldırılması gibi durumlarda otomatik olarak gerçekleştirilir. Bu yüzden çalıştırma evresi olabildiği kadar az sayıda hareketli parçaya sahip olmalıdır ki, gecenin bir yarısında, işinin başında olan hiçbir geliştirici yokken bozulmasın. Derleme evresi ise daha karmaşık olabilir, çünkü hatalar dağıtımı çalıştıran geliştiricilerin her zaman önündedir.
