@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-ruby '2.6.6'
+ruby '3.2.2'
 
 gem 'sinatra'
 gem 'thin'
