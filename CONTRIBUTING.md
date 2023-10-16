@@ -2,7 +2,7 @@
 
 ## Reporting a bug
 
-If internal to Salesforce/Heroku, please contact the #marketing-web-ops team on Slack. Public users may open a GitHub issue.
+If internal to Salesforce/Heroku, please contact the #marketing-web-ops team on Slack.
 
 ## General Contribution Guidelines
 
