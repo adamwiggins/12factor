@@ -1,0 +1,25 @@
+name: "Send data to Components Inventory"
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "main"
+    paths:
+      - ".heroku/components-inventory/*.json"
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    paths:
+      - ".heroku/components-inventory/*.json"
+jobs:
+  action:
+    runs-on: sfdc-hk-ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Send data to Components Inventory
+        uses: heroku/components-action@main
+        with:
+          COMPONENTS_GHA_APP_ID: ${{ secrets.COMPONENTS_GHA_APP_ID}}
+          COMPONENTS_GHA_APP_PRIVATE_KEY: ${{ secrets.COMPONENTS_GHA_APP_PRIVATE_KEY}}
+          COMPONENTS_GHA_JSON_TOKEN: ${{ secrets.COMPONENTS_GHA_JSON_TOKEN}}
