@@ -1,0 +1,14 @@
+## VIII. Eş Zamanlılık
+### Süreç modeli yardımıyla dağıtıklaştırma
+
+Herhangi bir bilgisayar programı bir kere çalıştığı zaman bir veya daha fazla süreç tarafından temsil edilir. Web uygulamaları çeşitli süreç çalıştırma formlarına sahiptir. Örneğin, PHP süreçleri Apache'nin alt süreci olarak çalışır, ve istek hacmine göre ihtiyaç duyuldukça başlatılır. Java süreçleri karşıt yaklaşımı benimser; JVM, başlangıçta büyük miktarda sistem kaynağı (CPU ve bellek) ayıran büyük bir süreci başlatır, ve eşzamanlı iş parçacıkları (İng. threads) aracılığıyla JVM içerisinde dahili olarak yönetilir. Her iki durumda, çalışan süreçler, uygulamanın geliştiricilerine minimum düzeyde görünürdür.
+
+![Ölçek, çalışan süreçler olarak ifade edilir, iş yükü çeşitliliği ise süreç tipi olarak tanımlanır.](/images/process-types.png)
+
+**On iki faktör uygulamasında, süreçler birinci sınıf üyelerdir.** On iki faktör uygulamasındaki süreçler arkaplan servis programları çalıştırmak için olan [Unix süreç modeli](https://adam.herokuapp.com/past/2011/5/9/applying_the_unix_process_model_to_web_apps/)nden güçlü ipuçları alır. Bu modeli kullanarak geliştirici, uygulamasının her iş tipini bir *süreç tipine* atayarak, farklı iş yüklerini kontrol etmek için uygulamasını planlayabilir. Örneğin, HTTP istekleri web süreçleri tarafından işlenir ve uzun çalışan arkaplan görevleri, işçi süreçler tarafından işlenir.
+
+Bu, çalışma zamanı (İng. runtime) içindeki iş parçacıkları veya [EventMachine](https://github.com/eventmachine/eventmachine), [Twisted](http://twistedmatrix.com/trac/) ve [Node.js](http://nodejs.org/) gibi araçlarda bulunan asenkron/olay-bazlı model gibi, süreçlerin kendi çok-kanallılığını hariç tutmaz. Fakat bir sanal makinanın dikey ölçekte büyümesinin bir sınırı vardır. Bu yüzden uygulama aynı zamanda birden fazla fiziksel makinede çalışan çoklu süreçleri içerebilmelidir.
+
+Bu süreç modeli, konu ölçeklendirmeye geldiğinde gerçekten farkını ortaya koyar. Paylaşımsız, yatay olarak bölümlenebilir bir doğası olan on iki faktör uygulama süreçleri, daha fazla eş zamanlılık eklemenin kolay ve güvenilir bir iş olduğu anlamına gelir. Süreç tipleri dizisi ve her bir tipin süreç sayısı *süreç formasyonu* olarak bilinir.
+
+On iki faktör uygulama süreçleri [asla arkaplan süreçleri başlatmamalı](http://dustin.github.com/2010/02/28/running-processes.html) ya da PID dosyaları yazmamalıdır. Bunun yerine, [çıktı akışlarını](./logs) kontrol etmek, çökmüş süreçlere cevap vermek, kullanıcı sebepli tekrar başlatma ve kapatmaları süreçek için işletim sistemlerinin süreç yöneticisine ([systemd](https://www.freedesktop.org/wiki/Software/systemd/) gibi bulut platformunda yayınlanmış süreç yöneticisi veya geliştirme sırasında [Foreman](http://blog.daviddollar.org/2011/05/06/introducing-foreman.html)'e benzer araçlar) dayanır.

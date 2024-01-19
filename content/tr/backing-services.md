@@ -1,0 +1,14 @@
+## IV. Yardımcı servisler
+### Yardımcı servisleri iliştirilmiş kaynaklar olarak ele almak
+
+Bir *yardımcı servis* uygulamanın kendi işlevselliğinin bir parçası olarak ağ üzerinden tükettiği herhangi bir servistir. Yardımcı servislere örnek olarak; veritabanları ([MySQL](http://dev.mysql.com/) veya [CouchDB](http://couchdb.apache.org/) gibi), mesajlaşma/kuyruk sistemleri ([RabbitMQ](http://www.rabbitmq.com/) veya [Beanstalkd](https://beanstalkd.github.io)), e-posta göndermek için SMTP servisleri ([Postfix](http://www.postfix.org/) gibi) ve önbellekleme sistemleri ([Memcached](http://memcached.org/) gibi) gösterilebilir.
+
+Veritabanları gibi yardımcı servisler, geleneksel olarak uygulamayı da yöneten sistem yöneticileri tarafından yönetilirler. Ancak bu yerel servislere ilave olarak, uygulama üçüncü parti uygulamalar tarafından sağlanan ve yönetilen servislere de sahip olabilirler. Bunlardan bazıları; SMTP servisleri ([Postmark](http://postmarkapp.com/) gibi), metrik toplama servisleri ([New Relic](http://newrelic.com/) veya [Loggly](http://www.loggly.com/) gibi), statik içerik barındırma servisleri ([Amazon S3](http://aws.amazon.com/s3/) gibi) ve hatta API-erişilebilir tüketici servisleridir ([Twitter](http://dev.twitter.com/), [Google Maps](http://code.google.com/apis/maps/index.html), ve [Last.fm](http://www.last.fm/api) gibi).
+
+**On iki faktör uygulamaları için bir servisin yerel veya üçüncü parti olmasının farkı yoktur.** Uygulama için, her ikisi de ek kaynaktır ve [yapılandırmada](./config) saklanmış URL'ler veya yer belirleyici ve kimlik bilgileri ikilisi aracılığıyla erişilir. On iki faktör uygulamasının bir dağıtımı, uygulama kodunda hiçbir değişiklik yapmak zorunda kalmadan yerel bir MySQL veritabanı kullanmaktan üçüncü parti bir veritabanı ([Amazon RDS](http://aws.amazon.com/rds/) gibi) kullanmaya geçebilmelidir. Aynı şekilde yerel bir SMTP servisinden (Postmark gibi), kod değişikliği olmaksızın bir üçüncü parti SMTP servisine geçiş yapılabilir. Her iki durumda da, değişmesi gereken şey sadece yapılandırma ayarlarındaki bağlantı bilgileridir.
+
+Her bir destek servisi bir *kaynaktır*. Örneğin, bir MySQL veritabanı bir kaynaktır; iki MySQL veritabanı (uygulama katmanında parçalanma [İng. sharding] için kullanılan) iki farklı kaynak olarak nitelendirilir. On iki faktör uygulaması bu veritabanlarına, bağlı oldukları dağıtımlara gevşek bağlaşımlarını belirten *ek kaynak* olarak davranır.
+
+<img src="/images/attached-resources.png" class="full" alt="Canlı yayın dağıtımı dört destek servisine bağlanmış." />
+
+Kaynaklar dağıtımlara istenilen zamanda eklenilip çıkartılabilir. Örneğin, eğer uygulamanın veritabanı donanımsal sorunlar yaşıyorsa, uygulamanın yöneticisi son yedeklemeden geri yüklenmiş yeni bir veritabanı sunucusu oluşturabilir. Problemli veritabanının uygulamadan bağlantısı kesilip, yeni veritabanı bağlanabilir, hem de hiçbir kod değişikliği olmadan.

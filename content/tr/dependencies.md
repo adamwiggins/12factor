@@ -1,0 +1,12 @@
+## II. Bağımlıklar
+### Bağımlılıkların açıkça tanımlanması ve izole edilmesi
+
+Çoğu programlama dili destek kütüphanelerini dağıtmak için bir paketleme sistemi sunar. Mesela Perl için [CPAN](http://www.cpan.org/), Ruby için [Rubygems](http://rubygems.org/). Bir paketleme sistemi aracılığıyla yüklenen kütüphaneler, sistem genelinde ("site paketleri" olarak bilinir) yüklenebilir veya uygulamanın bulunduğu dizine ("sağlayıcı" veya "paketleme" olarak bilinir) dahil edilebilir.
+
+**On iki faktör bir uygulama asla bir sistem geneli paketin yüklü olduğunu varsaymaz.** Bir *bağımlılık bildirimi* manifestosu ile tüm bağımlılıkları tam ve eksiksiz olarak bildirir. Üstelik bağımlılıkların çevredeki sistemden sızmamasını sağlamak için çalıştırma sırasında bir *bağımlılık yalıtım* aracı kullanılır. Tam ve açık bağımlılık belirtimi hem canlı yayın hem de geliştirme için eşit olarak uygulanmaktadır.
+
+Örneğin, Ruby'nin [Bundler](https://bundler.io/)'ı, bağımlılık bildirimi için `Gemfile` manifesto formatını ve bağımlılık yalıtımı için `bundle exec`'i sunar. Python'da bu adımlar için iki ayrı araç bulunur: [Pip](http://www.pip-installer.org/en/latest/) bildirimde, [Virtualenv](http://www.virtualenv.org/en/latest/) de yalıtımda kullanılır. C bile bağımlılık bildirimi için [Autoconf](http://www.gnu.org/s/autoconf/)'a sahiptir ve bağımlılık yalıtımı statik link ile sağlanır. Ne olursa olsun birbiriyle uyumlu çalışan yazılım uygulaması, bağımlılık bildirimi ve bağımlılık yalıtımı birlikte kullanılmalıdır, sadece birinin olması on iki faktör için yeterli değildir.
+
+Açık bağımlılık bildiriminin bir faydası da uygulamaya yeni katılan geliştiriciler için kurulumu kolaylaştırmasıdır. Yeni geliştirici bilgisayarında yalnızca programlama dilini ve bağımlılık yöneticisine sahip olarak uygulamanın kod tabanını indirebilir. Uygulamanın içindeki önceden belirlenmiş bir *derleme komutu* uygulama kodunun çalışması için ihtiyaç duyulan her şeyi yükleyebilecektir. Örneğin bu komut Clojure/[Leiningen](https://github.com/technomancy/leiningen#readme) için `lein deps` iken, Ruby/Bundler için `bundle install`'dur.
+
+On iki faktör uygulamaları herhangi bir sistem aracının yüklü olduğunu varsaymaz. Örnekler `ImageMagick` yada `curl` kullanımını içerir. Bu araçlar çoğu sistemde var olabilse de, uygulamanın gelecekte çalışabileceği sistemlerde bu araçların var olup olmayacağının veya bu araçların sürümlerinin uygulamayla uyumlu olup olmayacağının garantisi yoktur. Uygulamanın bir sistem aracına ihtiyacı oluşuyorsa, o aracın uygulamanın içine dahil edilmesi gerekir.
